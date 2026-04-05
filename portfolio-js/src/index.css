@@ -603,8 +603,9 @@
   }
 
   .nav.scrolled {
-    background: rgba(247, 243, 236, 0.95);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(247,243,236,0.85);
+    box-shadow: 0 1px 0 rgba(28,16,7,0.08);
     border-bottom: 1px solid rgba(28, 16, 7, 0.15);
   }
 
@@ -620,6 +621,20 @@
   .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Force all reveal sections visible by default as fallback */
+  .reveal {
+    animation: revealFallback 0.6s ease forwards;
+  }
+  .reveal.is-visible {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @keyframes revealFallback {
+    from { opacity: 0; transform: translateY(32px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* ========================================
@@ -810,10 +825,114 @@
     }
   }
 
-  /* Hero word reveal animation */
-  @keyframes wordReveal {
-    from { opacity: 0; transform: translateY(20px) skewY(2deg); }
-    to { opacity: 1; transform: translateY(0) skewY(0); }
+  /* Experience row scroll reveal */
+  .exp-row {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, background 0.25s;
+    /* Fallback: auto-animate visible after delay */
+    animation: expRowReveal 0.5s 0.3s ease forwards;
+  }
+  .exp-row.visible {
+    opacity: 1;
+    transform: translateX(0);
+    animation: none;
+  }
+  .exp-row:nth-child(1) { transition-delay: 0s; animation-delay: 0.2s; }
+  .exp-row:nth-child(2) { transition-delay: 0.12s; animation-delay: 0.35s; }
+  .exp-row:nth-child(3) { transition-delay: 0.24s; animation-delay: 0.5s; }
+
+  @keyframes expRowReveal {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Experience bullets - hidden until hover */
+  .exp-bullets {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.35s ease;
+  }
+  .exp-row:hover .exp-bullets {
+    opacity: 1;
+    max-height: 120px;
+  }
+
+  /* Year column right border */
+  .year-col {
+    border-right: 2px solid rgba(160,113,79,0.2);
+    transition: border-right-width 0.25s ease, border-right-color 0.25s ease;
+  }
+  .exp-row:hover .year-col {
+    border-right-width: 4px;
+    border-right-color: #A0714F;
+  }
+
+  /* Hero cinematic animations */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Skills ticker mask */
+  .skills-ticker-viewport {
+    mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+  /* Primary skill dot copper glow */
+  .skill-dot.primary {
+    box-shadow: 0 0 6px rgba(160,113,79,0.6);
+  }
+
+  /* Project image shimmer */
+  .proj-img-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  .proj-img-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #E8DED0 25%, #F0E8DC 50%, #E8DED0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    z-index: 1;
+  }
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+  .proj-img-wrapper.loaded::before {
+    display: none;
+  }
+
+  /* Scroll margin for sections */
+  section {
+    scroll-margin-top: 80px;
+  }
+
+  /* Preloader animations */
+  @keyframes expandLine {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; pointer-events: none; }
+  }
+  @keyframes logoReveal {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* Nav link active state */
@@ -859,10 +978,28 @@
   .proj-card:nth-child(9) { transition-delay: 0.64s; }
   .proj-card:nth-child(10) { transition-delay: 0.72s; }
 
-  /* Custom cursor smooth follow */
-  .custom-cursor-dot {
-    transition: transform 0.08s ease !important;
-    mix-blend-mode: difference;
+  /* Custom cursor - two layer system */
+  .cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #A0714F;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: left 0.05s, top 0.05s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(160,113,79,0.4);
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: left 0.12s ease, top 0.12s ease;
   }
 
   /* Marquee pause on hover - ensure it works */
@@ -874,6 +1011,18 @@
   .filter-tab.active {
     color: #A0714F;
     border-bottom: 2px solid #A0714F;
+  }
+
+  /* Modal fade in animation */
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   /* Card footer always at bottom */

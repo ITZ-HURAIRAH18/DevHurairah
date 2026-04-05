@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import Preloader from "./components/Preloader";
 import MarqueeTicker from "./components/MarqueeTicker";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -10,26 +11,11 @@ import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
   const mainRef = useRef(null);
 
-  useEffect(() => {
-    // Hide initial loader
-    const timer = setTimeout(() => {
-      const loader = document.getElementById("initial-loader");
-      if (loader) {
-        loader.style.opacity = "0";
-        setTimeout(() => {
-          loader.style.display = "none";
-          setIsLoading(false);
-        }, 600);
-      }
-    }, 800);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+  // ALL hooks MUST run before any conditional return (Rules of Hooks)
   // Scroll reveal with IntersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,7 +33,7 @@ function App() {
     revealElements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, [isLoading]);
+  }, []);
 
   // Active section tracking for navbar
   useEffect(() => {
@@ -64,7 +50,12 @@ function App() {
     );
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, [isLoading]);
+  }, []);
+
+  // Preloader — show while loading, hide after
+  if (loading) {
+    return <Preloader onComplete={() => setLoading(false)} />;
+  }
 
   return (
     <div className="relative flex min-h-screen flex-col bg-page font-sans antialiased overflow-x-hidden">

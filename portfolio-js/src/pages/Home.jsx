@@ -20,29 +20,25 @@ const Home = () => {
         className="w-full lg:w-3/5 flex flex-col justify-start pr-0 lg:pr-12 xl:pr-16 hero-left"
         style={{ gap: "1.5rem" }}
       >
-        {/* Editorial Name with Word Reveal Animation */}
+        {/* Editorial Name with Cinematic Animation */}
         <h1
-          className="font-serif font-light text-espresso leading-[0.95] tracking-tight"
+          className="font-serif font-light text-espresso leading-[0.95] tracking-tight hero-name"
           style={{ fontSize: "clamp(3rem, 7vw, 6rem)" }}
         >
           <span
-            className="word"
             style={{
               display: "block",
               opacity: 0,
-              animation: "wordReveal 0.5s ease forwards",
-              animationDelay: "0.1s",
+              animation: "slideUp 0.8s 0.2s ease both",
             }}
           >
             Muhammad
           </span>
           <span
-            className="word"
             style={{
               display: "block",
               opacity: 0,
-              animation: "wordReveal 0.5s ease forwards",
-              animationDelay: "0.25s",
+              animation: "slideUp 0.8s 0.35s ease both",
             }}
           >
             <span className="italic text-copper">Abu</span> Hurairah
@@ -51,8 +47,12 @@ const Home = () => {
 
         {/* Subtitle */}
         <p
-          className="hero-para font-serif text-xl lg:text-2xl xl:text-3xl italic text-muted font-light"
-          style={{ margin: 0 }}
+          className="hero-role font-serif text-xl lg:text-2xl xl:text-3xl italic text-muted font-light"
+          style={{
+            margin: 0,
+            opacity: 0,
+            animation: "slideUp 0.6s 0.4s ease both",
+          }}
         >
           Engineer — Architect — Builder
         </p>
@@ -60,7 +60,11 @@ const Home = () => {
         {/* Description Paragraph */}
         <p
           className="hero-para font-sans text-base lg:text-lg font-light text-espresso/80 leading-relaxed max-w-xl"
-          style={{ margin: 0 }}
+          style={{
+            margin: 0,
+            opacity: 0,
+            animation: "slideUp 0.6s 0.5s ease both",
+          }}
         >
           Full-stack engineer building scalable applications across web,
           mobile, and desktop platforms. Expertise in MERN, Django, React
@@ -70,7 +74,11 @@ const Home = () => {
         {/* CTA Buttons */}
         <div
           className="hero-actions flex flex-wrap gap-4 lg:gap-6"
-          style={{ marginTop: "1.2rem" }}
+          style={{
+            marginTop: "1.2rem",
+            opacity: 0,
+            animation: "slideUp 0.6s 0.6s ease both",
+          }}
         >
           <a href="#projects" className="btn-solid">
             View Work ↗
@@ -82,7 +90,10 @@ const Home = () => {
       </div>
 
       {/* Right Column (40%) — Photo + horizontal tech row */}
-      <div className="w-full lg:w-2/5 flex flex-col mt-2 lg:mt-0 hero-right">
+      <div
+        className="w-full lg:w-2/5 flex flex-col mt-2 lg:mt-0 hero-right"
+        style={{ opacity: 0, animation: "slideLeft 0.8s 0.3s ease both" }}
+      >
         {/* Professional Photo Layout */}
         <div
           className="relative w-full overflow-hidden"
@@ -109,7 +120,7 @@ const Home = () => {
               className="font-serif text-xl lg:text-2xl italic text-white font-light leading-tight"
               style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
             >
-              Muhammad <span className="text-copper">Abu</span> Hurairah
+              Muhammad Abu Hurairah
             </div>
             <div
               className="font-mono text-mono-xs uppercase tracking-wider text-copper mt-1"

@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 
 const CustomCursor = () => {
-  const cursorRef = useRef(null);
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
 
   useEffect(() => {
     let rafId = null;
@@ -9,9 +10,13 @@ const CustomCursor = () => {
     const move = (e) => {
       if (rafId) cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
-        if (cursorRef.current) {
-          cursorRef.current.style.left = e.clientX + "px";
-          cursorRef.current.style.top = e.clientY + "px";
+        if (dotRef.current) {
+          dotRef.current.style.left = e.clientX + "px";
+          dotRef.current.style.top = e.clientY + "px";
+        }
+        if (ringRef.current) {
+          ringRef.current.style.left = e.clientX + "px";
+          ringRef.current.style.top = e.clientY + "px";
         }
       });
     };
@@ -24,21 +29,10 @@ const CustomCursor = () => {
   }, []);
 
   return (
-    <div
-      ref={cursorRef}
-      style={{
-        position: "fixed",
-        width: "8px",
-        height: "8px",
-        borderRadius: "50%",
-        background: "#A0714F",
-        pointerEvents: "none",
-        zIndex: 9997,
-        transform: "translate(-50%, -50%)",
-        transition: "left 0.08s ease, top 0.08s ease",
-        opacity: 0.7,
-      }}
-    />
+    <>
+      <div ref={dotRef} className="cursor-dot" />
+      <div ref={ringRef} className="cursor-ring" />
+    </>
   );
 };
 

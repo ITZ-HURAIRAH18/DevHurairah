@@ -36,19 +36,53 @@ const Navbar = ({ activeSection }) => {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo — ALWAYS "M. Abu Hurairah" */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
-            className="flex items-baseline gap-1 no-underline"
+            className="no-underline nav-logo"
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              animation: "logoReveal 0.6s ease forwards",
+              textDecoration: "none",
+            }}
           >
-            <span className="font-serif text-2xl font-medium italic text-copper">
+            <span
+              style={{
+                color: "#A0714F",
+                fontFamily: "'Cormorant Garamond', serif",
+                fontStyle: "italic",
+                fontWeight: 600,
+                fontSize: "1.5rem",
+                lineHeight: 1,
+              }}
+            >
               M.
             </span>
-            <span className="font-serif text-2xl font-medium italic text-espresso">
-              Abu Hurairah
+            <span
+              style={{
+                color: "#1C1007",
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 300,
+                fontSize: "1.5rem",
+                lineHeight: 1,
+              }}
+            >
+              &nbsp;Abu Hurairah
             </span>
-            <span className="font-mono text-[10px] text-muted -mb-2">®</span>
+            <sup
+              style={{
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "0.5rem",
+                color: "#A0714F",
+                verticalAlign: "super",
+                marginLeft: "2px",
+                lineHeight: 1,
+              }}
+            >
+              ®
+            </sup>
           </a>
 
           {/* Desktop Nav Links */}

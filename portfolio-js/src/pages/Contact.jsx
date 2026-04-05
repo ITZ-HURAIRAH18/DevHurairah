@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
@@ -39,20 +39,54 @@ const Contact = () => {
     }
   };
 
+  // Count-up animation for stats
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const statElements = document.querySelectorAll(".stat-number");
+            statElements.forEach((el) => {
+              const target = parseInt(el.dataset.target);
+              let start = 0;
+              const duration = 1200;
+              const step = target / (duration / 16);
+              const timer = setInterval(() => {
+                start += step;
+                if (start >= target) {
+                  el.textContent = target + "+";
+                  clearInterval(timer);
+                  return;
+                }
+                el.textContent = Math.floor(start) + "+";
+              }, 16);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const contactSection = document.getElementById("contact");
+    if (contactSection) observer.observe(contactSection);
+    return () => observer.disconnect();
+  }, []);
+
   const stats = [
-    { number: "20+", label: "Projects Built" },
-    { number: "3+", label: "Years Exp." },
-    { number: "10+", label: "Technologies" },
+    { number: "20+", target: 20, label: "PROJECTS BUILT" },
+    { number: "1+", target: 1, label: "YEARS EXP." },
+    { number: "10+", target: 10, label: "TECHNOLOGIES" },
   ];
 
   const details = [
-    { label: "Location", value: "Pakistan · Remote Worldwide" },
+    { label: "LOCATION", value: "Pakistan · Remote Worldwide" },
     {
-      label: "Email",
+      label: "EMAIL",
       value: "muhammadabuhurairah22@gmail.com",
       isEmail: true,
     },
-    { label: "Timezone", value: "PKT (UTC+5)" },
+    { label: "TIMEZONE", value: "PKT (UTC+5)" },
   ];
 
   return (
@@ -61,17 +95,33 @@ const Contact = () => {
       <div className="contact-top">
         {/* Left Side */}
         <div>
+          <span
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.6rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              color: "#A0714F",
+              display: "block",
+              marginBottom: "1rem",
+            }}
+          >
+            // CONTACT
+          </span>
           <h2
             style={{
               fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: "3.5rem",
+              fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
               fontWeight: 300,
               color: "#F7F3EC",
-              lineHeight: 1.1,
-              marginBottom: "1.25rem",
+              lineHeight: 1.05,
+              marginBottom: "1.5rem",
             }}
           >
-            Let&apos;s Build Something{" "}
+            <span>Let&apos;s Build</span>
+            <br />
+            <span>Something</span>
+            <br />
             <span style={{ fontStyle: "italic", color: "#A0714F" }}>Great</span>
           </h2>
 
@@ -80,28 +130,37 @@ const Contact = () => {
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: "0.9rem",
               fontWeight: 300,
-              color: "rgba(247,243,236,0.6)",
+              color: "rgba(247,243,236,0.55)",
               lineHeight: 1.6,
               marginBottom: "1rem",
-              maxWidth: "500px",
+              maxWidth: "380px",
             }}
           >
             Have a project in mind or want to discuss a collaboration? I&apos;m
-            always open to exploring new opportunities and building something
-            extraordinary together.
+            always open to exploring new opportunities.
           </p>
 
           <p
             style={{
               fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: "1.15rem",
+              fontSize: "1rem",
               fontStyle: "italic",
               color: "#A0714F",
-              marginBottom: "2.5rem",
+              marginBottom: "2rem",
             }}
           >
             &ldquo;Clean code. Scalable systems. Delivered on time.&rdquo;
           </p>
+
+          <hr
+            style={{
+              border: "none",
+              height: "1px",
+              background: "#A0714F",
+              opacity: 0.2,
+              marginBottom: "2rem",
+            }}
+          />
 
           {/* Contact Details with Dotted Leaders */}
           <div style={{ marginBottom: "2rem" }}>
@@ -169,11 +228,34 @@ const Contact = () => {
         </div>
 
         {/* Right Side - Stats */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
           {stats.map((stat) => (
             <div key={stat.label} className="contact-stat">
-              <div className="contact-stat-number">{stat.number}</div>
-              <div className="contact-stat-label">{stat.label}</div>
+              <div
+                className="stat-number"
+                data-target={stat.target}
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "3.5rem",
+                  fontWeight: 300,
+                  color: "#A0714F",
+                  lineHeight: 1,
+                }}
+              >
+                {stat.number}
+              </div>
+              <div
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: "0.6rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  color: "rgba(247,243,236,0.4)",
+                  marginTop: "0.25rem",
+                }}
+              >
+                {stat.label}
+              </div>
             </div>
           ))}
         </div>
@@ -187,7 +269,7 @@ const Contact = () => {
             display: "inline-flex",
             alignItems: "center",
             gap: "0.5rem",
-            marginBottom: "1.5rem",
+            marginBottom: "1rem",
           }}
         >
           <span className="pulse-dot" />
@@ -200,7 +282,7 @@ const Contact = () => {
               color: "#1C1007",
             }}
           >
-            Currently Available
+            CURRENTLY AVAILABLE
           </span>
         </div>
 
@@ -208,12 +290,12 @@ const Contact = () => {
         <p
           style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: "1.5rem",
+            fontSize: "1.3rem",
             fontStyle: "italic",
-            color: "#1C1007",
+            color: "#8A7560",
             fontWeight: 300,
             lineHeight: 1.5,
-            marginBottom: "2.5rem",
+            marginBottom: "2rem",
             maxWidth: "500px",
           }}
         >

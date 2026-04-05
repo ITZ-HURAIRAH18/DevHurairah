@@ -57,7 +57,7 @@ const Skills = () => {
   const renderDuplicatedSkillItems = (skills) => {
     return skills.map((skill, idx) => (
       <span key={`${skill.name}-${idx}`} className="skill-item">
-        <span className="skill-dot" />
+        <span className={`skill-dot ${skill.primary ? "primary" : ""}`} />
         <span
           className={`font-sans text-sm ${
             skill.primary ? "text-copper font-medium" : "text-espresso/70"

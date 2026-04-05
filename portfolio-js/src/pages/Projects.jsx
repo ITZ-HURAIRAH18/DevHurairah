@@ -2,11 +2,17 @@ import { useState, useEffect, useCallback } from "react";
 
 const DemoModal = ({ videoSrc, onClose }) => {
   useEffect(() => {
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = "hidden";
+
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [onClose]);
 
   return (
@@ -14,32 +20,50 @@ const DemoModal = ({ videoSrc, onClose }) => {
       onClick={onClose}
       style={{
         position: "fixed",
-        inset: 0,
-        background: "rgba(28,16,7,0.9)",
-        zIndex: 9999,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: "rgba(28,16,7,0.92)",
+        zIndex: 999999,
+        overflow: "auto",
       }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        style={{ position: "relative", width: "90vw", maxWidth: "900px" }}
+        style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "90vw",
+          maxWidth: "960px",
+          animation: "modalFadeIn 0.3s ease forwards",
+          zIndex: 1000000,
+        }}
       >
         <button
           onClick={onClose}
           style={{
             position: "absolute",
-            top: "-40px",
-            right: 0,
+            top: "-44px",
+            right: "4px",
             background: "none",
-            border: "none",
+            border: "1px solid rgba(247,243,236,0.2)",
             color: "#F7F3EC",
             fontFamily: "'Space Mono', monospace",
-            fontSize: "0.75rem",
+            fontSize: "0.7rem",
             letterSpacing: "0.1em",
             cursor: "pointer",
+            padding: "6px 14px",
+            borderRadius: "4px",
+            transition: "background 0.2s",
+            zIndex: 10,
           }}
+          onMouseEnter={(e) =>
+            (e.target.style.background = "rgba(247,243,236,0.1)")
+          }
+          onMouseLeave={(e) => (e.target.style.background = "none")}
         >
           ✕ CLOSE
         </button>
@@ -47,7 +71,12 @@ const DemoModal = ({ videoSrc, onClose }) => {
           src={videoSrc}
           controls
           autoPlay
-          style={{ width: "100%", borderRadius: "8px", display: "block" }}
+          style={{
+            width: "100%",
+            borderRadius: "8px",
+            display: "block",
+            boxShadow: "0 24px 64px rgba(0,0,0,0.4)",
+          }}
         />
       </div>
     </div>
@@ -133,7 +162,7 @@ const Projects = () => {
       tech: ["React", "Node.js", "Socket.io"],
       type: "Full-Stack",
       image: "/assets/nexgen.png",
-      github: "https://github.com/ITZ-HURAIRAH18/NexGen_Meeting_Scheduler",
+      github: "https://github.com/ITZ-HURAIRAH18/Schedule_Ease",
       live: null,
       video: "/assets/videos/nexgen.mp4",
       urlPath: "projects/nexgen-scheduler",
@@ -159,7 +188,7 @@ const Projects = () => {
       tech: ["React", "Gemini API", "Tailwind"],
       type: "AI/ML",
       image: "/assets/healthwise.png",
-      github: "https://github.com/ITZ-HURAIRAH18/HealthWise_AI",
+      github: "https://github.com/ITZ-HURAIRAH18/HealthWise-AI",
       live: null,
       video: "/assets/videos/healthwise.mp4",
       urlPath: "projects/healthwise-ai",
@@ -172,7 +201,7 @@ const Projects = () => {
       tech: ["HTML", "JavaScript", "SheetJS"],
       type: "Frontend",
       image: "/assets/quiz.png",
-      github: "https://github.com/ITZ-HURAIRAH18/Excel_Quiz_App",
+      github: "https://github.com/ITZ-HURAIRAH18/Excel-Based-Quiz-App",
       live: null,
       video: "/assets/videos/quiz.mp4",
       urlPath: "projects/excel-quiz",
@@ -185,7 +214,7 @@ const Projects = () => {
       tech: ["Django", "Python", "SQLite"],
       type: "Backend",
       image: "/assets/era.png",
-      github: "https://github.com/ITZ-HURAIRAH18/ERA_Wardrobe_Manager",
+      github: "https://github.com/ITZ-HURAIRAH18/ERA--Smart-Wardrobe-Manager",
       live: null,
       video: "/assets/videos/era.mp4",
       urlPath: "projects/era-wardrobe",
@@ -202,6 +231,16 @@ const Projects = () => {
   const handleModalClose = useCallback(() => {
     setModalVideo(null);
   }, []);
+
+  // Re-trigger reveal animations when filter changes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      document.querySelectorAll(".proj-card.reveal").forEach((el) => {
+        el.classList.add("is-visible");
+      });
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [activeFilter]);
 
   return (
     <section id="projects" className="section-border">
@@ -226,20 +265,23 @@ const Projects = () => {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex items-center gap-2 mb-8">
+        <div className="flex items-center gap-1 mb-10">
           {filters.map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
               className={`filter-tab ${activeFilter === filter ? "active" : ""}`}
+              style={{
+                transition: "all 0.2s ease",
+              }}
             >
               {filter}
             </button>
           ))}
         </div>
 
-        {/* Project Card Grid */}
-        <div className="proj-grid">
+        {/* Project Card Grid with smooth transition */}
+        <div className="proj-grid" key={activeFilter}>
           {filteredProjects.map((project) => (
             <div key={project.title} className="proj-card reveal">
               {/* Browser Chrome Bar */}
@@ -295,15 +337,16 @@ const Projects = () => {
               </div>
 
               {/* Project Screenshot */}
-              <div
-                style={{ height: "220px", overflow: "hidden", background: "#E8DED0" }}
-              >
+              <div className="proj-img-wrapper">
                 <img
                   src={project.image}
                   alt={project.title}
+                  onLoad={(e) => {
+                    e.target.parentElement.classList.add("loaded");
+                  }}
                   style={{
                     width: "100%",
-                    height: "100%",
+                    height: "220px",
                     objectFit: "cover",
                     objectPosition: "top",
                     transition: "transform 0.5s ease",
@@ -311,7 +354,9 @@ const Projects = () => {
                   onError={(e) => {
                     e.target.style.display = "none";
                     e.target.parentElement.innerHTML =
-                      '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:\'Space Mono\',monospace;font-size:11px;color:#8A7560;text-transform:uppercase;letter-spacing:0.08em;">Screenshot Placeholder</div>';
+                      '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:\'Cormorant Garamond\',serif;font-size:1.2rem;color:#A0714F;font-style:italic;">' +
+                      project.title +
+                      "</div>";
                   }}
                 />
               </div>
