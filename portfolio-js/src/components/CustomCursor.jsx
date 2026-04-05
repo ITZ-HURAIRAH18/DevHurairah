@@ -1,22 +1,42 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const cursorRef = useRef(null);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    let rafId = null;
+
+    const move = (e) => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (cursorRef.current) {
+          cursorRef.current.style.left = e.clientX + "px";
+          cursorRef.current.style.top = e.clientY + "px";
+        }
+      });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", move);
+    return () => {
+      window.removeEventListener("mousemove", move);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
     <div
-      className="custom-cursor-dot"
+      ref={cursorRef}
       style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
+        position: "fixed",
+        width: "8px",
+        height: "8px",
+        borderRadius: "50%",
+        background: "#A0714F",
+        pointerEvents: "none",
+        zIndex: 9997,
+        transform: "translate(-50%, -50%)",
+        transition: "left 0.08s ease, top 0.08s ease",
+        opacity: 0.7,
       }}
     />
   );

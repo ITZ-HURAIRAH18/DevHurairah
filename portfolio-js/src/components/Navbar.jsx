@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-const Navbar = () => {
+const Navbar = ({ activeSection }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 60);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -42,24 +42,34 @@ const Navbar = () => {
             onClick={(e) => handleNavClick(e, "#home")}
             className="flex items-baseline gap-1 no-underline"
           >
-            <span className="font-serif text-2xl font-medium italic text-copper">M.</span>
-            <span className="font-serif text-2xl font-medium italic text-espresso">Abu Hurairah</span>
+            <span className="font-serif text-2xl font-medium italic text-copper">
+              M.
+            </span>
+            <span className="font-serif text-2xl font-medium italic text-espresso">
+              Abu Hurairah
+            </span>
             <span className="font-mono text-[10px] text-muted -mb-2">®</span>
           </a>
 
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="nav-link font-mono text-mono-xs uppercase tracking-wider text-espresso no-underline relative inline-flex items-center gap-2"
-              >
-                {link.label}
-                <span className="pulse-dot" />
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const sectionId = link.href.replace("#", "");
+              const isActive = activeSection === sectionId;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={`nav-link font-mono text-mono-xs uppercase tracking-wider text-espresso no-underline relative inline-flex items-center gap-2 ${
+                    isActive ? "active" : ""
+                  }`}
+                >
+                  {link.label}
+                  <span className="pulse-dot" />
+                </a>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -90,16 +100,22 @@ const Navbar = () => {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="font-mono text-mono-xs uppercase tracking-wider text-espresso no-underline py-2"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const sectionId = link.href.replace("#", "");
+                const isActive = activeSection === sectionId;
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`font-mono text-mono-xs uppercase tracking-wider text-espresso no-underline py-2 ${
+                      isActive ? "text-copper" : ""
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
         )}

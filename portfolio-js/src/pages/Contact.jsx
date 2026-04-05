@@ -39,221 +39,274 @@ const Contact = () => {
     }
   };
 
-  const socialLinks = [
-    { label: "GitHub", url: "https://github.com/itz-hurairah18" },
-    { label: "LinkedIn", url: "https://www.linkedin.com/in/itzhurairah18/" },
+  const stats = [
+    { number: "20+", label: "Projects Built" },
+    { number: "3+", label: "Years Exp." },
+    { number: "10+", label: "Technologies" },
+  ];
+
+  const details = [
+    { label: "Location", value: "Pakistan · Remote Worldwide" },
+    {
+      label: "Email",
+      value: "muhammadabuhurairah22@gmail.com",
+      isEmail: true,
+    },
+    { label: "Timezone", value: "PKT (UTC+5)" },
   ];
 
   return (
-    <section id="contact" className="section-border" style={{ maxHeight: '100vh' }}>
-      <div className="contact-grid max-w-7xl mx-auto">
-        {/* Left Half: Espresso Background */}
-        <div className="contact-left bg-espresso flex flex-col" style={{ padding: '3rem' }}>
-          {/* Headline — reduced size */}
+    <section id="contact" className="section-border">
+      {/* TOP SECTION - Dark Espresso Background */}
+      <div className="contact-top">
+        {/* Left Side */}
+        <div>
           <h2
-            className="font-serif font-light text-page leading-tight"
-            style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)' }}
+            style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontSize: "3.5rem",
+              fontWeight: 300,
+              color: "#F7F3EC",
+              lineHeight: 1.1,
+              marginBottom: "1.25rem",
+            }}
           >
             Let&apos;s Build Something{" "}
-            <span className="italic text-copper">Great</span>
+            <span style={{ fontStyle: "italic", color: "#A0714F" }}>Great</span>
           </h2>
 
-          {/* Subtext — tighter */}
-          <p className="font-sans text-sm font-light text-page/70 leading-relaxed" style={{ margin: 0 }}>
-            Have a project in mind or want to discuss a collaboration? I&apos;m always
-            open to exploring new opportunities.
+          <p
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "0.9rem",
+              fontWeight: 300,
+              color: "rgba(247,243,236,0.6)",
+              lineHeight: 1.6,
+              marginBottom: "1rem",
+              maxWidth: "500px",
+            }}
+          >
+            Have a project in mind or want to discuss a collaboration? I&apos;m
+            always open to exploring new opportunities and building something
+            extraordinary together.
           </p>
 
-          {/* Quote — tighter */}
-          <p className="font-serif text-lg italic text-page/90 font-light leading-relaxed" style={{ margin: 0 }}>
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontSize: "1.15rem",
+              fontStyle: "italic",
+              color: "#A0714F",
+              marginBottom: "2.5rem",
+            }}
+          >
             &ldquo;Clean code. Scalable systems. Delivered on time.&rdquo;
           </p>
 
-          {/* Copper horizontal rule */}
-          <hr className="border-0 h-px bg-copper/40" style={{ margin: 0 }} />
-
-          {/* Contact Detail Table — tighter rows */}
-          <div className="contact-details flex flex-col" style={{ gap: '0' }}>
-            <div className="contact-detail-row flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3" style={{ padding: '0.6rem 0' }}>
-              <span className="font-mono text-mono-xs uppercase tracking-wider text-page/50 flex-shrink-0">
-                Location
-              </span>
-              <span className="h-px bg-page/10 flex-1 hidden sm:block" />
-              <span className="font-sans text-sm text-page/80">
-                Pakistan · Remote Worldwide
-              </span>
-            </div>
-            <div className="contact-detail-row flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3" style={{ padding: '0.6rem 0' }}>
-              <span className="font-mono text-mono-xs uppercase tracking-wider text-page/50 flex-shrink-0">
-                Email
-              </span>
-              <span className="h-px bg-page/10 flex-1 hidden sm:block" />
-              <a
-                href="mailto:muhammadabuhurairah22@gmail.com"
-                className="font-serif text-sm italic text-copper hover:opacity-80 transition-opacity no-underline"
-              >
-                muhammadabuhurairah22@gmail.com
-              </a>
-            </div>
-            <div className="contact-detail-row flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3" style={{ padding: '0.6rem 0' }}>
-              <span className="font-mono text-mono-xs uppercase tracking-wider text-page/50 flex-shrink-0">
-                Timezone
-              </span>
-              <span className="h-px bg-page/10 flex-1 hidden sm:block" />
-              <span className="font-sans text-sm text-page/80">
-                PKT (UTC+5)
-              </span>
-            </div>
-          </div>
-
-          {/* Social Links — immediately after timezone row */}
-          <div className="flex items-center gap-0">
-            {socialLinks.map((link, index) => (
-              <div key={link.label} className="flex items-center">
-                {index > 0 && <div className="w-px h-4 bg-page/20 mx-3" />}
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-mono text-mono-xs uppercase tracking-wider text-page/60 hover:text-copper transition-colors no-underline flex items-center gap-1"
-                >
-                  <span>→</span> {link.label}
-                </a>
+          {/* Contact Details with Dotted Leaders */}
+          <div style={{ marginBottom: "2rem" }}>
+            {details.map((detail) => (
+              <div key={detail.label} className="contact-detail-row">
+                <span className="contact-detail-label">{detail.label}</span>
+                <span className="contact-detail-dots" />
+                {detail.isEmail ? (
+                  <a
+                    href={`mailto:${detail.value}`}
+                    className="contact-detail-value email"
+                  >
+                    {detail.value}
+                  </a>
+                ) : (
+                  <span className="contact-detail-value">{detail.value}</span>
+                )}
               </div>
             ))}
           </div>
 
-          {/* Decorative Watermark — fills remaining space tastefully */}
-          <div className="contact-watermark flex flex-1 items-center justify-center pointer-events-none select-none">
-            <span className="text-copper">&lt; / &gt;</span>
-          </div>
-        </div>
-
-        {/* Right Half: Sand/Ivory Background */}
-        <div className="contact-right bg-card px-6 lg:px-12 xl:px-20 py-8 lg:py-12 flex flex-col overflow-y-auto">
-          {/* Availability Label */}
-          <div className="inline-flex items-center gap-2 mb-6">
-            <span className="pulse-dot" />
-            <span className="font-mono text-mono-xs uppercase tracking-wider text-espresso">
-              Currently Available
-            </span>
-          </div>
-
-          {/* Availability Sentence */}
-          <p className="font-serif text-xl lg:text-2xl italic text-espresso font-light leading-relaxed mb-10">
-            I&apos;m currently accepting new projects and available for freelance work,
-            consulting, and full-time opportunities.
-          </p>
-
-          {/* Stat Boxes Row */}
-          <div className="grid grid-cols-3 gap-4 mb-12">
-            <div className="flex flex-col pt-3 border-t border-border">
-              <span className="font-serif text-2xl lg:text-3xl font-light text-copper leading-none mb-1">
-                20+
-              </span>
-              <span className="font-mono text-mono-tiny uppercase tracking-wider text-muted">
-                Projects Built
-              </span>
-            </div>
-            <div className="flex flex-col pt-3 border-t border-border">
-              <span className="font-serif text-2xl lg:text-3xl font-light text-copper leading-none mb-1">
-                3+
-              </span>
-              <span className="font-mono text-mono-tiny uppercase tracking-wider text-muted">
-                Years Exp.
-              </span>
-            </div>
-            <div className="flex flex-col pt-3 border-t border-border">
-              <span className="font-serif text-2xl lg:text-3xl font-light text-copper leading-none mb-1">
-                10+
-              </span>
-              <span className="font-mono text-mono-tiny uppercase tracking-wider text-muted">
-                Technologies
-              </span>
-            </div>
-          </div>
-
-          {/* Contact Form with Floating Labels */}
-          <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-8 mb-10">
-            {/* Name Input */}
-            <div className="floating-label-group">
-              <input
-                type="text"
-                name="name"
-                id="contact-name"
-                value={formState.name}
-                onChange={handleChange}
-                required
-                className="bottom-border-input"
-                placeholder=" "
-              />
-              <label htmlFor="contact-name" className="floating-label">
-                Your Name
-              </label>
-            </div>
-
-            {/* Email Input */}
-            <div className="floating-label-group">
-              <input
-                type="email"
-                name="email"
-                id="contact-email"
-                value={formState.email}
-                onChange={handleChange}
-                required
-                className="bottom-border-input"
-                placeholder=" "
-              />
-              <label htmlFor="contact-email" className="floating-label">
-                Your Email
-              </label>
-            </div>
-
-            {/* Message Input */}
-            <div className="floating-label-group">
-              <textarea
-                name="message"
-                id="contact-message"
-                value={formState.message}
-                onChange={handleChange}
-                required
-                className="bottom-border-input bottom-border-textarea"
-                rows={4}
-                placeholder=" "
-              />
-              <label htmlFor="contact-message" className="floating-label">
-                Tell me about your project
-              </label>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="btn-send"
+          {/* Social Links */}
+          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+            <a
+              href="https://github.com/itz-hurairah18"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "0.65rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                color: "rgba(247,243,236,0.6)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.target.style.color = "#A0714F")}
+              onMouseLeave={(e) =>
+                (e.target.style.color = "rgba(247,243,236,0.6)")
+              }
             >
-              <span>Send Message</span>
-              <span className="btn-send-arrow">→</span>
-            </button>
-
-            {/* Status Messages */}
-            {submitStatus === "success" && (
-              <p className="font-mono text-mono-xs text-copper">
-                Message sent successfully! I&apos;ll get back to you soon.
-              </p>
-            )}
-            {submitStatus === "error" && (
-              <p className="font-mono text-mono-xs text-red-600">
-                Failed to send message. Please try again or email directly.
-              </p>
-            )}
-          </form>
-
-          {/* Professional Closing Line */}
-          <p className="font-mono text-mono-tiny text-muted/70 mt-auto pt-6 border-t border-border">
-            Response time: within 24 hours · Open to remote worldwide
-          </p>
+              → GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/itzhurairah18/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "0.65rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                color: "rgba(247,243,236,0.6)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.target.style.color = "#A0714F")}
+              onMouseLeave={(e) =>
+                (e.target.style.color = "rgba(247,243,236,0.6)")
+              }
+            >
+              → LinkedIn
+            </a>
+          </div>
         </div>
+
+        {/* Right Side - Stats */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          {stats.map((stat) => (
+            <div key={stat.label} className="contact-stat">
+              <div className="contact-stat-number">{stat.number}</div>
+              <div className="contact-stat-label">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* BOTTOM SECTION - Ivory Background */}
+      <div className="contact-bottom">
+        {/* Availability Label */}
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            marginBottom: "1.5rem",
+          }}
+        >
+          <span className="pulse-dot" />
+          <span
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.65rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              color: "#1C1007",
+            }}
+          >
+            Currently Available
+          </span>
+        </div>
+
+        {/* Availability Sentence */}
+        <p
+          style={{
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontSize: "1.5rem",
+            fontStyle: "italic",
+            color: "#1C1007",
+            fontWeight: 300,
+            lineHeight: 1.5,
+            marginBottom: "2.5rem",
+            maxWidth: "500px",
+          }}
+        >
+          I&apos;m currently accepting new projects and available for freelance
+          work, consulting, and full-time opportunities.
+        </p>
+
+        {/* Contact Form */}
+        <form ref={formRef} onSubmit={handleSubmit}>
+          {/* Name Input */}
+          <input
+            type="text"
+            name="name"
+            className="contact-bottom-input"
+            placeholder="Your Name"
+            value={formState.name}
+            onChange={handleChange}
+            required
+          />
+
+          {/* Email Input */}
+          <input
+            type="email"
+            name="email"
+            className="contact-bottom-input"
+            placeholder="Your Email"
+            value={formState.email}
+            onChange={handleChange}
+            required
+          />
+
+          {/* Message Textarea */}
+          <textarea
+            name="message"
+            className="contact-bottom-input contact-bottom-textarea"
+            placeholder="Tell me about your project"
+            rows={4}
+            value={formState.message}
+            onChange={handleChange}
+            required
+            style={{ minHeight: "120px", resize: "vertical" }}
+          />
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="contact-send-btn"
+          >
+            <span>Send Message</span>
+            <span className="send-arrow">→</span>
+          </button>
+
+          {/* Status Messages */}
+          {submitStatus === "success" && (
+            <p
+              style={{
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "0.65rem",
+                color: "#A0714F",
+                marginTop: "1rem",
+              }}
+            >
+              Message sent successfully! I&apos;ll get back to you soon.
+            </p>
+          )}
+          {submitStatus === "error" && (
+            <p
+              style={{
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "0.65rem",
+                color: "#dc2626",
+                marginTop: "1rem",
+              }}
+            >
+              Failed to send message. Please try again or email directly.
+            </p>
+          )}
+        </form>
+
+        {/* Response Time Note */}
+        <p
+          style={{
+            fontFamily: "'Space Mono', monospace",
+            fontSize: "0.6rem",
+            color: "#8A7560",
+            marginTop: "1.5rem",
+            paddingTop: "1rem",
+            borderTop: "1px solid rgba(28,16,7,0.08)",
+          }}
+        >
+          I typically respond within 24 hours.
+        </p>
       </div>
     </section>
   );

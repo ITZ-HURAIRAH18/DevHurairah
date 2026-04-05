@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState("home");
   const mainRef = useRef(null);
 
   useEffect(() => {
@@ -48,6 +49,23 @@ function App() {
     return () => observer.disconnect();
   }, [isLoading]);
 
+  // Active section tracking for navbar
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3, rootMargin: "-80px 0px -50% 0px" }
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [isLoading]);
+
   return (
     <div className="relative flex min-h-screen flex-col bg-page font-sans antialiased overflow-x-hidden">
       {/* Custom Cursor */}
@@ -57,7 +75,7 @@ function App() {
       <MarqueeTicker />
 
       {/* Sticky Navbar */}
-      <Navbar />
+      <Navbar activeSection={activeSection} />
 
       {/* Main Content */}
       <main className="flex-1" ref={mainRef}>

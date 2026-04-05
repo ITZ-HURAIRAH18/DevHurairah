@@ -1,33 +1,55 @@
 import { useState, useEffect, useCallback } from "react";
 
 const DemoModal = ({ videoSrc, onClose }) => {
-  // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
+      if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
   return (
-    <div className="demo-modal" onClick={onClose}>
-      <button className="modal-close" onClick={onClose} aria-label="Close modal">
-        ✕
-      </button>
-      <video
-        controls
-        autoPlay
-        width="900px"
-        className="modal-video"
-        style={{ maxWidth: "90vw" }}
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(28,16,7,0.9)",
+        zIndex: 9999,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
         onClick={(e) => e.stopPropagation()}
+        style={{ position: "relative", width: "90vw", maxWidth: "900px" }}
       >
-        <source src={videoSrc} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+        <button
+          onClick={onClose}
+          style={{
+            position: "absolute",
+            top: "-40px",
+            right: 0,
+            background: "none",
+            border: "none",
+            color: "#F7F3EC",
+            fontFamily: "'Space Mono', monospace",
+            fontSize: "0.75rem",
+            letterSpacing: "0.1em",
+            cursor: "pointer",
+          }}
+        >
+          ✕ CLOSE
+        </button>
+        <video
+          src={videoSrc}
+          controls
+          autoPlay
+          style={{ width: "100%", borderRadius: "8px", display: "block" }}
+        />
+      </div>
     </div>
   );
 };
@@ -40,10 +62,13 @@ const Projects = () => {
     {
       title: "FinScope",
       subtitle: "Real-Time Analytics Dashboard",
+      description:
+        "A state-of-the-art multi-branch financial analytics platform with real-time stock and cryptocurrency tracking, interactive charts, and portfolio management.",
       tech: ["Next.js", "TypeScript", "PostgreSQL"],
       type: "Full-Stack",
       image: "/assets/finscope.png",
-      github: "https://github.com/ITZ-HURAIRAH18/FinScope-Real-Time-Crypto-Stock-Analytics-Dashboard",
+      github:
+        "https://github.com/ITZ-HURAIRAH18/FinScope-Real-Time-Crypto-Stock-Analytics-Dashboard",
       live: "https://finscope-hub.vercel.app/",
       video: "/assets/videos/finscope.mp4",
       urlPath: "projects/finscope-dashboard",
@@ -51,6 +76,8 @@ const Projects = () => {
     {
       title: "DonorHub",
       subtitle: "Charity & Donation Platform",
+      description:
+        "A comprehensive donation management system with campaign tracking, donor analytics, and seamless payment integration for charitable organizations.",
       tech: ["React", "Node.js", "MongoDB"],
       type: "Full-Stack",
       image: "/assets/donorhub.png",
@@ -62,6 +89,8 @@ const Projects = () => {
     {
       title: "HireLens",
       subtitle: "Intelligent Resume Intelligence",
+      description:
+        "An AI-powered resume screening tool that uses LangGraph and FastAPI to parse, score, and rank candidates with intelligent keyword matching.",
       tech: ["React", "FastAPI", "LangGraph"],
       type: "AI/ML",
       image: "/assets/hirelens.png",
@@ -73,77 +102,91 @@ const Projects = () => {
     {
       title: "NexTrack",
       subtitle: "Desktop Inventory Management",
+      description:
+        "A cross-platform desktop application for inventory tracking with barcode scanning, stock alerts, and comprehensive reporting dashboards.",
       tech: ["Electron", "React", "Tailwind CSS"],
       type: "Full-Stack",
       image: "/assets/nextrack.png",
       github: "https://github.com/ITZ-HURAIRAH18/NexTrack_Inventory_Desktop",
-      live: "#",
+      live: null,
       video: "/assets/videos/nextrack.mp4",
       urlPath: "projects/nextrack-desktop",
     },
     {
       title: "LoanVerse",
       subtitle: "Loan Management System",
+      description:
+        "A robust loan management platform with automated payment tracking, interest calculations, borrower profiles, and financial reporting.",
       tech: ["Django", "React", "SQLite"],
       type: "Backend",
       image: "/assets/loanverse.png",
       github: "https://github.com/ITZ-HURAIRAH18/LoanVerse",
-      live: "#",
+      live: null,
       video: "/assets/videos/loanverse.mp4",
       urlPath: "projects/loanverse-system",
     },
     {
       title: "NexGen",
       subtitle: "Meeting Scheduling Platform",
+      description:
+        "A real-time meeting scheduler with video conferencing integration, calendar sync, automated reminders, and team collaboration features.",
       tech: ["React", "Node.js", "Socket.io"],
       type: "Full-Stack",
       image: "/assets/nexgen.png",
       github: "https://github.com/ITZ-HURAIRAH18/NexGen_Meeting_Scheduler",
-      live: "#",
+      live: null,
       video: "/assets/videos/nexgen.mp4",
       urlPath: "projects/nexgen-scheduler",
     },
     {
       title: "Flowventory",
       subtitle: "Smart Inventory & Order Management",
+      description:
+        "A state-of-the-art multi-branch inventory and order management solution with real-time stock tracking, role-based access, and automated reporting.",
       tech: ["Laravel", "Vue.js", "MySQL"],
       type: "Full-Stack",
       image: "/assets/flowventory.png",
       github: "https://github.com/ITZ-HURAIRAH18/Flowventory",
-      live: "#",
+      live: null,
       video: "/assets/videos/flowventory.mp4",
       urlPath: "projects/flowventory-inventory",
     },
     {
       title: "HealthWise AI",
       subtitle: "Medical Chatbot",
+      description:
+        "An AI-powered medical chatbot that provides health assessments, symptom analysis, and wellness recommendations using the Gemini API.",
       tech: ["React", "Gemini API", "Tailwind"],
       type: "AI/ML",
       image: "/assets/healthwise.png",
       github: "https://github.com/ITZ-HURAIRAH18/HealthWise_AI",
-      live: "#",
+      live: null,
       video: "/assets/videos/healthwise.mp4",
       urlPath: "projects/healthwise-ai",
     },
     {
       title: "Excel Quiz App",
       subtitle: "Interactive Quiz Application",
+      description:
+        "An interactive quiz application that reads questions from Excel sheets, tracks scores, and provides real-time feedback with a clean UI.",
       tech: ["HTML", "JavaScript", "SheetJS"],
       type: "Frontend",
       image: "/assets/quiz.png",
       github: "https://github.com/ITZ-HURAIRAH18/Excel_Quiz_App",
-      live: "#",
+      live: null,
       video: "/assets/videos/quiz.mp4",
       urlPath: "projects/excel-quiz",
     },
     {
       title: "ERA",
       subtitle: "Smart Wardrobe Manager",
+      description:
+        "A digital wardrobe organizer with outfit suggestions, seasonal recommendations, and clothing inventory management powered by Django.",
       tech: ["Django", "Python", "SQLite"],
       type: "Backend",
       image: "/assets/era.png",
       github: "https://github.com/ITZ-HURAIRAH18/ERA_Wardrobe_Manager",
-      live: "#",
+      live: null,
       video: "/assets/videos/era.mp4",
       urlPath: "projects/era-wardrobe",
     },
@@ -200,14 +243,22 @@ const Projects = () => {
           {filteredProjects.map((project) => (
             <div key={project.title} className="proj-card reveal">
               {/* Browser Chrome Bar */}
-              <div className="browser-chrome">
-                <div className="flex items-center gap-1.5">
+              <div
+                style={{
+                  background: "#EDE8DF",
+                  padding: "8px 12px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex", gap: "5px" }}>
                   <span
                     style={{
                       width: "8px",
                       height: "8px",
                       borderRadius: "50%",
-                      backgroundColor: "#E57373",
+                      background: "#E57373",
                       display: "inline-block",
                     }}
                   />
@@ -216,7 +267,7 @@ const Projects = () => {
                       width: "8px",
                       height: "8px",
                       borderRadius: "50%",
-                      backgroundColor: "#FFB74D",
+                      background: "#FFB74D",
                       display: "inline-block",
                     }}
                   />
@@ -225,106 +276,187 @@ const Projects = () => {
                       width: "8px",
                       height: "8px",
                       borderRadius: "50%",
-                      backgroundColor: "#81C784",
+                      background: "#81C784",
                       display: "inline-block",
                     }}
                   />
                 </div>
-                <span className="font-mono text-mono-tiny text-muted">
+                <span
+                  style={{
+                    fontFamily: "'Space Mono', monospace",
+                    fontSize: "0.58rem",
+                    color: "#8A7560",
+                    letterSpacing: "0.04em",
+                  }}
+                >
                   {project.urlPath}
                 </span>
+                <span style={{ width: "40px" }} />
               </div>
 
               {/* Project Screenshot */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="proj-img"
-                onError={(e) => {
-                  // Fallback for missing images
-                  e.target.style.display = "none";
-                  e.target.parentElement.style.height = "200px";
-                  e.target.parentElement.style.background = "#E8DED0";
-                  e.target.parentElement.style.display = "flex";
-                  e.target.parentElement.style.alignItems = "center";
-                  e.target.parentElement.style.justifyContent = "center";
-                  if (!e.target.parentElement.querySelector(".img-placeholder")) {
-                    const placeholder = document.createElement("div");
-                    placeholder.className = "img-placeholder";
-                    placeholder.style.cssText =
-                      "font-family: 'Space Mono', monospace; font-size: 11px; color: #8A7560; text-transform: uppercase; letter-spacing: 0.08em;";
-                    placeholder.textContent = "Screenshot Placeholder";
-                    e.target.parentElement.appendChild(placeholder);
-                  }
-                }}
-              />
+              <div
+                style={{ height: "220px", overflow: "hidden", background: "#E8DED0" }}
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "top",
+                    transition: "transform 0.5s ease",
+                  }}
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    e.target.parentElement.innerHTML =
+                      '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:\'Space Mono\',monospace;font-size:11px;color:#8A7560;text-transform:uppercase;letter-spacing:0.08em;">Screenshot Placeholder</div>';
+                  }}
+                />
+              </div>
 
               {/* Card Body */}
-              <div className="p-5">
-                <div className="flex items-start justify-between mb-2">
+              <div
+                style={{
+                  padding: "1.25rem",
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                {/* Name + Type Badge */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    marginBottom: "0.4rem",
+                  }}
+                >
                   <h3
-                    className="font-serif text-2xl font-light text-espresso leading-tight"
-                    style={{ fontSize: "1.3rem" }}
+                    style={{
+                      fontFamily: "'Cormorant Garamond', Georgia, serif",
+                      fontSize: "1.25rem",
+                      fontWeight: 600,
+                      color: "#1C1007",
+                      lineHeight: 1.2,
+                    }}
                   >
                     {project.title}
                   </h3>
-                  <span className="font-mono text-mono-tiny uppercase tracking-wider text-copper bg-copper/10 px-2 py-0.5 whitespace-nowrap ml-2">
+                  <span
+                    style={{
+                      fontFamily: "'Space Mono', monospace",
+                      fontSize: "0.6rem",
+                      textTransform: "uppercase",
+                      color: "#A0714F",
+                      background: "rgba(160,113,79,0.12)",
+                      padding: "2px 8px",
+                    }}
+                  >
                     {project.type}
                   </span>
                 </div>
-                <p className="font-serif text-sm italic text-muted mb-3">
+
+                {/* Subtitle */}
+                <p
+                  style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: "0.82rem",
+                    fontStyle: "italic",
+                    color: "#8A7560",
+                    marginBottom: "0.6rem",
+                  }}
+                >
                   {project.subtitle}
                 </p>
 
+                {/* Description */}
+                <p
+                  style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: "0.83rem",
+                    lineHeight: 1.65,
+                    color: "#8A7560",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    marginBottom: "0.8rem",
+                  }}
+                >
+                  {project.description}
+                </p>
+
                 {/* Tech Pills */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "6px",
+                    marginBottom: "1rem",
+                  }}
+                >
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="font-mono text-mono-tiny text-muted bg-espresso/5 px-2 py-0.5"
+                      style={{
+                        fontFamily: "'Space Mono', monospace",
+                        fontSize: "0.65rem",
+                        color: "#4A2E1A",
+                        background: "rgba(28,16,7,0.06)",
+                        border: "1px solid rgba(28,16,7,0.1)",
+                        borderRadius: "4px",
+                        padding: "3px 8px",
+                      }}
                     >
                       {t}
                     </span>
                   ))}
                 </div>
+              </div>
 
-                {/* Divider */}
-                <div
-                  className="h-px bg-border mb-4"
-                  style={{ backgroundColor: "rgba(28,16,7,0.1)" }}
-                />
-
-                {/* Card Footer - Action Buttons */}
-                <div className="flex items-center gap-2">
-                  {project.github !== "#" && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="card-btn no-underline"
-                    >
-                      CODE ↗
-                    </a>
-                  )}
-                  {project.live !== "#" && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="card-btn no-underline"
-                    >
-                      LIVE ↗
-                    </a>
-                  )}
-                  {project.video && (
-                    <button
-                      className="card-btn"
-                      onClick={() => setModalVideo(project.video)}
-                    >
-                      ▶ DEMO
-                    </button>
-                  )}
-                </div>
+              {/* Card Footer */}
+              <div
+                style={{
+                  padding: "1rem 1.25rem",
+                  borderTop: "1px solid rgba(28,16,7,0.08)",
+                  display: "flex",
+                  gap: "0.6rem",
+                  marginTop: "auto",
+                }}
+              >
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="card-btn"
+                    style={{ textDecoration: "none" }}
+                  >
+                    CODE ↗
+                  </a>
+                )}
+                {project.live && (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="card-btn"
+                    style={{ textDecoration: "none" }}
+                  >
+                    LIVE ↗
+                  </a>
+                )}
+                {project.video && (
+                  <button
+                    className="card-btn demo"
+                    onClick={() => setModalVideo(project.video)}
+                  >
+                    ▶ DEMO
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -332,7 +464,9 @@ const Projects = () => {
       </div>
 
       {/* Demo Modal */}
-      {modalVideo && <DemoModal videoSrc={modalVideo} onClose={handleModalClose} />}
+      {modalVideo && (
+        <DemoModal videoSrc={modalVideo} onClose={handleModalClose} />
+      )}
     </section>
   );
 };

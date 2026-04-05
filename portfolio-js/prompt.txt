@@ -1,103 +1,457 @@
-I have a React + Vite portfolio at localhost:5173. Fix ALL issues below. Screenshots are attached. Do not break the existing ivory/copper/espresso color system or font system (Cormorant Garamond + Space Grotesk + Space Mono).
+I can see all 3 screenshots clearly. Let me identify every issue precisely:
 
+**Problems:**
+1. Project cards (Image 1) look broken — no screenshots showing, layout cut off
+2. Want cards like Image 2 (abuhurairah.engineer style) with full project image + description + tech pills + buttons
+3. Contact section layout wrong — left/right split needs to become TOP (heading + text) then BOTTOM (form)
+4. Footer appearing behind/inside contact form
+5. Need more professional animations and unique UI details
 
+---
 
-FIX 3 — SKILLS SECTION: FULLY VISIBLE ON LAPTOP, NO HORIZONTAL SCROLL
-The skills ticker rows are not visible / require horizontal scroll. Fix completely:
+## 🔥 Complete Final Prompt — Paste Into Cursor
 
-The skills section must sit IMMEDIATELY after the hero with no gap — the user should see it by just scrolling down slightly, not horizontally
-Each skill row: overflow: hidden on the outer wrapper, display: flex; width: max-content on the inner scrolling div
-The inner div must contain the skill list DUPLICATED (copy-pasted twice) so the loop is seamless — when the first copy ends, the second begins instantly
-Each row scrolls LEFT using: animation: skillScroll Xs linear infinite where X = 18, 14, 22, 16 for rows 1-4
-@keyframes skillScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-The section header row: left side = // SKILLS & STACK in tiny copper Space Mono + big Cormorant Garamond "Skills & Stack" title below. Right side = "25 Technologies" counter in muted Space Mono
-All 4 rows (Frontend / Backend / Database / DevOps) must be visible without any scroll — each row height = 48px
-Total skills section height should be under 320px on laptop
+---
 
-
-FIX 4 — PROJECTS: REPLACE LIST WITH IMAGE CARDS (LIKE REFERENCE IMAGE)
-The current numbered list layout must be completely replaced with a card grid. Reference: Image 3 shows the correct style with browser-mockup cards showing project screenshots.
-Build this exact card layout:
-┌──────────────────────────────────────┐
-│  ● ● ●  projects/finscope-dashboard  │  ← browser chrome bar
-│ ┌────────────────────────────────┐   │
-│ │                                │   │
-│ │   [Project Screenshot Image]   │   │
-│ │                                │   │
-│ └────────────────────────────────┘   │
-│                                      │
-│  FinScope                [FULL-STACK]│
-│  Real-Time Analytics Dashboard       │
-│  Next.js · TypeScript · PostgreSQL   │
-│  ────────────────────────────────    │
-│  [CODE ↗]   [LIVE ↗]   [▶ DEMO]    │
-└──────────────────────────────────────┘
-Specific requirements:
-
-Card background: #FDFAF5 (cream), border: 1px solid rgba(28,16,7,0.1), border-radius: 12px, no box-shadow
-Top of card: a browser chrome bar — background: #E8DED0, height 28px, with 3 small colored circles (red #E57373, amber #FFB74D, green #81C784 — each 8px circle) on the left and the project URL path in tiny Space Mono muted text on the right
-Below chrome bar: project screenshot image — width: 100%; height: 200px; object-fit: cover; object-position: top
-Image sources: use src="/assets/finscope.png", src="/assets/donorhub.png", src="/assets/hirelens.png" etc. (I will put the actual images in the assets folder with these names)
-Card body below image: project name in Cormorant Garamond 1.3rem bold + type tag badge + italic subtitle + tech pills in Space Mono tiny
-Card footer: 3 buttons in a row — [CODE ↗] linking to GitHub, [LIVE ↗] linking to live site, [▶ DEMO] button that opens a modal
-DEMO Modal: When [▶ DEMO] is clicked, a full-screen overlay appears (position: fixed; inset: 0; background: rgba(28,16,7,0.85); z-index: 9999; display: flex; align-items: center; justify-content: center). Inside the overlay: a <video controls autoplay width="900px" style="max-width:90vw; border-radius:8px"> tag with src="/assets/videos/finscope.mp4" (I will add video files). An ✕ Close button in top-right corner of overlay closes it. Press Escape key also closes it.
-Card grid layout: display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem on desktop, repeat(2, 1fr) on tablet, 1fr on mobile
-Card hover: transform: translateY(-4px); border-color: rgba(160,113,79,0.4); transition: all 0.25s ease
-Add filter tabs above the grid: All | Full-Stack | Frontend | Backend | AI/ML — same style as Image 3. Active tab in copper, others in muted. Clicking filters cards by their type tag
-
-Projects to add (with placeholder asset paths):
-1. FinScope — Full-Stack — /assets/finscope.png — github: ITZ-HURAIRAH18/FinScope — live: finscope.vercel.app — video: /assets/videos/finscope.mp4
-2. DonorHub — Full-Stack — /assets/donorhub.png — github: ITZ-HURAIRAH18/DonorHub — live: donor-hub-eta.vercel.app — video: /assets/videos/donorhub.mp4
-3. HireLens — AI/ML — /assets/hirelens.png — github: ITZ-HURAIRAH18/HireLens — live: hire-lensz.vercel.app — video: /assets/videos/hirelens.mp4
-4. NexTrack — Full-Stack — /assets/nextrack.png — github: ITZ-HURAIRAH18/NexTrack — live: # — video: /assets/videos/nextrack.mp4
-5. LoanVerse — Backend — /assets/loanverse.png — github: # — live: # — video: /assets/videos/loanverse.mp4
-6. NexAgen — Full-Stack — /assets/nexagen.png — github: # — live: # — video: /assets/videos/nexagen.mp4
-
-FIX 5 — CONTACT SECTION: FIX MASSIVE EMPTY BLACK SPACE
-The left dark panel has a huge empty black area between the timezone row and the GitHub/LinkedIn links. Fix:
-
-The parent contact section: display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: auto
-Left panel: display: flex; flex-direction: column; gap: 1.5rem; padding: 3rem — NO justify-content: space-between (this is what creates the empty gap)
-Move GitHub and LinkedIn links immediately after the timezone row, NOT pinned to bottom
-After the links, add a decorative element to fill remaining space tastefully: a large faded watermark text "< / >" in Cormorant Garamond at 30% opacity copper, centered at the bottom of the panel
-The right panel form: remove the duplicate Location/Response Time/Availability rows at the bottom — they already appear in the left panel. Replace that space with a professional closing line: "Response time: within 24 hours · Open to remote worldwide" in tiny muted Space Mono below the Send button
-Both panels must be equal height and the entire contact section must fit in max-height: 100vh
-
-
-FIX 6 — ANIMATIONS: MAKE THE PORTFOLIO COME ALIVE
-Add these specific animations using CSS only (no heavy JS libraries):
-A) Page load reveal — On initial load, every section fades in with a staggered upward slide:
-css@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.hero-left { animation: fadeUp 0.7s ease forwards; }
-.hero-right { animation: fadeUp 0.7s 0.15s ease forwards; opacity: 0; }
-B) Scroll reveal — Use IntersectionObserver in a useEffect to add class is-visible when sections enter viewport. CSS:
-css.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.is-visible { opacity: 1; transform: translateY(0); }
-Apply .reveal to: every project card, every experience row, the contact section, skills header
-C) Navbar scroll effect — When page is scrolled more than 60px, add class scrolled to navbar:
-css.nav { transition: background 0.3s, border-color 0.3s; }
-.nav.scrolled { background: rgba(247,243,236,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(28,16,7,0.15); }
-D) Project card image hover zoom — On card hover, the screenshot image scales slightly:
-css.proj-card:hover .proj-img { transform: scale(1.03); }
-.proj-img { transition: transform 0.4s ease; }
-E) Copper underline animation on nav links — Each nav link gets a copper underline that slides in from left on hover:
-css.nav-link { position: relative; }
-.nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #A0714F; transition: width 0.25s ease; }
-.nav-link:hover::after { width: 100%; }
-F) Marquee pause on hover — When user hovers the marquee strip, it pauses:
-css.marquee-strip:hover .marquee-inner { animation-play-state: paused; }
-G) Cursor dot — Add a small custom copper dot cursor that follows mouse position (8px circle, #A0714F, pointer-events: none, position: fixed, z-index: 9998, smooth follow with CSS transition: transform 0.1s). Use a single useEffect with mousemove event listener.
-
-GLOBAL RULES — NEVER CHANGE:
-
-Ivory #F7F3EC background, copper #A0714F accent, espresso #1C1007 dark
-Cormorant Garamond (headings) + Space Grotesk (body) + Space Mono (labels/code)
-Marquee ticker strip stays at very top
-All section dividers (1px horizontal lines)
-Hero photo (right column, real photo, object-fit cover)
-Experience table layout (year / role / description 3-column grid)
-Footer design (copyright left, domain italic copper right)
-NO dark mode toggle, NO blue colors, NO box shadows, NO rounded hero corners
+> **I have a React + Vite portfolio at localhost:5173. Fix ALL issues below based on my screenshots. Keep the existing ivory/copper/espresso color system and Cormorant Garamond + Space Grotesk + Space Mono fonts.**
+>
+> ---
+>
+> **FIX 1 — PROJECT CARDS: REBUILD TO MATCH REFERENCE STYLE (Image 2)**
+>
+> The current card layout is broken (Image 1) — screenshots not showing, layout cut off, buttons misaligned. Completely rebuild the project cards to match this exact structure inspired by Image 2:
+>
+> ```
+> ┌─────────────────────────────────────────────┐
+> │ ● ● ●  projects/flowventory-inventory-system │  ← browser bar
+> ├─────────────────────────────────────────────┤
+> │                                             │
+> │         [Project Screenshot - 220px tall]   │
+> │                                             │
+> ├─────────────────────────────────────────────┤
+> │                                             │
+> │  Flowventory                   [FULL-STACK] │
+> │  Smart Inventory & Order Management         │  ← italic muted
+> │                                             │
+> │  A state-of-the-art multi-branch inventory  │
+> │  and order management solution with real-   │
+> │  time stock tracking, role-based access...  │
+> │                                         ... │  ← 3 lines max
+> │                                             │
+> │  [Laravel] [Vue.js] [MySQL] [Sanctum]       │  ← pill tags
+> │  [Vite] [Composition API]                   │
+> │                                             │
+> │ ─────────────────────────────────────────── │
+> │  [CODE ↗]        [LIVE ↗]       [▶ DEMO]   │
+> └─────────────────────────────────────────────┘
+> ```
+>
+> **Exact card CSS:**
+> ```css
+> .proj-card {
+>   background: #FDFAF5;
+>   border: 1px solid rgba(28,16,7,0.10);
+>   border-radius: 14px;
+>   overflow: hidden;
+>   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+>   display: flex;
+>   flex-direction: column;
+> }
+> .proj-card:hover {
+>   transform: translateY(-6px);
+>   border-color: rgba(160,113,79,0.35);
+>   box-shadow: 0 16px 40px rgba(28,16,7,0.08);
+> }
+> ```
+>
+> **Browser chrome bar at top of each card:**
+> ```html
+> <div style="background:#EDE8DF; padding:8px 12px; display:flex; align-items:center; justify-content:space-between;">
+>   <div style="display:flex; gap:5px;">
+>     <span style="width:8px;height:8px;border-radius:50%;background:#E57373;display:inline-block"></span>
+>     <span style="width:8px;height:8px;border-radius:50%;background:#FFB74D;display:inline-block"></span>
+>     <span style="width:8px;height:8px;border-radius:50%;background:#81C784;display:inline-block"></span>
+>   </div>
+>   <span style="font-family:'Space Mono',monospace;font-size:0.58rem;color:#8A7560;letter-spacing:0.04em">projects/flowventory---inventory-system</span>
+>   <span style="width:40px"></span>
+> </div>
+> ```
+>
+> **Project image:**
+> ```html
+> <div style="height:220px; overflow:hidden; background:#E8DED0;">
+>   <img src="/assets/flowventory.png" alt="Flowventory"
+>     style="width:100%; height:100%; object-fit:cover; object-position:top;
+>     transition:transform 0.5s ease;" />
+> </div>
+> ```
+> On card hover, image zooms: `.proj-card:hover img { transform: scale(1.04); }`
+>
+> **Card body:**
+> - Project name: `Cormorant Garamond` 1.25rem font-weight 600, espresso color — on same line as type badge tag
+> - Type badge: `Space Mono` 0.6rem uppercase, copper bg `rgba(160,113,79,0.12)`, copper text, padding `2px 8px`, no border-radius (sharp corners)
+> - Subtitle: italic, `Space Grotesk` 0.82rem, muted color, margin-bottom 0.6rem
+> - Description: `Space Grotesk` 0.83rem, line-height 1.65, muted color, `display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden` — max 3 lines with ellipsis
+> - Tech pills: `Space Mono` 0.65rem, background `rgba(28,16,7,0.06)`, border `1px solid rgba(28,16,7,0.1)`, padding `3px 8px`, border-radius `4px`, color `#4A2E1A`, flex-wrap wrap, gap 6px
+>
+> **Card footer buttons (always at bottom, use `margin-top: auto` on footer):**
+> ```css
+> .card-footer {
+>   padding: 1rem 1.25rem;
+>   border-top: 1px solid rgba(28,16,7,0.08);
+>   display: flex;
+>   gap: 0.6rem;
+>   margin-top: auto;
+> }
+> .card-btn {
+>   flex: 1;
+>   padding: 0.5rem 0;
+>   font-family: 'Space Mono', monospace;
+>   font-size: 0.68rem;
+>   letter-spacing: 0.1em;
+>   text-transform: uppercase;
+>   border: 1px solid rgba(28,16,7,0.15);
+>   background: transparent;
+>   color: #1C1007;
+>   cursor: pointer;
+>   border-radius: 4px;
+>   transition: background 0.2s, color 0.2s, border-color 0.2s;
+>   text-align: center;
+>   text-decoration: none;
+>   display: flex;
+>   align-items: center;
+>   justify-content: center;
+>   gap: 4px;
+> }
+> .card-btn:hover {
+>   background: #1C1007;
+>   color: #F7F3EC;
+>   border-color: #1C1007;
+> }
+> .card-btn.demo {
+>   background: #A0714F;
+>   color: #F7F3EC;
+>   border-color: #A0714F;
+> }
+> .card-btn.demo:hover {
+>   background: #8A5A3A;
+>   border-color: #8A5A3A;
+> }
+> ```
+>
+> **DEMO Modal (video popup):**
+> When `▶ DEMO` clicked:
+> ```jsx
+> // State: const [activeVideo, setActiveVideo] = useState(null)
+> // Modal overlay:
+> {activeVideo && (
+>   <div onClick={() => setActiveVideo(null)} style={{
+>     position:'fixed', inset:0, background:'rgba(28,16,7,0.9)',
+>     zIndex:9999, display:'flex', alignItems:'center', justifyContent:'center'
+>   }}>
+>     <div onClick={e => e.stopPropagation()} style={{
+>       position:'relative', width:'90vw', maxWidth:'900px'
+>     }}>
+>       <button onClick={() => setActiveVideo(null)} style={{
+>         position:'absolute', top:'-40px', right:0,
+>         background:'none', border:'none', color:'#F7F3EC',
+>         fontFamily:'Space Mono,monospace', fontSize:'0.75rem',
+>         letterSpacing:'0.1em', cursor:'pointer'
+>       }}>✕ CLOSE</button>
+>       <video src={activeVideo} controls autoPlay
+>         style={{width:'100%', borderRadius:'8px', display:'block'}} />
+>     </div>
+>   </div>
+> )}
+> ```
+> Add `useEffect` to close on Escape: `window.addEventListener('keydown', e => e.key==='Escape' && setActiveVideo(null))`
+>
+> **Card grid layout:**
+> ```css
+> .projects-grid {
+>   display: grid;
+>   grid-template-columns: repeat(3, 1fr);
+>   gap: 1.5rem;
+>   padding: 2rem 3rem;
+> }
+> @media (max-width: 1100px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+> @media (max-width: 680px) { .projects-grid { grid-template-columns: 1fr; } }
+> ```
+>
+> **Filter tabs above grid:**
+> ```
+> [All]  [Full-Stack]  [Frontend]  [Backend]  [AI/ML]
+> ```
+> Active tab: copper text + 2px copper bottom border. Others: muted. On click, filter cards using React state. Smooth card disappear with `opacity: 0; transform: scale(0.96)` transition.
+>
+> **All 9 projects with asset paths (I will add images/videos to /public/assets/):**
+> ```
+> 1. FinScope — Full-Stack — /assets/finscope.png — github/live/video paths
+> 2. DonorHub — Full-Stack — /assets/donorhub.png
+> 3. HireLens — AI/ML — /assets/hirelens.png
+> 4. NexTrack — Full-Stack — /assets/nextrack.png
+> 5. LoanVerse — Backend — /assets/loanverse.png
+> 6. NexGen — Full-Stack — /assets/nexgen.png
+> 7. Flowventory — Full-Stack — /assets/flowventory.png
+> 8. HealthWise AI — AI/ML — /assets/healthwise.png
+> 9. Excel Quiz App — Frontend — /assets/quizapp.png
+> ```
+> For any project without a live link, hide the LIVE button. For any without video, hide the DEMO button. For any without GitHub, hide CODE button. Never show a broken/empty button.
+>
+> ---
+>
+> **FIX 2 — CONTACT SECTION: CHANGE FROM LEFT/RIGHT SPLIT TO TOP/BOTTOM STACKED**
+>
+> Currently: dark panel LEFT + form RIGHT (split layout). This wastes vertical space and the footer gets buried.
+>
+> Change completely to this TOP → BOTTOM stacked layout:
+>
+> ```
+> ┌────────────────────────────────────────────────────────┐
+> │                   TOP SECTION (dark espresso bg)       │
+> │                                                        │
+> │   Let's Build Something Great         [20+] [3+] [10+]│
+> │   Have a project in mind...                            │
+> │   "Clean code. Scalable systems. Delivered on time."   │
+> │                                                        │
+> │   LOCATION ............... Pakistan · Remote Worldwide │
+> │   EMAIL .................. muhammadabuhurairah22@...   │
+> │   TIMEZONE ............... PKT (UTC+5)                 │
+> │                                                        │
+> │   → GITHUB   |   → LINKEDIN                           │
+> └────────────────────────────────────────────────────────┘
+> ┌────────────────────────────────────────────────────────┐
+> │                BOTTOM SECTION (ivory bg)               │
+> │                                                        │
+> │   ● CURRENTLY AVAILABLE                                │
+> │   I'm currently accepting new projects...              │
+> │                                                        │
+> │   [Your Name input]                                    │
+> │   [Your Email input]                                   │
+> │   [Tell me about your project textarea]                │
+> │                                                        │
+> │   [SEND MESSAGE →]  full width button                  │
+> │   I typically respond within 24 hours.                 │
+> └────────────────────────────────────────────────────────┘
+> ```
+>
+> **Top section CSS:**
+> ```css
+> .contact-top {
+>   background: #1C1007;
+>   padding: 4rem 8rem;
+>   display: grid;
+>   grid-template-columns: 1fr auto;
+>   align-items: start;
+>   gap: 3rem;
+> }
+> @media (max-width: 900px) {
+>   .contact-top { grid-template-columns: 1fr; padding: 3rem 2rem; }
+> }
+> ```
+>
+> Top section left: heading `Cormorant Garamond` 3.5rem light, "Great" in italic copper. Below: paragraph `Space Grotesk` 0.9rem, opacity 0.6, ivory. Below: quote in italic copper serif. Then the 3 detail rows (Location/Email/Timezone) in a clean table with dotted leaders. Then GitHub + LinkedIn links.
+>
+> Top section right: the 3 stats (`20+`, `3+`, `10+`) stacked vertically — big `Cormorant Garamond` number in copper + tiny `Space Mono` label below each.
+>
+> **Bottom section CSS:**
+> ```css
+> .contact-bottom {
+>   background: #F7F3EC;
+>   padding: 3.5rem 8rem;
+>   max-width: 700px;
+>   margin: 0 auto;
+> }
+> @media (max-width: 900px) {
+>   .contact-bottom { padding: 2.5rem 2rem; }
+> }
+> ```
+>
+> Form inputs — bottom-border only style:
+> ```css
+> .form-input {
+>   width: 100%;
+>   border: none;
+>   border-bottom: 1px solid rgba(28,16,7,0.2);
+>   background: transparent;
+>   padding: 0.75rem 0;
+>   font-family: 'Space Grotesk', sans-serif;
+>   font-size: 0.9rem;
+>   color: #1C1007;
+>   outline: none;
+>   margin-bottom: 1.5rem;
+>   transition: border-color 0.2s;
+> }
+> .form-input:focus { border-color: #A0714F; }
+> .form-input::placeholder { color: #8A7560; }
+> ```
+>
+> Send button:
+> ```css
+> .send-btn {
+>   width: 100%;
+>   background: #1C1007;
+>   color: #F7F3EC;
+>   border: none;
+>   padding: 1rem;
+>   font-family: 'Space Mono', monospace;
+>   font-size: 0.8rem;
+>   letter-spacing: 0.15em;
+>   text-transform: uppercase;
+>   cursor: pointer;
+>   border-radius: 0;
+>   transition: background 0.2s;
+>   display: flex;
+>   align-items: center;
+>   justify-content: center;
+>   gap: 0.5rem;
+> }
+> .send-btn:hover { background: #A0714F; }
+> .send-btn .arrow { transition: transform 0.2s; }
+> .send-btn:hover .arrow { transform: translateX(5px); }
+> ```
+>
+> ---
+>
+> **FIX 3 — FOOTER: MUST ALWAYS BE LAST, NEVER OVERLAP**
+>
+> The footer is currently overlapping the contact form. Fix:
+> - Footer must be a completely separate component rendered AFTER `<ContactSection />` in `App.jsx`
+> - Footer CSS: `position: static` (never fixed or absolute), `width: 100%`, `z-index: 1`
+> - Make sure no parent element has `overflow: hidden` that clips the footer
+> - Footer layout: `background: #1C1007; padding: 1.25rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(247,243,236,0.08)`
+> - Left: `© 2026 MUHAMMAD ABU HURAIRAH. ALL RIGHTS RESERVED.` in `Space Mono` 0.62rem, ivory 30% opacity
+> - Right: `abuhurairah.engineer` in `Cormorant Garamond` italic, copper color
+>
+> ---
+>
+> **FIX 4 — ANIMATIONS: PROFESSIONAL + UNIQUE**
+>
+> Add ALL of these:
+>
+> **A) Scroll reveal with stagger for project cards:**
+> ```js
+> useEffect(() => {
+>   const observer = new IntersectionObserver(
+>     (entries) => entries.forEach(e => {
+>       if (e.isIntersecting) { e.target.classList.add('visible'); }
+>     }),
+>     { threshold: 0.1 }
+>   );
+>   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+>   return () => observer.disconnect();
+> }, []);
+> ```
+> ```css
+> .reveal {
+>   opacity: 0;
+>   transform: translateY(28px);
+>   transition: opacity 0.55s ease, transform 0.55s ease;
+> }
+> .reveal.visible { opacity: 1; transform: translateY(0); }
+> /* stagger cards */
+> .proj-card:nth-child(1) { transition-delay: 0s; }
+> .proj-card:nth-child(2) { transition-delay: 0.08s; }
+> .proj-card:nth-child(3) { transition-delay: 0.16s; }
+> .proj-card:nth-child(4) { transition-delay: 0.24s; }
+> .proj-card:nth-child(5) { transition-delay: 0.32s; }
+> .proj-card:nth-child(6) { transition-delay: 0.40s; }
+> ```
+>
+> **B) Hero text word-by-word reveal on load:**
+> Wrap each word of the hero name in a `<span class="word">` with animation-delay increments:
+> ```css
+> @keyframes wordReveal {
+>   from { opacity: 0; transform: translateY(20px) skewY(2deg); }
+>   to { opacity: 1; transform: translateY(0) skewY(0); }
+> }
+> .word { display: inline-block; opacity: 0; animation: wordReveal 0.5s ease forwards; }
+> .word:nth-child(1) { animation-delay: 0.1s; }
+> .word:nth-child(2) { animation-delay: 0.2s; }
+> .word:nth-child(3) { animation-delay: 0.3s; }
+> ```
+>
+> **C) Navbar blur on scroll:**
+> ```js
+> useEffect(() => {
+>   const onScroll = () => {
+>     document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 50);
+>   };
+>   window.addEventListener('scroll', onScroll);
+>   return () => window.removeEventListener('scroll', onScroll);
+> }, []);
+> ```
+> ```css
+> .nav { transition: backdrop-filter 0.3s, background 0.3s; }
+> .nav.scrolled {
+>   backdrop-filter: blur(16px);
+>   background: rgba(247,243,236,0.88);
+>   border-bottom: 1px solid rgba(28,16,7,0.12);
+> }
+> ```
+>
+> **D) Nav link copper underline slide animation:**
+> ```css
+> .nav-link { position: relative; padding-bottom: 3px; }
+> .nav-link::after {
+>   content: '';
+>   position: absolute;
+>   bottom: 0; left: 0;
+>   width: 0; height: 1px;
+>   background: #A0714F;
+>   transition: width 0.25s ease;
+> }
+> .nav-link:hover::after,
+> .nav-link.active::after { width: 100%; }
+> ```
+>
+> **E) Smooth active section highlight in navbar:**
+> Use `IntersectionObserver` to detect which section is in view and add `.active` class to the corresponding nav link. Sections to observe: `#skills`, `#projects`, `#experience`, `#contact`
+>
+> **F) Custom copper cursor dot:**
+> ```jsx
+> // In App.jsx
+> const cursorRef = useRef(null);
+> useEffect(() => {
+>   const move = (e) => {
+>     if (cursorRef.current) {
+>       cursorRef.current.style.left = e.clientX + 'px';
+>       cursorRef.current.style.top = e.clientY + 'px';
+>     }
+>   };
+>   window.addEventListener('mousemove', move);
+>   return () => window.removeEventListener('mousemove', move);
+> }, []);
+> // JSX:
+> <div ref={cursorRef} style={{
+>   position:'fixed', width:'8px', height:'8px', borderRadius:'50%',
+>   background:'#A0714F', pointerEvents:'none', zIndex:9997,
+>   transform:'translate(-50%,-50%)',
+>   transition:'left 0.08s ease, top 0.08s ease',
+>   opacity:0.7
+> }} />
+> ```
+>
+> **G) Marquee pauses on hover:**
+> ```css
+> .marquee-strip:hover .marquee-inner { animation-play-state: paused; }
+> ```
+>
+> **H) Skill row hover highlight:**
+> ```css
+> .skill-row { transition: background 0.2s; }
+> .skill-row:hover { background: rgba(160,113,79,0.04); }
+> .skill-row:hover .row-label { color: #1C1007; }
+> ```
+>
+> ---
+>
+> **KEEP UNCHANGED — DO NOT TOUCH:**
+> - Ivory `#F7F3EC` background, copper `#A0714F`, espresso `#1C1007` color system
+> - Font imports: Cormorant Garamond + Space Grotesk + Space Mono
+> - Marquee ticker strip
+> - Hero layout (name + photo)
+> - Skills ticker rows (4 animated rows)
+> - Experience table (3-column: year / role / description)
+> - Section divider lines
+> - Logo style `M. Abu Hurairah ®`
