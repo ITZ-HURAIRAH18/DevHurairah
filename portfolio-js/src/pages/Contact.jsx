@@ -205,7 +205,7 @@ const Contact = () => {
               → GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/itzhurairah18/"
+              href="https://www.linkedin.com/in/muhammad-abu-hurairah-988ba1303/"
               target="_blank"
               rel="noopener noreferrer"
               style={{

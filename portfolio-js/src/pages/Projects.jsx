@@ -164,7 +164,7 @@ const Projects = () => {
       image: "/assets/nexgen.png",
       github: "https://github.com/ITZ-HURAIRAH18/Schedule_Ease",
       live: null,
-      video: "/assets/videos/nexgen.mp4",
+      video: "/assets/videos/scheduleease.mp4",
       urlPath: "projects/nexgen-scheduler",
     },
     {
@@ -187,10 +187,10 @@ const Projects = () => {
         "An AI-powered medical chatbot that provides health assessments, symptom analysis, and wellness recommendations using the Gemini API.",
       tech: ["React", "Gemini API", "Tailwind"],
       type: "AI/ML",
-      image: "/assets/healthwise.png",
+      image: "/assets/hire.jfif",
       github: "https://github.com/ITZ-HURAIRAH18/HealthWise-AI",
-      live: null,
-      video: "/assets/videos/healthwise.mp4",
+      live: "https://health-wise-ai-chatbot.vercel.app/",
+      // video: "/assets/videos/healthwise.mp4",
       urlPath: "projects/healthwise-ai",
     },
     {
@@ -203,7 +203,7 @@ const Projects = () => {
       image: "/assets/quiz.png",
       github: "https://github.com/ITZ-HURAIRAH18/Excel-Based-Quiz-App",
       live: null,
-      video: "/assets/videos/quiz.mp4",
+      // video: "/assets/videos/quiz.mp4",
       urlPath: "projects/excel-quiz",
     },
     {
@@ -216,7 +216,7 @@ const Projects = () => {
       image: "/assets/era.png",
       github: "https://github.com/ITZ-HURAIRAH18/ERA--Smart-Wardrobe-Manager",
       live: null,
-      video: "/assets/videos/era.mp4",
+      // video: "/assets/videos/era.mp4",
       urlPath: "projects/era-wardrobe",
     },
   ];
