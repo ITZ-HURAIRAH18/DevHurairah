@@ -1,0 +1,693 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #F7F3EC;
+    color: #1C1007;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: rgba(160, 113, 79, 0.2);
+    color: #1C1007;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F7F3EC;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #E8DED0;
+    border-radius: 0;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #A0714F;
+  }
+}
+
+@layer components {
+  /* Section divider */
+  .section-border {
+    border-top: 1px solid rgba(28, 16, 7, 0.10);
+  }
+
+  /* ========================================
+     HERO SECTION — No height restrictions
+     ======================================== */
+  .hero {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-left {
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
+
+  .hero-para {
+    margin: 0;
+  }
+
+  .hero-actions {
+    margin-top: 1.2rem;
+  }
+
+  /* ========================================
+     SKILLS TICKER — Fix 3: proper animation
+     ======================================== */
+  .skill-ticker {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .skill-ticker-inner {
+    display: flex;
+    width: max-content;
+  }
+
+  .skill-ticker-inner:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes skillScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Marquee ticker animation (legacy support) */
+  .marquee-track {
+    display: flex;
+    min-width: max-content;
+    animation: marquee-scroll 40s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .marquee-track-reverse {
+    animation-direction: reverse;
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ========================================
+     CONTACT SECTION — Fix 4: CSS Grid layout
+     ======================================== */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 3rem;
+  }
+
+  .contact-right {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .contact-detail-row {
+    padding: 0.6rem 0;
+  }
+
+  /* ========================================
+     EXPERIENCE SECTION — Fix 5: hover effects
+     ======================================== */
+  .experience-row {
+    border-bottom: 1px solid rgba(28, 16, 7, 0.10);
+    transition: background-color 0.2s ease;
+  }
+
+  .experience-row:hover {
+    background-color: rgba(160, 113, 79, 0.04);
+  }
+
+  /* Pulsing dot animation */
+  .pulse-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #A0714F;
+    border-radius: 50%;
+    animation: pulse-opacity 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-opacity {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  /* Nav link hover */
+  .nav-link {
+    position: relative;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #A0714F;
+    transition: width 0.25s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link:hover {
+    opacity: 0.6;
+  }
+
+  /* Project row hover */
+  .project-row {
+    transition: background-color 0.2s ease;
+  }
+
+  .project-row:hover {
+    background-color: #E8DED0;
+  }
+
+  .project-row .arrow-icon {
+    transition: transform 0.2s ease;
+  }
+
+  .project-row:hover .arrow-icon {
+    transform: rotate(-45deg);
+  }
+
+  /* Button styles */
+  .btn-solid {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background-color: #1C1007;
+    color: #F7F3EC;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .btn-solid:hover {
+    opacity: 0.85;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background-color: transparent;
+    color: #A0714F;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .btn-ghost:hover {
+    opacity: 0.7;
+  }
+
+  /* Skill ticker item */
+  .skill-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+  }
+
+  .skill-dot {
+    width: 4px;
+    height: 4px;
+    background-color: #A0714F;
+    border-radius: 50%;
+  }
+
+  /* Contact form inputs — bottom border only */
+  .contact-input,
+  .bottom-border-input {
+    width: 100%;
+    padding: 0.75rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(28, 16, 7, 0.15);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 14px;
+    color: #1C1007;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .bottom-border-input:focus {
+    border-bottom-color: #A0714F;
+  }
+
+  .bottom-border-input::placeholder {
+    color: transparent;
+  }
+
+  textarea.contact-input,
+  .bottom-border-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  /* Floating label pattern */
+  .floating-label-group {
+    position: relative;
+    padding-top: 0.5rem;
+  }
+
+  .floating-label {
+    position: absolute;
+    top: 0.75rem;
+    left: 0;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 14px;
+    color: #8A7560;
+    pointer-events: none;
+    transition: transform 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+    transform-origin: left center;
+  }
+
+  .bottom-border-input:focus ~ .floating-label,
+  .bottom-border-input:not(:placeholder-shown) ~ .floating-label {
+    transform: translateY(-1.25rem) scale(0.75);
+    font-size: 11px;
+    color: #A0714F;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Action link styles (Preview Video, GitHub, Live Site) */
+  .action-link {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    transition: opacity 0.2s ease;
+  }
+
+  .action-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #A0714F;
+    transition: width 0.2s ease;
+  }
+
+  .action-link:hover::after {
+    width: 100%;
+  }
+
+  .action-link:hover {
+    opacity: 0.8;
+  }
+
+  /* Send button */
+  .btn-send {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.875rem 1.75rem;
+    background-color: #1C1007;
+    color: #F7F3EC;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .btn-send:hover {
+    opacity: 0.85;
+  }
+
+  .btn-send:hover .btn-send-arrow {
+    transform: translateX(4px);
+    display: inline-block;
+  }
+
+  .btn-send-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-send:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* ========================================
+     NAVBAR SCROLL EFFECT — Fix 6C
+     ======================================== */
+  .nav {
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .nav.scrolled {
+    background: rgba(247, 243, 236, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(28, 16, 7, 0.15);
+  }
+
+  /* ========================================
+     SCROLL REVEAL — Fix 6B
+     ======================================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========================================
+     PAGE LOAD REVEAL — Fix 6A
+     ======================================== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left { animation: fadeUp 0.7s ease forwards; }
+  .hero-right { animation: fadeUp 0.7s 0.15s ease forwards; opacity: 0; }
+
+  /* ========================================
+     MARQUEE PAUSE ON HOVER — Fix 6F
+     ======================================== */
+  .marquee-strip:hover .marquee-inner {
+    animation-play-state: paused;
+  }
+
+  /* ========================================
+     WATERMARK TEXT — Fix 5
+     ======================================== */
+  .watermark-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem;
+    font-weight: 300;
+    color: #A0714F;
+    opacity: 0.3;
+    text-align: center;
+    margin-top: auto;
+    line-height: 1;
+  }
+
+  /* ========================================
+     PROJECT CARD STYLES — Fix 4
+     ======================================== */
+  .proj-card {
+    background: #FDFAF5;
+    border: 1px solid rgba(28, 16, 7, 0.1);
+    border-radius: 12px;
+    transition: all 0.25s ease;
+    overflow: hidden;
+  }
+
+  .proj-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(160, 113, 79, 0.4);
+  }
+
+  .browser-chrome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #E8DED0;
+    height: 28px;
+    padding: 0 12px;
+  }
+
+  .proj-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.4s ease;
+  }
+
+  .proj-card:hover .proj-img {
+    transform: scale(1.03);
+  }
+
+  .card-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #A0714F;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid rgba(160, 113, 79, 0.3);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    background: none;
+    cursor: pointer;
+  }
+
+  .card-btn:hover {
+    background: #A0714F;
+    color: #F7F3EC;
+    border-color: #A0714F;
+  }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .proj-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .proj-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Demo Modal */
+  .demo-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 16, 7, 0.85);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: #F7F3EC;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .modal-video {
+    max-width: 90vw;
+    border-radius: 8px;
+    cursor: default;
+  }
+
+  /* Custom Cursor Dot — Fix 6G */
+  .custom-cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: #A0714F;
+    border-radius: 50%;
+    pointer-events: none;
+    position: fixed;
+    z-index: 9998;
+    transition: transform 0.1s ease;
+  }
+
+  /* Filter Tabs */
+  .filter-tab {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #8A7560;
+    transition: color 0.2s ease;
+  }
+
+  .filter-tab.active {
+    color: #A0714F;
+  }
+
+  .filter-tab:hover {
+    color: #A0714F;
+  }
+
+  /* Video preview smooth expand */
+  .video-preview {
+    animation: video-expand 0.3s ease forwards;
+  }
+
+  @keyframes video-expand {
+    from {
+      opacity: 0;
+      max-height: 0;
+    }
+    to {
+      opacity: 1;
+      max-height: 600px;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-serif-italic {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+  }
+
+  .font-mono-uppercase {
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Hide scrollbar utility */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ============================================
+   MEDIA QUERIES — Hero responsiveness Fix 2
+   ============================================ */
+@media (max-width: 1440px) {
+  .hero-name {
+    font-size: clamp(2.8rem, 5.5vw, 5rem);
+  }
+  .hero {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .hero-left {
+    justify-content: flex-start;
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 1280px) {
+  .hero-name {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+  }
+  .hero-para {
+    font-size: 0.85rem;
+  }
+  .hero-actions {
+    margin-top: 1.2rem;
+  }
+}
+
+/* Contact grid responsive */
+@media (max-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-left {
+    padding: 2rem;
+  }
+  .contact-right {
+    overflow-y: visible;
+  }
+}
+
+/* Contact section max-height on smaller screens */
+@media (max-height: 768px) {
+  #contact {
+    max-height: 90vh;
+  }
+}
+
