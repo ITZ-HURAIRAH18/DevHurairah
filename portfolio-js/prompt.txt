@@ -1,2 +1,36 @@
-https://github.com/ITZ-HURAIRAH18/ERA--Smart-Wardrobe-Manager
-this is the gihub link of Era Poject fix it
+I can see the issue from your screenshot! When you click the **DEMO** button on your portfolio, the video opens somewhere off-screen or in a random position instead of centered. I'll build you a polished **AI-powered Portfolio Card component** with a properly centered video modal.Here's what I built and fixed for you:
+
+**▶ DEMO button** — now opens a video in a **centered modal overlay** every time, no matter where you scroll. Click anywhere outside or press Escape to close.
+
+**Project cards** — all 3 projects (FinScope, DonorHub, HireLens) displayed cleanly with images/icons centered and consistent sizing.
+
+**AI assistant** — type any question about your projects (e.g. *"Which project uses AI?"* or *"What stack does DonorHub use?"*) and it answers using the real Claude API.
+
+---
+
+To fix this in your **actual portfolio code**, the key change is in your demo button handler — replace however the video opens with a centered modal like this:
+
+```js
+// In your React portfolio component
+const [demoOpen, setDemoOpen] = useState(false);
+const [demoUrl, setDemoUrl] = useState('');
+
+function openDemo(url) {
+  setDemoUrl(url);
+  setDemoOpen(true);
+}
+
+// Modal JSX (place at the end of your return)
+{demoOpen && (
+  <div style={{position:'fixed', inset:0, background:'rgba(0,0,0,0.75)', 
+               display:'flex', alignItems:'center', justifyContent:'center', zIndex:9999}}
+       onClick={() => setDemoOpen(false)}>
+    <div style={{width:'min(680px, 92vw)', aspectRatio:'16/9', background:'#000'}}
+         onClick={e => e.stopPropagation()}>
+      <iframe src={demoUrl} width="100%" height="100%" allowFullScreen />
+    </div>
+  </div>
+)}
+```
+
+The key fix is `position: fixed` with `inset: 0` and `display: flex; alignItems: center; justifyContent: center` — this always centers the video on screen regardless of scroll position.

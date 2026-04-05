@@ -2,9 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 
 const DemoModal = ({ videoSrc, onClose }) => {
   useEffect(() => {
-    // Prevent body scroll when modal is open
     document.body.style.overflow = "hidden";
-
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
     };
@@ -16,68 +14,12 @@ const DemoModal = ({ videoSrc, onClose }) => {
   }, [onClose]);
 
   return (
-    <div
-      onClick={onClose}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: "rgba(28,16,7,0.92)",
-        zIndex: 999999,
-        overflow: "auto",
-      }}
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "90vw",
-          maxWidth: "960px",
-          animation: "modalFadeIn 0.3s ease forwards",
-          zIndex: 1000000,
-        }}
-      >
-        <button
-          onClick={onClose}
-          style={{
-            position: "absolute",
-            top: "-44px",
-            right: "4px",
-            background: "none",
-            border: "1px solid rgba(247,243,236,0.2)",
-            color: "#F7F3EC",
-            fontFamily: "'Space Mono', monospace",
-            fontSize: "0.7rem",
-            letterSpacing: "0.1em",
-            cursor: "pointer",
-            padding: "6px 14px",
-            borderRadius: "4px",
-            transition: "background 0.2s",
-            zIndex: 10,
-          }}
-          onMouseEnter={(e) =>
-            (e.target.style.background = "rgba(247,243,236,0.1)")
-          }
-          onMouseLeave={(e) => (e.target.style.background = "none")}
-        >
+    <div className="demo-modal-overlay" onClick={onClose}>
+      <div className="demo-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="demo-modal-close" onClick={onClose}>
           ✕ CLOSE
         </button>
-        <video
-          src={videoSrc}
-          controls
-          autoPlay
-          style={{
-            width: "100%",
-            borderRadius: "8px",
-            display: "block",
-            boxShadow: "0 24px 64px rgba(0,0,0,0.4)",
-          }}
-        />
+        <video className="demo-modal-video" src={videoSrc} controls autoPlay />
       </div>
     </div>
   );
