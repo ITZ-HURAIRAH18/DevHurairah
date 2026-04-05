@@ -790,10 +790,6 @@
     transition: color 0.2s ease;
   }
 
-  .filter-tab.active {
-    color: #A0714F;
-  }
-
   .filter-tab:hover {
     color: #A0714F;
   }
