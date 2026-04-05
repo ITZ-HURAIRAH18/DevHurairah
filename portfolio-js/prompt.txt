@@ -1,0 +1,103 @@
+I have a React + Vite portfolio at localhost:5173. Fix ALL issues below. Screenshots are attached. Do not break the existing ivory/copper/espresso color system or font system (Cormorant Garamond + Space Grotesk + Space Mono).
+
+
+
+FIX 3 — SKILLS SECTION: FULLY VISIBLE ON LAPTOP, NO HORIZONTAL SCROLL
+The skills ticker rows are not visible / require horizontal scroll. Fix completely:
+
+The skills section must sit IMMEDIATELY after the hero with no gap — the user should see it by just scrolling down slightly, not horizontally
+Each skill row: overflow: hidden on the outer wrapper, display: flex; width: max-content on the inner scrolling div
+The inner div must contain the skill list DUPLICATED (copy-pasted twice) so the loop is seamless — when the first copy ends, the second begins instantly
+Each row scrolls LEFT using: animation: skillScroll Xs linear infinite where X = 18, 14, 22, 16 for rows 1-4
+@keyframes skillScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+The section header row: left side = // SKILLS & STACK in tiny copper Space Mono + big Cormorant Garamond "Skills & Stack" title below. Right side = "25 Technologies" counter in muted Space Mono
+All 4 rows (Frontend / Backend / Database / DevOps) must be visible without any scroll — each row height = 48px
+Total skills section height should be under 320px on laptop
+
+
+FIX 4 — PROJECTS: REPLACE LIST WITH IMAGE CARDS (LIKE REFERENCE IMAGE)
+The current numbered list layout must be completely replaced with a card grid. Reference: Image 3 shows the correct style with browser-mockup cards showing project screenshots.
+Build this exact card layout:
+┌──────────────────────────────────────┐
+│  ● ● ●  projects/finscope-dashboard  │  ← browser chrome bar
+│ ┌────────────────────────────────┐   │
+│ │                                │   │
+│ │   [Project Screenshot Image]   │   │
+│ │                                │   │
+│ └────────────────────────────────┘   │
+│                                      │
+│  FinScope                [FULL-STACK]│
+│  Real-Time Analytics Dashboard       │
+│  Next.js · TypeScript · PostgreSQL   │
+│  ────────────────────────────────    │
+│  [CODE ↗]   [LIVE ↗]   [▶ DEMO]    │
+└──────────────────────────────────────┘
+Specific requirements:
+
+Card background: #FDFAF5 (cream), border: 1px solid rgba(28,16,7,0.1), border-radius: 12px, no box-shadow
+Top of card: a browser chrome bar — background: #E8DED0, height 28px, with 3 small colored circles (red #E57373, amber #FFB74D, green #81C784 — each 8px circle) on the left and the project URL path in tiny Space Mono muted text on the right
+Below chrome bar: project screenshot image — width: 100%; height: 200px; object-fit: cover; object-position: top
+Image sources: use src="/assets/finscope.png", src="/assets/donorhub.png", src="/assets/hirelens.png" etc. (I will put the actual images in the assets folder with these names)
+Card body below image: project name in Cormorant Garamond 1.3rem bold + type tag badge + italic subtitle + tech pills in Space Mono tiny
+Card footer: 3 buttons in a row — [CODE ↗] linking to GitHub, [LIVE ↗] linking to live site, [▶ DEMO] button that opens a modal
+DEMO Modal: When [▶ DEMO] is clicked, a full-screen overlay appears (position: fixed; inset: 0; background: rgba(28,16,7,0.85); z-index: 9999; display: flex; align-items: center; justify-content: center). Inside the overlay: a <video controls autoplay width="900px" style="max-width:90vw; border-radius:8px"> tag with src="/assets/videos/finscope.mp4" (I will add video files). An ✕ Close button in top-right corner of overlay closes it. Press Escape key also closes it.
+Card grid layout: display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem on desktop, repeat(2, 1fr) on tablet, 1fr on mobile
+Card hover: transform: translateY(-4px); border-color: rgba(160,113,79,0.4); transition: all 0.25s ease
+Add filter tabs above the grid: All | Full-Stack | Frontend | Backend | AI/ML — same style as Image 3. Active tab in copper, others in muted. Clicking filters cards by their type tag
+
+Projects to add (with placeholder asset paths):
+1. FinScope — Full-Stack — /assets/finscope.png — github: ITZ-HURAIRAH18/FinScope — live: finscope.vercel.app — video: /assets/videos/finscope.mp4
+2. DonorHub — Full-Stack — /assets/donorhub.png — github: ITZ-HURAIRAH18/DonorHub — live: donor-hub-eta.vercel.app — video: /assets/videos/donorhub.mp4
+3. HireLens — AI/ML — /assets/hirelens.png — github: ITZ-HURAIRAH18/HireLens — live: hire-lensz.vercel.app — video: /assets/videos/hirelens.mp4
+4. NexTrack — Full-Stack — /assets/nextrack.png — github: ITZ-HURAIRAH18/NexTrack — live: # — video: /assets/videos/nextrack.mp4
+5. LoanVerse — Backend — /assets/loanverse.png — github: # — live: # — video: /assets/videos/loanverse.mp4
+6. NexAgen — Full-Stack — /assets/nexagen.png — github: # — live: # — video: /assets/videos/nexagen.mp4
+
+FIX 5 — CONTACT SECTION: FIX MASSIVE EMPTY BLACK SPACE
+The left dark panel has a huge empty black area between the timezone row and the GitHub/LinkedIn links. Fix:
+
+The parent contact section: display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: auto
+Left panel: display: flex; flex-direction: column; gap: 1.5rem; padding: 3rem — NO justify-content: space-between (this is what creates the empty gap)
+Move GitHub and LinkedIn links immediately after the timezone row, NOT pinned to bottom
+After the links, add a decorative element to fill remaining space tastefully: a large faded watermark text "< / >" in Cormorant Garamond at 30% opacity copper, centered at the bottom of the panel
+The right panel form: remove the duplicate Location/Response Time/Availability rows at the bottom — they already appear in the left panel. Replace that space with a professional closing line: "Response time: within 24 hours · Open to remote worldwide" in tiny muted Space Mono below the Send button
+Both panels must be equal height and the entire contact section must fit in max-height: 100vh
+
+
+FIX 6 — ANIMATIONS: MAKE THE PORTFOLIO COME ALIVE
+Add these specific animations using CSS only (no heavy JS libraries):
+A) Page load reveal — On initial load, every section fades in with a staggered upward slide:
+css@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-left { animation: fadeUp 0.7s ease forwards; }
+.hero-right { animation: fadeUp 0.7s 0.15s ease forwards; opacity: 0; }
+B) Scroll reveal — Use IntersectionObserver in a useEffect to add class is-visible when sections enter viewport. CSS:
+css.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+Apply .reveal to: every project card, every experience row, the contact section, skills header
+C) Navbar scroll effect — When page is scrolled more than 60px, add class scrolled to navbar:
+css.nav { transition: background 0.3s, border-color 0.3s; }
+.nav.scrolled { background: rgba(247,243,236,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(28,16,7,0.15); }
+D) Project card image hover zoom — On card hover, the screenshot image scales slightly:
+css.proj-card:hover .proj-img { transform: scale(1.03); }
+.proj-img { transition: transform 0.4s ease; }
+E) Copper underline animation on nav links — Each nav link gets a copper underline that slides in from left on hover:
+css.nav-link { position: relative; }
+.nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #A0714F; transition: width 0.25s ease; }
+.nav-link:hover::after { width: 100%; }
+F) Marquee pause on hover — When user hovers the marquee strip, it pauses:
+css.marquee-strip:hover .marquee-inner { animation-play-state: paused; }
+G) Cursor dot — Add a small custom copper dot cursor that follows mouse position (8px circle, #A0714F, pointer-events: none, position: fixed, z-index: 9998, smooth follow with CSS transition: transform 0.1s). Use a single useEffect with mousemove event listener.
+
+GLOBAL RULES — NEVER CHANGE:
+
+Ivory #F7F3EC background, copper #A0714F accent, espresso #1C1007 dark
+Cormorant Garamond (headings) + Space Grotesk (body) + Space Mono (labels/code)
+Marquee ticker strip stays at very top
+All section dividers (1px horizontal lines)
+Hero photo (right column, real photo, object-fit cover)
+Experience table layout (year / role / description 3-column grid)
+Footer design (copyright left, domain italic copper right)
+NO dark mode toggle, NO blue colors, NO box shadows, NO rounded hero corners

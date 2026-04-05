@@ -95,6 +95,141 @@
     to { transform: translateX(-50%); }
   }
 
+  /* ========================================
+     SKILLS SECTION — Complete rewrite
+     ======================================== */
+  .skills-section {
+    border-top: 1px solid rgba(28, 16, 7, 0.10);
+    background-color: #F7F3EC;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skills-inner {
+    max-width: 80rem; /* max-w-7xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .skills-inner {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .skills-inner {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+  }
+
+  /* Skills Header */
+  .skills-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(28, 16, 7, 0.10);
+    gap: 1rem;
+  }
+
+  .skills-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .skills-header-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #A0714F;
+  }
+
+  .skills-header-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    font-style: italic;
+    color: #1C1007;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .skills-header-counter {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8A7560;
+    white-space: nowrap;
+  }
+
+  /* Skills Ticker Rows */
+  .skills-ticker-rows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skills-ticker-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(28, 16, 7, 0.10);
+    height: 48px;
+  }
+
+  .skills-ticker-label {
+    width: 8rem; /* 128px */
+    flex-shrink: 0;
+    padding-right: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .skills-ticker-label {
+      width: 10rem; /* 160px */
+      padding-right: 3rem;
+    }
+  }
+
+  .skills-ticker-label span {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #A0714F;
+  }
+
+  .skills-ticker-viewport {
+    flex: 1;
+    overflow: hidden;
+    height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  .skills-ticker-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    animation: skillScroll linear infinite;
+    will-change: transform;
+  }
+
+  .skills-ticker-track:hover {
+    animation-play-state: paused;
+  }
+
   /* Marquee ticker animation (legacy support) */
   .marquee-track {
     display: flex;
@@ -126,6 +261,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: stretch;
+    min-height: auto;
   }
 
   .contact-left {
@@ -143,6 +279,22 @@
 
   .contact-detail-row {
     padding: 0.6rem 0;
+  }
+
+  /* Watermark decorative element */
+  .contact-watermark {
+    margin-top: auto;
+  }
+
+  .contact-watermark span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 300;
+    color: #A0714F;
+    opacity: 0.3;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
   }
 
   /* ========================================
@@ -687,7 +839,7 @@
 /* Contact section max-height on smaller screens */
 @media (max-height: 768px) {
   #contact {
-    max-height: 90vh;
+    max-height: 100vh;
   }
 }
 

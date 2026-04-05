@@ -34,11 +34,11 @@ const Home = () => {
       </div>
 
       {/* Right Column (40%) — Photo + horizontal tech row */}
-      <div className="w-full lg:w-2/5 flex flex-col mt-8 lg:mt-0">
+      <div className="w-full lg:w-2/5 flex flex-col mt-2 lg:mt-0">
         {/* Professional Photo Layout */}
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4/5' }}>
+        <div className="relative w-full overflow-hidden"  style={{ height: '420px' }}>
           <img
-            src="/profile-photo.jpg"
+            src="/Profile.jpeg"
             alt="Muhammad Abu Hurairah — Full-Stack Engineer"
             className="w-full h-full object-cover object-[center_top]"
             loading="eager"

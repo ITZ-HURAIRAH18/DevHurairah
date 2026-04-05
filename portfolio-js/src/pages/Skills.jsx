@@ -53,7 +53,8 @@ const Skills = () => {
 
   const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.skills.length, 0);
 
-  const renderSkillItems = (skills) => {
+  // Render skill items DUPLICATED for seamless loop
+  const renderDuplicatedSkillItems = (skills) => {
     return skills.map((skill, idx) => (
       <span key={`${skill.name}-${idx}`} className="skill-item">
         <span className="skill-dot" />
@@ -68,67 +69,53 @@ const Skills = () => {
     ));
   };
 
-  const renderMarqueeRow = (skills, duration) => {
-    const content = renderSkillItems(skills);
-    return (
-      <div className="skill-ticker" style={{ overflow: "hidden", width: "100%", height: "48px" }}>
-        <div
-          className="skill-ticker-inner"
-          style={{
-            display: "flex",
-            width: "max-content",
-            animation: `skillScroll ${duration} linear infinite`,
-          }}
-        >
-          {/* Duplicate content for seamless loop */}
-          {content}
-          {content}
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <section id="skills" className="section-border">
-      <div className="max-w-7xl mx-auto">
+    <div className="skills-section">
+      <div className="skills-inner">
         {/* Header Row */}
-        <div className="flex items-end justify-between px-6 lg:px-12 xl:px-20 py-8 border-b border-border">
-          <div>
-            <span className="block font-mono text-mono-tiny text-copper uppercase tracking-wider mb-2">
+        <div className="skills-header">
+          <div className="skills-header-left">
+            <span className="skills-header-label">
               // SKILLS &amp; STACK
             </span>
-            <h2 className="font-serif text-4xl lg:text-5xl font-light italic text-espresso">
+            <h2 className="skills-header-title">
               Skills &amp; Stack
             </h2>
           </div>
-          <div className="font-mono text-mono-xs text-muted uppercase tracking-wider">
+          <div className="skills-header-counter">
             {totalSkills} Technologies
           </div>
         </div>
 
         {/* Skill Ticker Rows */}
-        <div className="flex flex-col">
+        <div className="skills-ticker-rows">
           {skillCategories.map((category) => (
             <div
               key={category.label}
-              className="flex border-b border-border"
+              className="skills-ticker-row"
             >
               {/* Left Label */}
-              <div className="w-32 lg:w-40 flex-shrink-0 px-6 lg:px-12 py-6 flex items-start">
-                <span className="font-mono text-mono-xs uppercase tracking-wider text-copper">
-                  {category.label}
-                </span>
+              <div className="skills-ticker-label">
+                <span>{category.label}</span>
               </div>
 
-              {/* Right Ticker */}
-              <div className="flex-1 overflow-hidden py-6">
-                {renderMarqueeRow(category.skills, category.speed)}
+              {/* Right Ticker — overflow hidden outer, flex max-content inner */}
+              <div className="skills-ticker-viewport">
+                <div
+                  className="skills-ticker-track"
+                  style={{
+                    animationDuration: category.speed,
+                  }}
+                >
+                  {renderDuplicatedSkillItems(category.skills)}
+                  {renderDuplicatedSkillItems(category.skills)}
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

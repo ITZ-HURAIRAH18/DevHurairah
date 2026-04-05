@@ -45,10 +45,10 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-border" style={{ maxHeight: '90vh' }}>
+    <section id="contact" className="section-border" style={{ maxHeight: '100vh' }}>
       <div className="contact-grid max-w-7xl mx-auto">
         {/* Left Half: Espresso Background */}
-        <div className="contact-left bg-espresso px-6 lg:px-12 xl:px-20 py-8 lg:py-12 flex flex-col" style={{ gap: '1.5rem', padding: '3rem' }}>
+        <div className="contact-left bg-espresso flex flex-col" style={{ padding: '3rem' }}>
           {/* Headline — reduced size */}
           <h2
             className="font-serif font-light text-page leading-tight"
@@ -106,8 +106,8 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Social Links — pinned to bottom */}
-          <div className="flex items-center gap-0" style={{ marginTop: 'auto' }}>
+          {/* Social Links — immediately after timezone row */}
+          <div className="flex items-center gap-0">
             {socialLinks.map((link, index) => (
               <div key={link.label} className="flex items-center">
                 {index > 0 && <div className="w-px h-4 bg-page/20 mx-3" />}
@@ -121,6 +121,11 @@ const Contact = () => {
                 </a>
               </div>
             ))}
+          </div>
+
+          {/* Decorative Watermark — fills remaining space tastefully */}
+          <div className="contact-watermark flex flex-1 items-center justify-center pointer-events-none select-none">
+            <span className="text-copper">&lt; / &gt;</span>
           </div>
         </div>
 
@@ -242,34 +247,12 @@ const Contact = () => {
                 Failed to send message. Please try again or email directly.
               </p>
             )}
-
-            {/* Disclaimer */}
-            <p className="font-mono text-mono-tiny text-muted/70">
-              I typically respond within 24 hours.
-            </p>
           </form>
 
-          {/* Info Rows */}
-          <div className="mt-auto flex flex-col gap-4 pt-8 border-t border-border">
-            <div className="flex items-center justify-between py-2">
-              <span className="font-mono text-mono-xs uppercase tracking-wider text-muted">
-                Location
-              </span>
-              <span className="font-sans text-sm text-espresso">Pakistan</span>
-            </div>
-            <div className="flex items-center justify-between py-2 border-t border-border">
-              <span className="font-mono text-mono-xs uppercase tracking-wider text-muted">
-                Response Time
-              </span>
-              <span className="font-sans text-sm text-espresso">Within 24 hours</span>
-            </div>
-            <div className="flex items-center justify-between py-2 border-t border-border">
-              <span className="font-mono text-mono-xs uppercase tracking-wider text-muted">
-                Availability
-              </span>
-              <span className="font-sans text-sm text-espresso">Open to remote work</span>
-            </div>
-          </div>
+          {/* Professional Closing Line */}
+          <p className="font-mono text-mono-tiny text-muted/70 mt-auto pt-6 border-t border-border">
+            Response time: within 24 hours · Open to remote worldwide
+          </p>
         </div>
       </div>
     </section>
