@@ -1,27 +1,118 @@
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 
 const DemoModal = ({ videoSrc, onClose }) => {
   useEffect(() => {
+    // Lock scroll
+    const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = "hidden";
+    
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handleKeyDown);
+    
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = originalStyle;
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose]);
 
-  return (
-    <div className="demo-modal-overlay" onClick={onClose}>
-      <div className="demo-modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="demo-modal-close" onClick={onClose}>
-          ✕ CLOSE
+  return createPortal(
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100vw',
+        height: '100dvh',
+        backgroundColor: 'rgba(28, 16, 7, 0.95)', // Deep espresso overlay
+        zIndex: 9999999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2rem',
+        overflow: 'hidden',
+      }}
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0, y: 30 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.95, opacity: 0, y: 30 }}
+        transition={{ type: "spring", damping: 30, stiffness: 300 }}
+        style={{
+          position: 'relative',
+          width: '100%',
+          maxWidth: 'min(1100px, calc(100vw - 40px))',
+          height: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          style={{
+            position: 'absolute',
+            top: '-50px',
+            right: '0px',
+            color: 'white',
+            zIndex: 10000000,
+            width: '44px',
+            height: '44px',
+            padding: '0',
+            background: 'rgba(255, 255, 255, 0.1)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            backdropFilter: 'blur(12px)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+            e.currentTarget.style.transform = 'scale(1.1) rotate(90deg)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+            e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
+          }}
+          aria-label="Close video modal"
+        >
+          <X size={22} />
         </button>
-        <video className="demo-modal-video" src={videoSrc} controls autoPlay />
-      </div>
-    </div>
+
+        <video
+          src={videoSrc}
+          controls
+          autoPlay
+          style={{
+            width: '100%',
+            height: 'auto',
+            maxHeight: 'calc(100dvh - 100px)',
+            borderRadius: '16px',
+            boxShadow: '0 32px 80px rgba(0,0,0,0.8)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            display: 'block',
+            maxWidth: '100%',
+            backgroundColor: '#000',
+          }}
+        />
+      </motion.div>
+    </motion.div>,
+    document.body
   );
 };
 
@@ -451,9 +542,11 @@ const Projects = () => {
       </div>
 
       {/* Demo Modal */}
-      {modalVideo && (
-        <DemoModal videoSrc={modalVideo} onClose={handleModalClose} />
-      )}
+      <AnimatePresence>
+        {modalVideo && (
+          <DemoModal videoSrc={modalVideo} onClose={handleModalClose} />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
