@@ -52,13 +52,12 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  // Preloader — show while loading, hide after
-  if (loading) {
-    return <Preloader onComplete={() => setLoading(false)} />;
-  }
-
+  // Preloader — remove from DOM after completion
   return (
     <div className="relative flex min-h-screen flex-col bg-page font-sans antialiased overflow-x-hidden">
+      {/* Preloader overlay — hides everything behind until loading is false */}
+      {loading && <Preloader onComplete={() => setLoading(false)} />}
+      
       {/* Custom Cursor */}
       <CustomCursor />
 
