@@ -220,7 +220,7 @@ const Projects = () => {
         "An AI-powered medical chatbot that provides health assessments, symptom analysis, and wellness recommendations using the Gemini API.",
       tech: ["React", "Gemini API", "Tailwind"],
       type: "AI/ML",
-      image: "/assets/hire.jfif",
+      image: "/assets/Health.png",
       github: "https://github.com/ITZ-HURAIRAH18/HealthWise-AI",
       live: "https://health-wise-ai-chatbot.vercel.app/",
       // video: "/assets/videos/healthwise.mp4",
@@ -380,8 +380,9 @@ const Projects = () => {
                   style={{
                     width: "100%",
                     height: "220px",
-                    objectFit: "cover",
-                    objectPosition: "top",
+                    objectFit: "contain",
+                    objectPosition: "center",
+                    background: "#120d08",
                     transition: "transform 0.5s ease",
                   }}
                   onError={(e) => {
