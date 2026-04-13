@@ -248,7 +248,7 @@ const Projects = () => {
       type: "Backend",
       image: "/assets/era.png",
       github: "https://github.com/ITZ-HURAIRAH18/ERA--Smart-Wardrobe-Manager",
-      live: null,
+      live: "https://era-store.vercel.app/",
       // video: "/assets/videos/era.mp4",
       urlPath: "projects/era-wardrobe",
     },
