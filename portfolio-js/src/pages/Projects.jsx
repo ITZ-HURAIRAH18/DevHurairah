@@ -249,7 +249,7 @@ const Projects = () => {
       image: "/assets/era.png",
       github: "https://github.com/ITZ-HURAIRAH18/ERA--Smart-Wardrobe-Manager",
       live: "https://era-store.vercel.app/",
-      // video: "/assets/videos/era.mp4",
+      video: "/assets/videos/ERA - Premium Fashion.mp4",
       urlPath: "projects/era-wardrobe",
     },
   ];
