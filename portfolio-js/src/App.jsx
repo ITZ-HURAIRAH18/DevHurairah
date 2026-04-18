@@ -4,6 +4,7 @@ import MarqueeTicker from "./components/MarqueeTicker";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CustomCursor from "./components/CustomCursor";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Home from "./pages/Home";
 import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
@@ -88,6 +89,9 @@ function App() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating WhatsApp Button */}
+      <FloatingWhatsApp />
     </div>
   );
 }

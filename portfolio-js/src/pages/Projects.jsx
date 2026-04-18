@@ -122,6 +122,19 @@ const Projects = () => {
 
   const projects = [
     {
+      title: "BranchOS",
+      subtitle: "Inventory Management System",
+      description:
+        "A production-ready ERP platform with multi-agent AI chatbot for intelligent query processing. Features JWT-based role-based access control, atomic order processing with pessimistic locking, immutable audit trails, and branch-scoped data isolation across multiple locations.",
+      tech: ["CodeIgniter 4", "Vue.js 3", "MySQL", "AI Agents"],
+      type: "Full-Stack",
+      image: "/assets/BranchOS.png",
+      github: "https://github.com/ITZ-HURAIRAH18/CodeIgniter-AI-Driven-Development",
+      live: null,
+      video: "/assets/videos/BranchOS.mp4",
+      urlPath: "projects/branchos-inventory",
+    },
+    {
       title: "FinScope",
       subtitle: "Real-Time Analytics Dashboard",
       description:
