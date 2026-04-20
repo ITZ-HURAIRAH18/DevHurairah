@@ -38,16 +38,20 @@ const Footer = () => {
         </div>
 
         {/* Right: Domain name */}
-        <div
+        <a
+          href="http://abuhurairah.engineer/"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "1.25rem",
             fontStyle: "italic",
             color: "#A0714F",
+            textDecoration: "none",
           }}
         >
           abuhurairah.engineer
-        </div>
+        </a>
       </div>
     </footer>
   );
