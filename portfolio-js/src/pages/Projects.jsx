@@ -141,7 +141,7 @@ const Projects = () => {
         "An advanced AI-powered Telegram bot that orchestrates multiple agents to provide autonomous customer support. Features intelligent query routing, context-aware responses using LLMs, and real-time automation of support workflows to streamline user interactions.",
       tech: ["Node.js", "Telegram API", "OpenAI", "AI Agents"],
       type: ["AUTOMATION", "AI / AGENTS"],
-      image: "/src/assets/supportai.png",
+      image: "/assets/supportai.png",
       github: "https://github.com/ITZ-HURAIRAH18/Supportify-AI",
       live: "https://supportai-telegram-bot.vercel.app/",
       video: null,
