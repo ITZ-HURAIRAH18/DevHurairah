@@ -2,11 +2,11 @@ const Home = () => {
   const techStack = [
     "React",
     "Next.js",
-    "Django",
+    "n8n",
+    "LangChain",
     "FastAPI",
+    "Django",
     "Node",
-    "Express",
-    "MongoDB",
     "PostgreSQL",
   ];
 
@@ -67,8 +67,7 @@ const Home = () => {
           }}
         >
           Full-stack engineer building scalable applications across web,
-          mobile, and desktop platforms. Expertise in MERN, Django, React
-          Native, Electron.js, and cloud infrastructure.
+          mobile, and desktop platforms with a growing focus on **AI automation** — building n8n pipelines, LLM-powered agents, and intelligent workflows that save hundreds of hours monthly.
         </p>
 
         {/* CTA Buttons */}
@@ -126,7 +125,7 @@ const Home = () => {
               className="font-mono text-mono-xs uppercase tracking-wider text-copper mt-1"
               style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}
             >
-              Full-Stack Engineer
+              Full-Stack Developer & AI Automation Engineer
             </div>
           </div>
         </div>

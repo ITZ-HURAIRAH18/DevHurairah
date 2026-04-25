@@ -117,22 +117,61 @@ const DemoModal = ({ videoSrc, onClose }) => {
 };
 
 const Projects = () => {
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("ALL");
   const [modalVideo, setModalVideo] = useState(null);
 
   const projects = [
     {
       title: "BranchOS",
-      subtitle: "Inventory Management System",
+      subtitle: "Multi-Location ERP & Inventory System",
       description:
-        "A production-ready ERP platform with multi-agent AI chatbot for intelligent query processing. Features JWT-based role-based access control, atomic order processing with pessimistic locking, immutable audit trails, and branch-scoped data isolation across multiple locations.",
-      tech: ["CodeIgniter 4", "Vue.js 3", "MySQL", "AI Agents"],
-      type: "Full-Stack",
+        "A production-ready ERP platform designed for multi-location enterprises. Features an intelligent multi-agent AI chatbot (Inventory, Order, Analytics agents) for context-aware processing. Implements atomic transaction handling with pessimistic locking, JWT-based RBAC, and immutable audit trails for complete operational transparency.",
+      tech: ["CodeIgniter 4", "Vue.js 3", "MySQL", "LangChain"],
+      type: ["FULL-STACK", "AI / AGENTS"],
       image: "/assets/BranchOS.png",
       github: "https://github.com/ITZ-HURAIRAH18/CodeIgniter-AI-Driven-Development",
       live: null,
       video: "/assets/videos/BranchOS.mp4",
-      urlPath: "projects/branchos-inventory",
+      urlPath: "projects/branchos-erp",
+    },
+    {
+      title: "SupportAI",
+      subtitle: "Multi-Agent Telegram Support Bot",
+      description:
+        "An advanced AI-powered Telegram bot that orchestrates multiple agents to provide autonomous customer support. Features intelligent query routing, context-aware responses using LLMs, and real-time automation of support workflows to streamline user interactions.",
+      tech: ["Node.js", "Telegram API", "OpenAI", "AI Agents"],
+      type: ["AUTOMATION", "AI / AGENTS"],
+      image: "/src/assets/supportai.png",
+      github: "https://github.com/ITZ-HURAIRAH18/Supportify-AI",
+      live: "https://supportai-telegram-bot.vercel.app/",
+      video: null,
+      urlPath: "projects/supportai-bot",
+    },
+    {
+      title: "SmartAssist AI",
+      subtitle: "Multi-Agent Customer Support Bot",
+      description:
+        "An intelligent multi-agent customer support system with memory, tool use, and escalation logic. Uses LangChain agents powered by GPT-4 to handle queries, search a knowledge base via RAG, and escalate complex tickets to humans. Deployed as a FastAPI service with Redis for session memory.",
+      tech: ["LangChain", "OpenAI", "FastAPI", "Redis"],
+      type: "AI / AGENTS",
+      image: "/src/assets/chatbot.png",
+      github: "https://github.com/ITZ-HURAIRAH18",
+      live: null,
+      video: null,
+      urlPath: "projects/smartassist-ai",
+    },
+    {
+      title: "DocuBrain",
+      subtitle: "RAG-Powered Document Intelligence",
+      description:
+        "A Retrieval-Augmented Generation (RAG) system that ingests PDFs, Word docs, and web pages into a Pinecone vector store. Users ask natural language questions and receive cited answers. Features a Next.js chat UI with streaming responses and source highlighting.",
+      tech: ["LlamaIndex", "Pinecone", "Next.js", "Python"],
+      type: "AI / AGENTS",
+      image: "/src/assets/hire.png",
+      github: "https://github.com/ITZ-HURAIRAH18",
+      live: null,
+      video: null,
+      urlPath: "projects/docubrain-rag",
     },
     {
       title: "FinScope",
@@ -140,7 +179,7 @@ const Projects = () => {
       description:
         "A state-of-the-art multi-branch financial analytics platform with real-time stock and cryptocurrency tracking, interactive charts, and portfolio management.",
       tech: ["Next.js", "TypeScript", "PostgreSQL"],
-      type: "Full-Stack",
+      type: "FULL-STACK",
       image: "/assets/finscope.png",
       github:
         "https://github.com/ITZ-HURAIRAH18/FinScope-Real-Time-Crypto-Stock-Analytics-Dashboard",
@@ -154,7 +193,7 @@ const Projects = () => {
       description:
         "A comprehensive donation management system with campaign tracking, donor analytics, and seamless payment integration for charitable organizations.",
       tech: ["React", "Node.js", "MongoDB"],
-      type: "Full-Stack",
+      type: "FULL-STACK",
       image: "/assets/donorhub.png",
       github: "https://github.com/ITZ-HURAIRAH18/Saylani_hackton",
       live: "https://donor-hub-eta.vercel.app/",
@@ -167,7 +206,7 @@ const Projects = () => {
       description:
         "An AI-powered resume screening tool that uses LangGraph and FastAPI to parse, score, and rank candidates with intelligent keyword matching.",
       tech: ["React", "FastAPI", "LangGraph"],
-      type: "AI/ML",
+      type: "AI / AGENTS",
       image: "/assets/hirelens.png",
       github: "https://github.com/ITZ-HURAIRAH18/HireLens",
       live: "https://hire-lensz.vercel.app/",
@@ -180,7 +219,7 @@ const Projects = () => {
       description:
         "A cross-platform desktop application for inventory tracking with barcode scanning, stock alerts, and comprehensive reporting dashboards.",
       tech: ["Electron", "React", "Tailwind CSS"],
-      type: "Full-Stack",
+      type: "FULL-STACK",
       image: "/assets/nextrack.png",
       github: "https://github.com/ITZ-HURAIRAH18/NexTrack_Inventory_Desktop",
       live: null,
@@ -193,7 +232,7 @@ const Projects = () => {
       description:
         "A robust loan management platform with automated payment tracking, interest calculations, borrower profiles, and financial reporting.",
       tech: ["Django", "React", "SQLite"],
-      type: "Backend",
+      type: "BACKEND",
       image: "/assets/loanverse.png",
       github: "https://github.com/ITZ-HURAIRAH18/LoanVerse",
       live: null,
@@ -206,7 +245,7 @@ const Projects = () => {
       description:
         "A real-time meeting scheduler with video conferencing integration, calendar sync, automated reminders, and team collaboration features.",
       tech: ["React", "Node.js", "Socket.io"],
-      type: "Full-Stack",
+      type: "FULL-STACK",
       image: "/assets/nexgen.png",
       github: "https://github.com/ITZ-HURAIRAH18/Schedule_Ease",
       live: null,
@@ -219,7 +258,7 @@ const Projects = () => {
       description:
         "A state-of-the-art multi-branch inventory and order management solution with real-time stock tracking, role-based access, and automated reporting.",
       tech: ["Laravel", "Vue.js", "MySQL"],
-      type: "Full-Stack",
+      type: "FULL-STACK",
       image: "/assets/flowventory.png",
       github: "https://github.com/ITZ-HURAIRAH18/Flowventory",
       live: null,
@@ -232,7 +271,7 @@ const Projects = () => {
       description:
         "An AI-powered medical chatbot that provides health assessments, symptom analysis, and wellness recommendations using the Gemini API.",
       tech: ["React", "Gemini API", "Tailwind"],
-      type: "AI/ML",
+      type: "AI / AGENTS",
       image: "/assets/Health.png",
       github: "https://github.com/ITZ-HURAIRAH18/HealthWise-AI",
       live: "https://health-wise-ai-chatbot.vercel.app/",
@@ -245,7 +284,7 @@ const Projects = () => {
       description:
         "An interactive quiz application that reads questions from Excel sheets, tracks scores, and provides real-time feedback with a clean UI.",
       tech: ["HTML", "JavaScript", "SheetJS"],
-      type: "Frontend",
+      type: "FRONTEND",
       image: "/assets/quiz.png",
       github: "https://github.com/ITZ-HURAIRAH18/Excel-Based-Quiz-App",
       live: null,
@@ -258,7 +297,7 @@ const Projects = () => {
       description:
         "A digital wardrobe organizer with outfit suggestions, seasonal recommendations, and clothing inventory management powered by Django.",
       tech: ["Django", "Python", "SQLite"],
-      type: "Backend",
+      type: "BACKEND",
       image: "/assets/era.png",
       github: "https://github.com/ITZ-HURAIRAH18/ERA--Smart-Wardrobe-Manager",
       live: "https://era-store.vercel.app/",
@@ -267,16 +306,35 @@ const Projects = () => {
     },
   ];
 
-  const filters = ["All", "Full-Stack", "Frontend", "Backend", "AI/ML"];
+  const filters = ["ALL", "FULL-STACK", "FRONTEND", "BACKEND", "AI / AGENTS", "AUTOMATION"];
 
   const filteredProjects =
-    activeFilter === "All"
+    activeFilter === "ALL"
       ? projects
-      : projects.filter((p) => p.type === activeFilter);
+      : projects.filter((p) => {
+          if (Array.isArray(p.type)) {
+            return p.type.includes(activeFilter);
+          }
+          return p.type === activeFilter;
+        });
 
   const handleModalClose = useCallback(() => {
     setModalVideo(null);
   }, []);
+
+  const getBadgeColor = (type) => {
+    const primaryType = Array.isArray(type) ? type[0] : type;
+    if (primaryType === "AI / AGENTS") return "#3B82F6";
+    if (primaryType === "AUTOMATION") return "#F59E0B";
+    return "#A0714F";
+  };
+
+  const getBadgeBgColor = (type) => {
+    const primaryType = Array.isArray(type) ? type[0] : type;
+    if (primaryType === "AI / AGENTS") return "rgba(59, 130, 246, 0.12)";
+    if (primaryType === "AUTOMATION") return "rgba(245, 158, 11, 0.12)";
+    return "rgba(160,113,79,0.12)";
+  };
 
   // Re-trigger reveal animations when filter changes
   useEffect(() => {
@@ -304,14 +362,14 @@ const Projects = () => {
           <div className="w-full md:w-1/2 py-8 md:pl-12">
             <p className="font-sans text-base font-light text-muted leading-relaxed">
               A curated selection of applications I&apos;ve built — from real-time
-              dashboards to AI-powered tools. Each project represents a unique
+              dashboards to AI automation pipelines. Each project represents a unique
               challenge solved with clean architecture and modern technologies.
             </p>
           </div>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex items-center gap-1 mb-10">
+        <div className="flex items-center gap-1 mb-10 overflow-x-auto no-scrollbar">
           {filters.map((filter) => (
             <button
               key={filter}
@@ -319,6 +377,9 @@ const Projects = () => {
               className={`filter-tab ${activeFilter === filter ? "active" : ""}`}
               style={{
                 transition: "all 0.2s ease",
+                flexShrink: 0,
+                ...(activeFilter === filter && filter === "AI / AGENTS" ? { color: "#3B82F6", borderBottom: "2px solid #3B82F6" } : {}),
+                ...(activeFilter === filter && filter === "AUTOMATION" ? { color: "#F59E0B", borderBottom: "2px solid #F59E0B" } : {}),
               }}
             >
               {filter}
@@ -401,7 +462,7 @@ const Projects = () => {
                   onError={(e) => {
                     e.target.style.display = "none";
                     e.target.parentElement.innerHTML =
-                      '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:\'Cormorant Garamond\',serif;font-size:1.2rem;color:#A0714F;font-style:italic;">' +
+                      '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:\'Cormorant Garamond\',serif;font-size:1.2rem;color:#A0714F;font-style:italic;padding:2rem;text-align:center;">' +
                       project.title +
                       "</div>";
                   }}
@@ -442,12 +503,12 @@ const Projects = () => {
                       fontFamily: "'Space Mono', monospace",
                       fontSize: "0.6rem",
                       textTransform: "uppercase",
-                      color: "#A0714F",
-                      background: "rgba(160,113,79,0.12)",
+                      color: getBadgeColor(project.type),
+                      background: getBadgeBgColor(project.type),
                       padding: "2px 8px",
                     }}
                   >
-                    {project.type}
+                    {Array.isArray(project.type) ? project.type[0] : project.type}
                   </span>
                 </div>
 

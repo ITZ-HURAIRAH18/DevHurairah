@@ -27,6 +27,21 @@ const Skills = () => {
       speed: "14s",
     },
     {
+      label: "Automation & AI",
+      skills: [
+        { name: "n8n (Workflow Automation)", primary: true },
+        { name: "LangChain / LangGrapgh", primary: true },
+        { name: "OpenAI / Gemini API", primary: true },
+       
+        { name: "Webhooks & REST APIs", primary: true },
+        { name: "AI Agents & Multi-Agent Systems", primary: true },
+        { name: "RAG Systems", primary: false },
+        { name: "Prompt Engineering", primary: false },
+      
+      ],
+      speed: "25s",
+    },
+    {
       label: "Database",
       skills: [
         { name: "MongoDB", primary: true },
