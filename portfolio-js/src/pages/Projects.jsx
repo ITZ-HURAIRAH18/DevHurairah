@@ -147,32 +147,8 @@ const Projects = () => {
       video: null,
       urlPath: "projects/supportai-bot",
     },
-    {
-      title: "SmartAssist AI",
-      subtitle: "Multi-Agent Customer Support Bot",
-      description:
-        "An intelligent multi-agent customer support system with memory, tool use, and escalation logic. Uses LangChain agents powered by GPT-4 to handle queries, search a knowledge base via RAG, and escalate complex tickets to humans. Deployed as a FastAPI service with Redis for session memory.",
-      tech: ["LangChain", "OpenAI", "FastAPI", "Redis"],
-      type: "AI / AGENTS",
-      image: "/src/assets/chatbot.png",
-      github: "https://github.com/ITZ-HURAIRAH18",
-      live: null,
-      video: null,
-      urlPath: "projects/smartassist-ai",
-    },
-    {
-      title: "DocuBrain",
-      subtitle: "RAG-Powered Document Intelligence",
-      description:
-        "A Retrieval-Augmented Generation (RAG) system that ingests PDFs, Word docs, and web pages into a Pinecone vector store. Users ask natural language questions and receive cited answers. Features a Next.js chat UI with streaming responses and source highlighting.",
-      tech: ["LlamaIndex", "Pinecone", "Next.js", "Python"],
-      type: "AI / AGENTS",
-      image: "/src/assets/hire.png",
-      github: "https://github.com/ITZ-HURAIRAH18",
-      live: null,
-      video: null,
-      urlPath: "projects/docubrain-rag",
-    },
+    
+    
     {
       title: "FinScope",
       subtitle: "Real-Time Analytics Dashboard",
