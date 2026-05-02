@@ -224,7 +224,7 @@ const Projects = () => {
       type: "FULL-STACK",
       image: "/assets/nexgen.png",
       github: "https://github.com/ITZ-HURAIRAH18/Schedule_Ease",
-      live: null,
+      live: "https://schedule-ease-a4ur.vercel.app/",
       video: "/assets/videos/scheduleease.mp4",
       urlPath: "projects/nexgen-scheduler",
     },
