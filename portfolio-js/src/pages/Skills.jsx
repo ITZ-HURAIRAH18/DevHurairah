@@ -34,7 +34,7 @@ const Skills = () => {
         { name: "OpenAI / Gemini API", primary: true },
        
         { name: "Webhooks & REST APIs", primary: true },
-        { name: "AI Agents & Multi-Agent Systems", primary: true },
+        { name: "AI Agents ", primary: true },
         { name: "RAG Systems", primary: false },
         { name: "Prompt Engineering", primary: false },
       
