@@ -99,7 +99,7 @@ const Home = () => {
           style={{ height: "420px" }}
         >
           <img
-            src="/hurairah.jpeg"
+            src="/test.png"
             alt="Muhammad Abu Hurairah — Full-Stack Engineer"
             className="w-full h-full object-cover object-[center_top]"
             loading="eager"
