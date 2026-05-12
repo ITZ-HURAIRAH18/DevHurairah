@@ -1,50 +1,38 @@
 const MarqueeTicker = () => {
-  const tickerContent = (
+  const tickerItems = [
+    "Full-Stack Engineer",
+    "React",
+    "Next.js",
+    "Django",
+    "Node.js",
+    "MongoDB",
+    "TypeScript",
+    "Open to Remote",
+    "Pakistan"
+  ];
+
+  const renderTickerElements = () => (
     <>
-      <span className="inline-flex items-center mx-6">
-        <span className="text-page font-mono text-mono-tiny uppercase tracking-wider">Full-Stack Engineer</span>
-      </span>
-      <span className="text-copper text-lg mx-2">↗</span>
-      <span className="inline-flex items-center mx-6">
-        <span className="text-page font-mono text-mono-tiny uppercase tracking-wider">React</span>
-      </span>
-      <span className="text-copper text-lg mx-2">↗</span>
-      <span className="inline-flex items-center mx-6">
-        <span className="text-page font-mono text-mono-tiny uppercase tracking-wider">Next.js</span>
-      </span>
-      <span className="text-copper text-lg mx-2">↗</span>
-      <span className="inline-flex items-center mx-6">
-        <span className="text-page font-mono text-mono-tiny uppercase tracking-wider">Django</span>
-      </span>
-      <span className="text-copper text-lg mx-2">↗</span>
-      <span className="inline-flex items-center mx-6">
-        <span className="text-page font-mono text-mono-tiny uppercase tracking-wider">Node.js</span>
-      </span>
-      <span className="text-copper text-lg mx-2">↗</span>
-      <span className="inline-flex items-center mx-6">
-        <span className="text-page font-mono text-mono-tiny uppercase tracking-wider">MongoDB</span>
-      </span>
-      <span className="text-copper text-lg mx-2">↗</span>
-      <span className="inline-flex items-center mx-6">
-        <span className="text-page font-mono text-mono-tiny uppercase tracking-wider">TypeScript</span>
-      </span>
-      <span className="text-copper text-lg mx-2">↗</span>
-      <span className="inline-flex items-center mx-6">
-        <span className="text-page font-mono text-mono-tiny uppercase tracking-wider">Open to Remote</span>
-      </span>
-      <span className="text-copper text-lg mx-2">↗</span>
-      <span className="inline-flex items-center mx-6">
-        <span className="text-page font-mono text-mono-tiny uppercase tracking-wider">Pakistan</span>
-      </span>
-      <span className="text-copper text-lg mx-2">↗</span>
+      {tickerItems.map((item, idx) => (
+        <span key={idx} className="inline-flex items-center">
+          <span className="text-page font-sans text-[10px] uppercase tracking-[0.2em] font-medium mx-6">
+            {item}
+          </span>
+          <span className="text-copper text-sm">↗</span>
+        </span>
+      ))}
     </>
   );
 
   return (
-    <div className="w-full bg-espresso overflow-hidden h-8 flex items-center">
-      <div className="marquee-track">
-        {tickerContent}
-        {tickerContent}
+    <div className="w-full bg-espresso overflow-hidden h-8 flex items-center border-b border-copper/10">
+      <div className="flex whitespace-nowrap animate-marquee">
+        <div className="flex items-center">
+          {renderTickerElements()}
+        </div>
+        <div className="flex items-center">
+          {renderTickerElements()}
+        </div>
       </div>
     </div>
   );

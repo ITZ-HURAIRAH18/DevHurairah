@@ -6,7 +6,7 @@ const Home = () => {
     "LangChain",
     "FastAPI",
     "Django",
-    "Node",
+    // "Node",
     "PostgreSQL",
   ];
 
@@ -99,7 +99,7 @@ const Home = () => {
           style={{ height: "420px" }}
         >
           <img
-            src="/test.png"
+            src="/hurairah.jpeg"
             alt="Muhammad Abu Hurairah — Full-Stack Engineer"
             className="w-full h-full object-cover object-[center_top]"
             loading="eager"
