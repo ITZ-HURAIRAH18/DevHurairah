@@ -83,7 +83,7 @@ const Contact = () => {
     { label: "LOCATION", value: "Pakistan · Remote Worldwide" },
     {
       label: "EMAIL",
-      value: "muhammadabuhurairah22@gmail.com",
+      value: "abuhurx@gmail.com",
       isEmail: true,
     },
     { label: "TIMEZONE", value: "PKT (UTC+5)" },
