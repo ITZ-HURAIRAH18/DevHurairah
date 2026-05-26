@@ -135,6 +135,18 @@ const Projects = () => {
       urlPath: "projects/branchos-erp",
     },
     {
+      title: "UniToolKit",
+      subtitle: "All-in-One Utility Hub for Students & Developers",
+      description:
+        "A polished Next.js and TypeScript web app that brings developer, image, PDF, and university-focused utility tools into a single interface. Includes standalone helpers such as Base64 tools, formatters, image converters, GPA and timetable helpers, plus command palette and clipboard/file utilities for fast everyday workflows.",
+      tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+      type: "FRONTEND",
+      image: "/assets/HurairahTools.png",
+      live: "https://hurairahtools.vercel.app/",
+      video: "/assets/videos/HurairahTools.mp4",
+      urlPath: "projects/unitoolkit-utility-suite",
+    },
+    {
       title: "SupportAI",
       subtitle: "Multi-Agent Telegram Support Bot",
       description:
