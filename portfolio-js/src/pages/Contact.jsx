@@ -1,8 +1,6 @@
-import { useRef, useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
-  const formRef = useRef();
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -24,12 +22,14 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_default",
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_default",
-        formRef.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "key_default"
-      );
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      });
+
+      if (!response.ok) throw new Error("Failed to send");
+
       setSubmitStatus("success");
       setFormState({ name: "", email: "", message: "" });
     } catch (error) {
@@ -304,7 +304,7 @@ const Contact = () => {
         </p>
 
         {/* Contact Form */}
-        <form ref={formRef} onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           {/* Name Input */}
           <input
             type="text"
