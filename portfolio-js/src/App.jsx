@@ -11,6 +11,8 @@ import Projects from "./pages/Projects";
 import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
 
+import { Analytics } from "@vercel/analytics/react";
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
@@ -92,6 +94,9 @@ function App() {
 
       {/* Floating WhatsApp Button */}
       <FloatingWhatsApp />
+      
+      {/* Vercel Analytics */}
+      <Analytics />
     </div>
   );
 }
