@@ -82,7 +82,7 @@ const Home = () => {
           <a href="#projects" className="btn-solid">
             View Work ↗
           </a>
-          <a href="/CV.pdf" download="Muhammad_Abu_Hurairah_CV.pdf" className="btn-ghost">
+          <a href="/CV.pdf" download="Muhammad-Abu-Hurairah-CV" className="btn-ghost">
             Download CV
           </a>
         </div>
