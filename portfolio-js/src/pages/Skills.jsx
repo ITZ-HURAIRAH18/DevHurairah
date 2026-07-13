@@ -131,7 +131,7 @@ const Skills = () => {
                 </span>
               </div>
               
-              <ul className="space-y-4">
+              <ul className="space-y-4 list-none">
                 {category.skills.map((skill, sIdx) => (
                   <li key={sIdx} className="flex items-center gap-4 group/item">
                     <div className="w-6 h-6 flex items-center justify-center shrink-0">

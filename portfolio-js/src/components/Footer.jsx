@@ -37,6 +37,46 @@ const Footer = () => {
           &copy; {currentYear} MUHAMMAD ABU HURAIRAH. ALL RIGHTS RESERVED.
         </div>
 
+        {/* Center: Social Links */}
+        <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+          <a
+            href="https://github.com/itz-hurairah18"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.7rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              color: "rgba(247,243,236,0.6)",
+              textDecoration: "none",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.color = "#A0714F")}
+            onMouseLeave={(e) => (e.target.style.color = "rgba(247,243,236,0.6)")}
+          >
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/muhammad-abu-hurairah-988ba1303/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.7rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              color: "rgba(247,243,236,0.6)",
+              textDecoration: "none",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.color = "#A0714F")}
+            onMouseLeave={(e) => (e.target.style.color = "rgba(247,243,236,0.6)")}
+          >
+            LinkedIn
+          </a>
+        </div>
+
         {/* Right: Domain name */}
         <a
           href="http://abuhurairah.engineer/"

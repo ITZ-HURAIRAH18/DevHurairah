@@ -75,7 +75,7 @@ const Contact = () => {
 
   const stats = [
     { number: "20+", target: 20, label: "PROJECTS BUILT" },
-    { number: "1+", target: 1, label: "YEARS EXP." },
+    { number: "2+", target: 2, label: "YEARS EXP." },
     { number: "10+", target: 10, label: "TECHNOLOGIES" },
   ];
 
@@ -183,26 +183,35 @@ const Contact = () => {
           </div>
 
           {/* Social Links */}
-          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
             <a
               href="https://github.com/itz-hurairah18"
               target="_blank"
               rel="noopener noreferrer"
               style={{
                 fontFamily: "'Space Mono', monospace",
-                fontSize: "0.65rem",
+                fontSize: "0.78rem",
                 textTransform: "uppercase",
-                letterSpacing: "0.08em",
-                color: "rgba(247,243,236,0.6)",
+                letterSpacing: "0.1em",
+                color: "#F7F3EC",
                 textDecoration: "none",
-                transition: "color 0.2s",
+                transition: "all 0.2s",
+                border: "1px solid rgba(247,243,236,0.15)",
+                padding: "0.5rem 1.25rem",
+                borderRadius: "4px",
               }}
-              onMouseEnter={(e) => (e.target.style.color = "#A0714F")}
-              onMouseLeave={(e) =>
-                (e.target.style.color = "rgba(247,243,236,0.6)")
-              }
+              onMouseEnter={(e) => {
+                e.target.style.color = "#1C1007";
+                e.target.style.background = "#A0714F";
+                e.target.style.borderColor = "#A0714F";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = "#F7F3EC";
+                e.target.style.background = "transparent";
+                e.target.style.borderColor = "rgba(247,243,236,0.15)";
+              }}
             >
-              → GitHub
+              GitHub ↗
             </a>
             <a
               href="https://www.linkedin.com/in/muhammad-abu-hurairah-988ba1303/"
@@ -210,19 +219,28 @@ const Contact = () => {
               rel="noopener noreferrer"
               style={{
                 fontFamily: "'Space Mono', monospace",
-                fontSize: "0.65rem",
+                fontSize: "0.78rem",
                 textTransform: "uppercase",
-                letterSpacing: "0.08em",
-                color: "rgba(247,243,236,0.6)",
+                letterSpacing: "0.1em",
+                color: "#F7F3EC",
                 textDecoration: "none",
-                transition: "color 0.2s",
+                transition: "all 0.2s",
+                border: "1px solid rgba(247,243,236,0.15)",
+                padding: "0.5rem 1.25rem",
+                borderRadius: "4px",
               }}
-              onMouseEnter={(e) => (e.target.style.color = "#A0714F")}
-              onMouseLeave={(e) =>
-                (e.target.style.color = "rgba(247,243,236,0.6)")
-              }
+              onMouseEnter={(e) => {
+                e.target.style.color = "#1C1007";
+                e.target.style.background = "#A0714F";
+                e.target.style.borderColor = "#A0714F";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = "#F7F3EC";
+                e.target.style.background = "transparent";
+                e.target.style.borderColor = "rgba(247,243,236,0.15)";
+              }}
             >
-              → LinkedIn
+              LinkedIn ↗
             </a>
           </div>
         </div>

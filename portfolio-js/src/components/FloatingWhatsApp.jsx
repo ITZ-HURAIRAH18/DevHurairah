@@ -18,8 +18,8 @@ const FloatingWhatsApp = () => {
       animate={floatingAnimation}
       style={{
         position: "fixed",
-        bottom: "2.5rem",
-        right: "1.5rem",
+        bottom: "3rem",
+        right: "2rem",
         width: "64px",
         height: "64px",
         borderRadius: "20px",

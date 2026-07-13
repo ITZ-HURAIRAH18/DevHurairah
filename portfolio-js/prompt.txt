@@ -1,419 +1,89 @@
- instead of randon autmation project remove all 2 randon automation project add this pic name is supportai and its
-   live url is
+# Portfolio UI Upgrade — Master Prompt
 
-https://supportai-telegram-bot.vercel.app/
-
-# BranchOS - Project Brief
-
-## Project Overview
-
-**BranchOS** is a production-ready, full-stack Inventory Management System and ERP (Enterprise Resource Planning) platform designed to streamline multi-location business operations. The system features an intelligent multi-agent AI chatbot for context-aware query processing, comprehensive role-based access control, atomic transaction handling, and immutable audit trails for complete operational transparency.
+Paste this into Cursor / Lovable / v0 / Bolt. Execute phase by phase, reviewing the diff after each phase before moving to the next.
 
 ---
 
-## Project Vision
+## Context (paste this first, always)
 
-To provide enterprises with a robust, scalable inventory and order management solution that leverages AI-powered insights for intelligent decision-making while ensuring data integrity, security, and regulatory compliance across geographically distributed branches.
+You are upgrading an existing developer portfolio site. The current aesthetic direction is correct and must be PRESERVED, not replaced:
 
----
+- Palette: warm ivory background (#F4EFE8-ish), espresso/near-black text (#1C1410-ish), copper/terracotta accent (#B5652E-ish)
+- Typography: Cormorant Garamond (or similar high-contrast serif) for display headings, italic used for emphasis words, a clean sans-serif (Inter or similar) for body/UI text
+- Tone: editorial, restrained, premium — NOT a generic SaaS/AI-generated template with gradients, neon, or heavy shadows
 
-## Key Features
+The goal of this pass is **reduction and precision**, not redecoration. Every phase below is about removing clutter, fixing overlap bugs, and tightening spacing/hierarchy — not changing the color palette or fonts. Do not introduce new colors, new fonts, or a different layout system unless a phase explicitly says so.
 
-### 1. **Inventory Management**
-- Real-time inventory tracking across multiple branches
-- Stock level monitoring and automated alerts
-- SKU management with product categorization
-- Batch and serial number tracking
-- Inventory adjustments with full audit trails
-
-### 2. **Order Processing System**
-- Atomic order creation and processing with pessimistic locking
-- Order status tracking (Pending → Processing → Shipped → Delivered)
-- Multi-item order support with line-item tracking
-- Order fulfillment from designated branches
-- Automatic inventory deduction on order confirmation
-- Backorder management and reservation system
-
-### 3. **Multi-Agent AI Chatbot**
-- Intelligent query processing engine
-- Natural language understanding for inventory queries
-- Contextual recommendations based on sales patterns
-- Order status inquiries and tracking
-- Inventory optimization suggestions
-- Agent-based response delegation:
-  - **Inventory Agent**: Stock queries, availability checks
-  - **Order Agent**: Order creation, status tracking, fulfillment
-  - **Analytics Agent**: Sales trends, insights, forecasting
-  - **Support Agent**: Help, troubleshooting, general inquiries
-
-### 4. **Role-Based Access Control (RBAC)**
-- JWT-based authentication with refresh token mechanism
-- Predefined roles:
-  - **Admin**: Full system access, user management, configuration
-  - **Manager**: Branch oversight, reporting, staff management
-  - **Staff**: Order processing, inventory adjustments
-  - **Customer**: Self-service order placement and tracking
-- Fine-grained permission system
-- Session management and token expiration
-
-### 5. **Branch-Scoped Data Isolation**
-- Multi-location support with complete data segregation
-- Branch-specific inventory pools
-- Location-based reporting and analytics
-- Cross-branch inventory transfer capability
-- Centralized control with distributed autonomy
-
-### 6. **Immutable Audit Trails**
-- Complete transaction logging of all operations
-- Timestamp and user attribution for every change
-- Immutable record storage (append-only)
-- Compliance with regulatory requirements (SOX, GDPR, etc.)
-- Detailed change history with before/after snapshots
-- Audit log export capabilities
-
-### 7. **Security & Compliance**
-- JWT token-based authentication
-- Password hashing with industry standards
-- Rate limiting on API endpoints
-- CORS protection
-- Input validation and sanitization
-- SQL injection prevention
-- XSS protection
-
-### 8. **Reporting & Analytics**
-- Real-time dashboard with KPIs
-- Sales performance metrics
-- Inventory turnover analysis
-- Branch comparison reports
-- Predictive analytics for stock optimization
-- Custom report builder
+Global rules for every phase:
+- Use a strict 8px spacing scale (8/16/24/32/48/64/96) for all margins and padding — no arbitrary values.
+- Every section needs consistent vertical rhythm: same top/bottom padding across sections unless there's a clear reason to break it.
+- No element may visually overlap another unless it's an intentional, tested layered composition (e.g. a badge deliberately breaking a card edge by a few px). Accidental overlap = bug, fix it.
+- Floating UI (chat widgets, buttons) must never sit on top of readable content at any scroll position or breakpoint — verify at 1440px, 1024px, 768px, and 375px.
+- Test every text string against real content lengths, not lorem ipsum, so nothing truncates awkwardly.
 
 ---
 
-## Technology Stack
+## Phase 1 — Fix bugs (do this first, nothing else)
 
-### Backend
-- **Framework**: CodeIgniter 4
-  - Lightweight, fast PHP framework
-  - Built-in security features (CSRF protection, encryption)
-  - Excellent for rapid API development
-  - Query builder with prepared statements
-- **Database**: MySQL 8.0+
-  - ACID compliance
-  - Full-text search capabilities
-  - Transactional support for atomic operations
-  - Replication support for scalability
-- **Authentication**: JWT (JSON Web Tokens)
-- **Caching**: Redis (optional, for performance optimization)
+1. Find where hero copy renders `**AI automation**` literally with asterisks — this means markdown/rich-text isn't being parsed. Fix the rendering so it shows as proper bold text, or hardcode a `<strong>` tag if the content is static.
+2. In the Skills & Stack section, find and remove the stray circular element overlapping the "Redis" list item.
+3. Audit every bullet/list item across the Skills section — every item should have exactly one bullet marker, consistently styled (same size, same color, same offset). Fix any doubled markers.
+4. In the Work History timeline, fix the duplicated year label per entry (currently showing the year twice with a broken arrow glyph between them). Each entry should show the year exactly once.
+5. Fix the Work History description text getting clipped at the card boundary — the container must grow to fit content, not clip it.
+6. Fix the floating WhatsApp/chat icon(s) so they never overlap page content — pin them with sufficient margin from the viewport edge, and confirm no card, button, or text sits underneath them at any scroll position across breakpoints.
 
-### Frontend
-- **Framework**: Vue.js 3
-  - Reactive data binding for real-time UI updates
-  - Component-based architecture
-  - Composition API for better code organization
-  - Excellent for building interactive dashboards
-- **UI Components**: Custom component library or UI framework (Bootstrap Vue, Vuetify)
-- **State Management**: Pinia or Vuex for centralized state
-- **HTTP Client**: Axios for API communication
-- **Charting**: Chart.js or ECharts for analytics visualization
-
-### AI/ML Integration
-- **Multi-Agent Framework**: LangChain or similar for agent orchestration
-- **LLM**: OpenAI GPT-4 or self-hosted LLaMA for privacy
-- **NLP Processing**: spaCy or Hugging Face Transformers
-- **Vector Database**: Pinecone or Milvus for semantic search
-
-### DevOps & Deployment
-- **Containerization**: Docker
-- **Orchestration**: Docker Compose or Kubernetes
-- **CI/CD**: GitHub Actions or GitLab CI
-- **Monitoring**: ELK Stack or Datadog
-- **Logging**: Centralized logging service
+Stop after this phase and show me the diff before continuing.
 
 ---
 
-## System Architecture
+## Phase 2 — Hero section cleanup
 
-### Layered Architecture
-
-```
-┌─────────────────────────────────────┐
-│      Frontend (Vue.js 3)            │
-│    - Dashboard                      │
-│    - Order Management               │
-│    - Inventory Tracking             │
-│    - AI Chatbot Interface           │
-└──────────────┬──────────────────────┘
-               │
-┌──────────────┴──────────────────────┐
-│      API Gateway / Router           │
-│    - JWT Authentication             │
-│    - Route Protection               │
-│    - Request Validation             │
-└──────────────┬──────────────────────┘
-               │
-┌──────────────┴──────────────────────┐
-│    Business Logic Layer             │
-│  (CodeIgniter 4 Controllers)        │
-│    - Order Service                  │
-│    - Inventory Service              │
-│    - User Service                   │
-│    - AI Agent Orchestrator          │
-└──────────────┬──────────────────────┘
-               │
-┌──────────────┴──────────────────────┐
-│    Data Access Layer                │
-│  (Models & Repositories)            │
-│    - Order Repository               │
-│    - Inventory Repository           │
-│    - User Repository                │
-│    - Audit Log Repository           │
-└──────────────┬──────────────────────┘
-               │
-┌──────────────┴──────────────────────┐
-│       MySQL Database                │
-│    - Transactions                   │
-│    - Locking Mechanisms             │
-│    - Audit Tables                   │
-└─────────────────────────────────────┘
-```
+1. Remove the top scrolling marquee ticker entirely, OR move it to a single thin static line (no animation, no duplicate nav-like content) directly above the main nav — pick whichever you think reads cleaner, but it cannot compete with the nav bar.
+2. On the hero portrait image, reduce the overlay to ONE layer of information, not three. Recommended: keep just the name + role caption at the bottom (small, understated), and REMOVE the separate row of 6 tech pills sitting under the photo — that data is already covered in the Skills section further down the page.
+3. Tighten the hero body paragraph to 2-3 short sentences max, one clear idea per sentence. Cut anything that repeats what's already said elsewhere (e.g. don't restate every technology — that's what the Skills section is for).
+4. Keep exactly two CTAs (View Work / Download CV) but make sure their visual weight is intentional: one solid/filled primary, one ghost/text secondary — no more than that hierarchy.
 
 ---
 
-## Core Modules
+## Phase 3 — Skills & Stack section
 
-### 1. **Authentication & Authorization**
-- User registration and login
-- JWT token generation and refresh
-- Role assignment and permission mapping
-- Session management
-
-### 2. **Inventory Management**
-- Product catalog management
-- Stock tracking per branch
-- Inventory adjustments
-- Stock transfer between branches
-- Low stock alerts
-
-### 3. **Order Management**
-- Order creation with atomic transactions
-- Order status workflow
-- Payment processing integration
-- Delivery tracking
-- Return and cancellation handling
-
-### 4. **Multi-Agent AI Chatbot**
-- Natural language processing
-- Intent detection
-- Agent routing logic
-- Response generation
-- Learning from interactions
-
-### 5. **User Management**
-- User CRUD operations
-- Role management
-- Permission assignment
-- Staff directory
-
-### 6. **Audit & Compliance**
-- Immutable transaction logging
-- User activity tracking
-- Compliance reporting
-- Data retention policies
-
-### 7. **Analytics & Reporting**
-- Real-time dashboards
-- Custom report generation
-- Data export (CSV, PDF)
-- Trend analysis
+1. Standardize all skill cards to equal height using a grid with `align-items: stretch`, regardless of how many items are in each category — no more visible dead space.
+2. If a category (e.g. Backend) has noticeably fewer items than others, either rebalance the categories or accept the shorter card height and let the grid reflow naturally (masonry-style) rather than forcing padding to fill it.
+3. Keep the numbered badge (e.g. "09", "05") but make sure it's vertically aligned with the category label baseline.
 
 ---
 
-## Database Schema Highlights
+## Phase 4 — Featured Projects section
 
-### Key Tables
-1. **users** - User accounts with role assignments
-2. **branches** - Branch/location information
-3. **products** - Product catalog
-4. **inventory** - Stock levels per branch (with pessimistic locks)
-5. **orders** - Order header information
-6. **order_items** - Individual line items per order
-7. **audit_logs** - Immutable transaction records
-8. **permissions** - Role-based permission mapping
-9. **ai_conversations** - Chatbot interaction history
-
-### Locking Strategy
-- **Pessimistic Locking**: Row-level locks during order processing to prevent race conditions
-- **Transactions**: ACID-compliant transactions for order operations
-- **Isolation Levels**: READ_COMMITTED or SERIALIZABLE as needed
+1. Keep the browser-chrome card treatment (traffic light dots + path label) — it's a nice detail, keep it consistent across every card (same dot size, same path format).
+2. Fix truncated project descriptions: set a fixed line-clamp (e.g. `-webkit-line-clamp: 2`) so every description card truncates cleanly at a full word boundary with ellipsis — never mid-sentence with awkward wrapping.
+3. Make sure every card in a row has equal height regardless of description length.
+4. Keep tag pills (e.g. "Next.js", "TypeScript") limited to 3 per card max — if a project has more, show the 3 most relevant plus a "+2" indicator, don't wrap to a second row.
 
 ---
 
-## Security Implementation
+## Phase 5 — Work History section
 
-### Authentication
-```
-1. User provides credentials
-2. Backend validates and generates JWT
-3. JWT contains user_id, role, permissions
-4. Frontend stores JWT in secure httpOnly cookie
-5. Subsequent requests include JWT in Authorization header
-6. Backend validates JWT signature and expiration
-```
-
-### Data Protection
-- Passwords hashed with bcrypt or Argon2
-- Sensitive data encrypted at rest
-- HTTPS/TLS for data in transit
-- Database connection encryption
-
-### API Security
-- CORS with whitelisted origins
-- Rate limiting per IP and user
-- Input validation and sanitization
-- CSRF token protection
-- SQL injection prevention (prepared statements)
+1. Redesign the timeline entry layout so year, role, company, and date range each have one clear position — no duplication.
+2. Use consistent date format across all entries.
+3. Confirm the connecting timeline line (if present) aligns precisely with each year marker at every breakpoint.
 
 ---
 
-## AI Agent Architecture
+## Phase 6 — Contact section
 
-### Agent Types
-
-1. **Inventory Agent**
-   - Stock level queries
-   - Availability checks across branches
-   - Reorder point recommendations
-
-2. **Order Agent**
-   - Order creation and modification
-   - Status tracking
-   - Fulfillment coordination
-
-3. **Analytics Agent**
-   - Sales trend analysis
-   - Predictive forecasting
-   - Performance insights
-
-4. **Support Agent**
-   - FAQ handling
-   - Troubleshooting
-   - General assistance
-
-### Agent Workflow
-```
-User Input
-    ↓
-NLP Processing
-    ↓
-Intent Detection
-    ↓
-Agent Selection
-    ↓
-Agent Processing
-    ↓
-Response Generation
-    ↓
-User Output
-```
+1. Reduce the stat block to at most 2 numbers, and choose ones that reinforce credibility rather than undercut it. If "years of experience" is low, lead with project count and technology count instead, and either drop the years stat or reframe it (e.g. don't put "1+ Years Exp." at equal visual weight next to "20+ Projects").
+2. Cut the redundancy in the closing messaging — you currently have three separate statements all saying "I'm available/let's work together" (headline, italic quote, "Currently Available" block). Keep ONE of these as the primary statement and either delete the others or fold them into a single supporting line.
+3. Keep the contact form simple: Name, Email, Message — no extra fields.
 
 ---
 
-## Scalability & Performance
+## Phase 7 — Final pass
 
-### Optimization Strategies
-- Database query optimization and indexing
-- Caching layer (Redis) for frequently accessed data
-- API response pagination
-- Lazy loading of UI components
-- CDN for static assets
-- Database connection pooling
-
-### High-Availability Setup
-- Load balancing across multiple API servers
-- Database replication for failover
-- Automated backups
-- Health monitoring and alerting
+1. Do a full scroll-through at 1440px, 1024px, 768px, and 375px and list any remaining overlaps, clipped text, or misaligned elements you find.
+2. Confirm color and font usage is unchanged from the original (ivory/espresso/copper, Cormorant Garamond + sans body) — this phase is about polish, not a redesign.
+3. Give me a summary of every fix made per phase.
 
 ---
 
-## Deployment Strategy
-
-### Development Environment
-- Local development with Docker Compose
-- SQLite or local MySQL instance
-- Environment variables for configuration
-
-### Staging Environment
-- Mirrors production setup
-- Full data sync from production (anonymized)
-- Performance and security testing
-
-### Production Environment
-- Kubernetes clusters for orchestration
-- Auto-scaling based on load
-- CDN for content delivery
-- Dedicated database server with replication
-- Automated monitoring and logging
-
----
-
-## Success Metrics
-
-- **System Uptime**: 99.9% availability target
-- **Order Processing**: Sub-second response times
-- **Query Resolution**: 95% of chatbot queries resolved without human intervention
-- **Data Integrity**: Zero data loss events
-- **User Adoption**: 80%+ daily active user rate
-- **Performance**: API response time < 200ms (95th percentile)
-
----
-
-## Project Timeline (Estimated)
-
-- **Phase 1 (Weeks 1-4)**: Core inventory and order management
-- **Phase 2 (Weeks 5-8)**: Authentication, RBAC, audit trails
-- **Phase 3 (Weeks 9-12)**: AI chatbot integration
-- **Phase 4 (Weeks 13-16)**: Analytics, reporting, optimization
-- **Phase 5 (Week 17+)**: Testing, deployment, documentation
-
----
-
-## Risk Mitigation
-
-| Risk | Impact | Mitigation |
-|------|--------|-----------|
-| Data Loss | Critical | Regular backups, replication, disaster recovery plan |
-| AI Hallucination | High | User validation, feedback loops, confidence scoring |
-| Concurrent Order Issues | High | Pessimistic locking, transaction management |
-| Security Breach | Critical | Regular audits, penetration testing, encryption |
-| Performance Degradation | Medium | Load testing, caching, database optimization |
-
----
-
-## Next Steps
-
-1. Set up development environment with Docker
-2. Design and implement database schema
-3. Build core API endpoints (CRUD operations)
-4. Implement authentication and RBAC
-5. Develop Vue.js frontend components
-6. Integrate AI chatbot framework
-7. Create comprehensive testing suite
-8. Deploy to staging environment
-9. Performance and security testing
-10. Production deployment
-
----
-
-## Documentation Requirements
-
-- API documentation (OpenAPI/Swagger)
-- Database schema documentation
-- Architecture decision records (ADRs)
-- Deployment guides
-- User manuals
-- Administrator guides
-- Developer onboarding guide
-
-  github repo is https://github.com/ITZ-HURAIRAH18/Supportify-AI
+**Do not proceed to a phase until the previous one is confirmed working. Show diffs, not just descriptions.**

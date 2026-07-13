@@ -90,7 +90,7 @@ const Experience = () => {
             />
           </div>
           <div className="font-mono text-mono-xs text-muted uppercase tracking-wider">
-            1+ Years · 3 Companies
+            2+ Years · 2 Companies
           </div>
         </div>
 
@@ -115,16 +115,18 @@ const Experience = () => {
                 >
                   {exp.year}
                 </div>
-                <div
-                  className="font-mono text-muted mt-2"
-                  style={{
-                    fontSize: "0.62rem",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  → {exp.endYear}
-                </div>
+                {exp.endYear !== exp.year && (
+                  <div
+                    className="font-mono text-muted mt-2"
+                    style={{
+                      fontSize: "0.62rem",
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    → {exp.endYear}
+                  </div>
+                )}
               </div>
 
               {/* Column 2: Title + Company */}
@@ -177,6 +179,9 @@ const Experience = () => {
                     fontSize: "0.88rem",
                     lineHeight: 1.8,
                     color: "rgba(28,16,7,0.65)",
+                    overflow: "visible",
+                    overflowWrap: "break-word",
+                    wordBreak: "break-word",
                   }}
                 >
                   {exp.description}

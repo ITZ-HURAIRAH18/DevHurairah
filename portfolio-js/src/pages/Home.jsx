@@ -67,7 +67,7 @@ const Home = () => {
           }}
         >
           Full-stack engineer building scalable applications across web,
-          mobile, and desktop platforms with a growing focus on **AI automation** — building n8n pipelines, LLM-powered agents, and intelligent workflows that save hundreds of hours monthly.
+          mobile, and desktop platforms with a growing focus on <strong>AI automation</strong> — building n8n pipelines, LLM-powered agents, and intelligent workflows that save hundreds of hours monthly.
         </p>
 
         {/* CTA Buttons */}
@@ -84,6 +84,56 @@ const Home = () => {
           </a>
           <a href="/CV.pdf" download="Muhammad-Abu-Hurairah-CV" className="btn-ghost">
             Download CV
+          </a>
+        </div>
+
+        {/* Social Links */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1.5rem",
+            marginTop: "1.5rem",
+            opacity: 0,
+            animation: "slideUp 0.6s 0.7s ease both",
+          }}
+        >
+          <a
+            href="https://github.com/itz-hurairah18"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.72rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              color: "#A0714F",
+              textDecoration: "none",
+              transition: "opacity 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.opacity = "0.6")}
+            onMouseLeave={(e) => (e.target.style.opacity = "1")}
+          >
+            GitHub ↗
+          </a>
+          <span style={{ color: "rgba(28,16,7,0.15)", fontSize: "0.8rem" }}>/</span>
+          <a
+            href="https://www.linkedin.com/in/muhammad-abu-hurairah-988ba1303/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.72rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              color: "#A0714F",
+              textDecoration: "none",
+              transition: "opacity 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.opacity = "0.6")}
+            onMouseLeave={(e) => (e.target.style.opacity = "1")}
+          >
+            LinkedIn ↗
           </a>
         </div>
       </div>
