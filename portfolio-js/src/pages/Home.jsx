@@ -41,7 +41,7 @@ const Home = () => {
               animation: "slideUp 0.8s 0.35s ease both",
             }}
           >
-            <span className="italic text-copper">Goat</span> Hurairah
+            <span className="italic text-copper">Greatest</span> Hurairah
           </span>
         </h1>
 
