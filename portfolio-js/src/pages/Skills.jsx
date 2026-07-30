@@ -63,6 +63,7 @@ const Skills = () => {
         { name: "REST APIs", icon: "chrome" },
         { name: "Prisma ORM", icon: "prisma" },
         { name: "JWT Auth", icon: "auth0" },
+        { name: "AWS", icon: "aws" },
       ],
     },
     {
