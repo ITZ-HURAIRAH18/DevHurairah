@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import healthAppointmentImage from "../assets/healthappoint.png";
+import healthAppointmentVideo from "../assets/healthappoint.mp4";
 
 const DemoModal = ({ videoSrc, onClose }) => {
   useEffect(() => {
@@ -292,9 +294,21 @@ const Projects = () => {
       video: "/assets/videos/ERA - Premium Fashion.mp4",
       urlPath: "projects/era-wardrobe",
     },
+    {
+  title: "Healthcare Appointment Intelligence",
+  subtitle: "Healthcare Operations Platform",
+  description:
+    "A secure healthcare operations platform for managing clinical appointments and workflows. It provides role-based access for administrators, doctors, and staff, with authenticated sessions and audit-logged activity.",
+  tech: ["React", "TypeScript", "Tailwind CSS"],
+  type: "ML",
+  image: healthAppointmentImage,
+  live: "https://healthcare-intelligence.vercel.app/",
+  video: healthAppointmentVideo,
+  urlPath: "projects/healthcare-appointment-intelligence",
+},
   ];
 
-  const filters = ["ALL", "FULL-STACK", "FRONTEND", "BACKEND", "AI / AGENTS", "AUTOMATION"];
+  const filters = ["ALL", "FULL-STACK", "FRONTEND", "BACKEND", "AI / AGENTS", "AUTOMATION", "ML"];
 
   const filteredProjects =
     activeFilter === "ALL"
