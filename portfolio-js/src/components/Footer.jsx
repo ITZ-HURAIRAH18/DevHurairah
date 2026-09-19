@@ -4,16 +4,23 @@ const Footer = () => {
   return (
     <footer className="bg-[#2D1B0E] text-[#FFF8F0] pt-10 pb-16 sm:py-10 px-6 lg:px-12 border-t border-[#8B5E3C]/30 relative z-10">
       <div className="max-w-7xl mx-auto flex flex-col gap-6">
-        {/* Top Row: Brand & Social Links */}
+        {/* Top Row: Brand & Profile Avatar & Social Links */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-[#E8DDD0]/15">
-          {/* Brand Logo & Domain */}
-          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-            <a href="#home" className="font-heading font-extrabold text-xl tracking-tight text-[#FFF8F0] no-underline">
-              ABU <span className="gradient-text font-serif italic font-normal">HURAIRAH</span>
-            </a>
-            <p className="font-mono text-xs text-[#C49A6C] tracking-wider mt-0.5">
-              abuhurairah.engineer
-            </p>
+          {/* Profile Avatar & Brand Logo & Domain */}
+          <div className="flex items-center gap-3.5">
+            <img
+              src="/picture.jfif"
+              alt="Muhammad Abu Hurairah"
+              className="w-11 h-11 rounded-full object-cover border-2 border-[#C49A6C]/60 shadow-md shrink-0"
+            />
+            <div className="flex flex-col items-start text-left">
+              <a href="#home" className="font-heading font-extrabold text-xl tracking-tight text-[#FFF8F0] no-underline">
+                ABU <span className="gradient-text font-serif italic font-normal">HURAIRAH</span>
+              </a>
+              <p className="font-mono text-xs text-[#C49A6C] tracking-wider">
+                abuhurairah.engineer
+              </p>
+            </div>
           </div>
 
           {/* Social Links Row */}

@@ -28,11 +28,16 @@ const Contact = () => {
         body: JSON.stringify(formState),
       });
 
-      if (!response.ok) throw new Error("Failed to send message");
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
 
       setSubmitStatus("success");
       setFormState({ name: "", email: "", message: "" });
-    } catch {
+    } catch (error) {
+      console.error("Contact Form Error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
