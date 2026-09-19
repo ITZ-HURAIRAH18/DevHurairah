@@ -17,7 +17,7 @@ export default {
     fontFamily: {
       sans: ["'Plus Jakarta Sans'", "'Space Grotesk'", "system-ui", "sans-serif"],
       heading: ["'Outfit'", "'Plus Jakarta Sans'", "sans-serif"],
-      serif: ["'Cormorant Garamond'", "Georgia", "serif"],
+      serif: ["'Playfair Display'", "'Cormorant Garamond'", "Georgia", "serif"],
       mono: ["'Space Mono'", "monospace"],
     },
     extend: {

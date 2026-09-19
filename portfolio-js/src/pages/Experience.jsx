@@ -4,7 +4,7 @@ const Experience = () => {
       period: "Aug 2025 – Oct 2025",
       title: "Full Stack Developer",
       company: "NexAgen Solutions",
-      location: "Remote",
+      location: "Onsite",
       description:
         "Engineered scalable MERN stack web applications, developing REST APIs and optimizing database queries for multi-tenant systems.",
       bullets: [

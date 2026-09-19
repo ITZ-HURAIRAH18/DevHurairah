@@ -127,7 +127,7 @@ const Contact = () => {
 
           {/* Right Column: Clean Contact Form Card */}
           <div className="lg:col-span-7">
-            <div className="warm-card p-8 sm:p-10 rounded-2xl border border-[#E8DDD0] shadow-warm">
+            <div className="warm-card p-5 sm:p-8 sm:p-10 rounded-2xl border border-[#E8DDD0] shadow-warm">
               <h3 className="font-heading font-bold text-2xl text-[#2D1B0E] mb-2">
                 Send a Message
               </h3>

@@ -7,6 +7,7 @@ import CustomCursor from "./components/CustomCursor";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Home from "./pages/Home";
 import Skills from "./pages/Skills";
+import Features from "./pages/Features";
 import Projects from "./pages/Projects";
 import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
@@ -18,7 +19,6 @@ function App() {
   const [activeSection, setActiveSection] = useState("home");
   const mainRef = useRef(null);
 
-  // ALL hooks MUST run before any conditional return (Rules of Hooks)
   // Scroll reveal with IntersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,10 +55,9 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  // Preloader — remove from DOM after completion
   return (
     <div className="relative flex min-h-screen flex-col bg-page font-sans antialiased overflow-x-hidden">
-      {/* Preloader overlay — hides everything behind until loading is false */}
+      {/* Preloader overlay */}
       {loading && <Preloader onComplete={() => setLoading(false)} />}
       
       {/* Custom Cursor */}
@@ -77,6 +76,9 @@ function App() {
         </section>
         <section id="skills" className="reveal">
           <Skills />
+        </section>
+        <section id="features" className="reveal">
+          <Features />
         </section>
         <section id="projects" className="reveal">
           <Projects />

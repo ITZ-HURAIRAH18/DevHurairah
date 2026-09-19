@@ -15,6 +15,7 @@ const Navbar = ({ activeSection }) => {
   const navLinks = [
     { label: "Home", href: "#home" },
     { label: "About", href: "#skills" },
+    { label: "Features", href: "#features" },
     { label: "Projects", href: "#projects" },
     { label: "Experience", href: "#experience" },
     { label: "Contact", href: "#contact" },
@@ -38,7 +39,7 @@ const Navbar = ({ activeSection }) => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo — "ABU HURAIRAH" */}
           <a
             href="#home"
