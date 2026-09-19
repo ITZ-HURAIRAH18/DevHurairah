@@ -38,10 +38,10 @@ const DemoModal = ({ videoSrc, onClose }) => {
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-all cursor-pointer"
+          className="absolute top-4 right-4 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-all cursor-pointer"
           aria-label="Close modal"
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
         <video
@@ -197,30 +197,30 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" className="py-24 bg-[#FAF7F2] border-t border-[#E8DDD0]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="projects" className="py-16 sm:py-24 bg-[#FAF7F2] border-t border-[#E8DDD0]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
         {/* Section Heading with Accent */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full mb-2 sm:mb-3">
               <span className="w-2 h-2 rounded-full bg-[#8B5E3C]" />
-              <span className="font-mono text-xs font-semibold text-[#8B5E3C] uppercase tracking-wider">
+              <span className="font-mono text-[11px] sm:text-xs font-semibold text-[#8B5E3C] uppercase tracking-wider">
                 Selected Work
               </span>
             </div>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-[#2D1B0E] tracking-tight">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-4xl lg:text-5xl text-[#2D1B0E] tracking-tight">
               Featured <span className="gradient-text font-serif italic font-normal">Projects</span>
             </h2>
-            <div className="w-24 h-1 bg-[#8B5E3C] rounded-full mt-2" />
+            <div className="w-20 sm:w-24 h-1 bg-[#8B5E3C] rounded-full mt-1.5" />
           </div>
 
           {/* Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 no-scrollbar">
             {filters.map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`font-mono text-xs px-4 py-2 rounded-xl transition-all duration-200 uppercase tracking-wider font-semibold cursor-pointer border ${
+                className={`font-mono text-[11px] sm:text-xs px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl transition-all duration-200 uppercase tracking-wider font-semibold cursor-pointer border whitespace-nowrap ${
                   activeFilter === filter
                     ? "bg-[#8B5E3C] text-white border-[#8B5E3C] shadow-sm"
                     : "bg-[#FFF8F0] text-[#5C4033] border-[#E8DDD0] hover:border-[#8B5E3C]/50 hover:text-[#8B5E3C]"
@@ -233,7 +233,7 @@ const Projects = () => {
         </div>
 
         {/* Bento Grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredProjects.map((project, idx) => (
             <div
               key={idx}
@@ -241,19 +241,19 @@ const Projects = () => {
             >
               <div>
                 {/* Browser bar header */}
-                <div className="bg-[#FAF7F2] px-4 py-2.5 border-b border-[#E8DDD0] flex items-center justify-between">
+                <div className="bg-[#FAF7F2] px-3.5 py-2 border-b border-[#E8DDD0] flex items-center justify-between">
                   <div className="flex gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#E06C75]" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#E5C07B]" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#98C379]" />
+                    <span className="w-2 h-2 rounded-full bg-[#E06C75]" />
+                    <span className="w-2 h-2 rounded-full bg-[#E5C07B]" />
+                    <span className="w-2 h-2 rounded-full bg-[#98C379]" />
                   </div>
-                  <span className="font-mono text-[11px] text-[#8A7560] truncate max-w-[180px]">
+                  <span className="font-mono text-[10px] sm:text-[11px] text-[#8A7560] truncate max-w-[160px] sm:max-w-[180px]">
                     {project.urlPath}
                   </span>
                 </div>
 
                 {/* Screenshot image */}
-                <div className="relative h-48 sm:h-52 bg-[#120d08] overflow-hidden">
+                <div className="relative h-40 sm:h-52 bg-[#120d08] overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -263,30 +263,30 @@ const Projects = () => {
                 </div>
 
                 {/* Card Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <h3 className="font-heading font-bold text-xl text-[#2D1B0E] group-hover:text-[#8B5E3C] transition-colors">
+                <div className="p-4 sm:p-6">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h3 className="font-heading font-bold text-lg sm:text-xl text-[#2D1B0E] group-hover:text-[#8B5E3C] transition-colors">
                       {project.title}
                     </h3>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-[#8B5E3C]/10 text-[#8B5E3C] uppercase tracking-wider font-semibold">
+                    <span className="font-mono text-[9px] sm:text-[10px] px-2 py-0.5 rounded bg-[#8B5E3C]/10 text-[#8B5E3C] uppercase tracking-wider font-semibold whitespace-nowrap">
                       {Array.isArray(project.type) ? project.type[0] : project.type}
                     </span>
                   </div>
 
-                  <p className="font-mono text-xs italic text-[#8B5E3C] mb-3">
+                  <p className="font-mono text-xs italic text-[#8B5E3C] mb-2 sm:mb-3">
                     {project.subtitle}
                   </p>
 
-                  <p className="font-sans text-xs text-[#5C4033] leading-relaxed line-clamp-3 mb-4">
+                  <p className="font-sans text-xs text-[#5C4033] leading-relaxed line-clamp-3 mb-3 sm:mb-4">
                     {project.description}
                   </p>
 
                   {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1">
                     {project.tech.map((t, tIdx) => (
                       <span
                         key={tIdx}
-                        className="font-mono text-[10px] px-2.5 py-1 bg-[#FAF7F2] text-[#2D1B0E] border border-[#E8DDD0] rounded-md"
+                        className="font-mono text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 sm:py-1 bg-[#FAF7F2] text-[#2D1B0E] border border-[#E8DDD0] rounded-md"
                       >
                         {t}
                       </span>
@@ -295,15 +295,15 @@ const Projects = () => {
                 </div>
               </div>
 
-              {/* Card Footer Actions */}
-              <div className="p-4 bg-[#FAF7F2]/60 border-t border-[#E8DDD0] flex items-center justify-between gap-2">
-                <div className="flex gap-2 w-full">
+              {/* Card Footer Actions — Sleek, single-line buttons */}
+              <div className="p-3.5 sm:p-4 bg-[#FAF7F2]/60 border-t border-[#E8DDD0] flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 w-full">
                   {project.live && (
                     <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-brown flex-1 text-[11px] py-2 px-3 rounded-lg text-center"
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-3 py-2 bg-[#8B5E3C] hover:bg-[#764D2E] text-white font-sans text-xs font-semibold rounded-lg shadow-sm whitespace-nowrap transition-all duration-200"
                     >
                       Live Demo ↗
                     </a>
@@ -311,7 +311,7 @@ const Projects = () => {
                   {project.video && (
                     <button
                       onClick={() => setModalVideo(project.video)}
-                      className="btn-outline-brown flex-1 text-[11px] py-2 px-3 rounded-lg text-center cursor-pointer"
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-3 py-2 bg-transparent hover:bg-[#8B5E3C]/10 text-[#8B5E3C] border border-[#8B5E3C] font-sans text-xs font-semibold rounded-lg whitespace-nowrap transition-all duration-200 cursor-pointer"
                     >
                       Watch Demo ↗
                     </button>
@@ -321,7 +321,7 @@ const Projects = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-outline-brown flex-1 text-[11px] py-2 px-3 rounded-lg text-center"
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-3 py-2 bg-transparent hover:bg-[#8B5E3C]/10 text-[#8B5E3C] border border-[#8B5E3C] font-sans text-xs font-semibold rounded-lg whitespace-nowrap transition-all duration-200"
                     >
                       GitHub Code ↗
                     </a>
@@ -333,12 +333,12 @@ const Projects = () => {
         </div>
 
         {/* View All Projects Button */}
-        <div className="mt-16 text-center">
+        <div className="mt-12 sm:mt-16 text-center">
           <a
             href="https://github.com/itz-hurairah18?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-brown text-sm px-8 py-4 rounded-xl inline-flex items-center gap-2 shadow-warm"
+            className="btn-brown text-xs sm:text-sm px-6 py-3 sm:px-8 sm:py-4 rounded-xl inline-flex items-center gap-2 shadow-warm"
           >
             View All Repositories on GitHub ↗
           </a>

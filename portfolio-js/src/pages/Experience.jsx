@@ -45,31 +45,31 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-[#FAF7F2] border-t border-[#E8DDD0]">
-      <div className="max-w-5xl mx-auto px-6 lg:px-12">
+    <section id="experience" className="py-16 sm:py-20 bg-[#FAF7F2] border-t border-[#E8DDD0]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-12">
         {/* Clean Section Heading */}
-        <div className="flex flex-col items-start gap-2 mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full">
+        <div className="flex flex-col items-start gap-2 mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full">
             <span className="w-2 h-2 rounded-full bg-[#8B5E3C]" />
-            <span className="font-mono text-xs font-bold text-[#8B5E3C] uppercase tracking-wider">
+            <span className="font-mono text-[11px] sm:text-xs font-bold text-[#8B5E3C] uppercase tracking-wider">
               Career Journey
             </span>
           </div>
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-[#2D1B0E] tracking-tight">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-4xl text-[#2D1B0E] tracking-tight">
             Work <span className="gradient-text font-serif italic font-normal">Experience</span>
           </h2>
         </div>
 
-        {/* Clean & Sleek Timeline List */}
-        <div className="space-y-6">
+        {/* Sleek Timeline List */}
+        <div className="space-y-4 sm:space-y-6">
           {experiences.map((exp, idx) => (
             <div
               key={idx}
-              className="warm-card p-6 rounded-xl border border-[#E8DDD0] hover:border-[#8B5E3C] transition-all duration-200"
+              className="warm-card p-4 sm:p-6 rounded-xl border border-[#E8DDD0] hover:border-[#8B5E3C] transition-all duration-200"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#E8DDD0]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 pb-3 border-b border-[#E8DDD0]">
                 <div>
-                  <h3 className="font-heading font-bold text-xl text-[#2D1B0E]">
+                  <h3 className="font-heading font-bold text-lg sm:text-xl text-[#2D1B0E]">
                     {exp.title}
                   </h3>
                   <p className="font-mono text-xs font-bold text-[#8B5E3C] uppercase tracking-wider mt-0.5">
@@ -77,31 +77,31 @@ const Experience = () => {
                   </p>
                 </div>
                 <div className="flex items-center gap-2 self-start sm:self-auto">
-                  <span className="font-mono text-xs font-semibold text-[#8B5E3C] bg-[#8B5E3C]/10 border border-[#8B5E3C]/20 px-3 py-1 rounded-md">
+                  <span className="font-mono text-[11px] sm:text-xs font-semibold text-[#8B5E3C] bg-[#8B5E3C]/10 border border-[#8B5E3C]/20 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-md">
                     {exp.period}
                   </span>
-                  <span className="font-mono text-xs text-[#8A7560]">
+                  <span className="font-mono text-[11px] sm:text-xs text-[#8A7560]">
                     ({exp.location})
                   </span>
                 </div>
               </div>
 
-              <div className="pt-4 space-y-3">
-                <p className="font-sans text-sm text-[#5C4033] leading-relaxed">
+              <div className="pt-3 sm:pt-4 space-y-2.5 sm:space-y-3">
+                <p className="font-sans text-xs sm:text-sm text-[#5C4033] leading-relaxed">
                   {exp.description}
                 </p>
 
-                <ul className="space-y-1.5 font-sans text-xs text-[#5C4033] leading-relaxed pl-4 list-disc">
+                <ul className="space-y-1 font-sans text-xs text-[#5C4033] leading-relaxed pl-4 list-disc">
                   {exp.bullets.map((bullet, bIdx) => (
                     <li key={bIdx}>{bullet}</li>
                   ))}
                 </ul>
 
-                <div className="pt-3 flex flex-wrap gap-1.5 border-t border-[#E8DDD0]/60">
+                <div className="pt-2 sm:pt-3 flex flex-wrap gap-1 border-t border-[#E8DDD0]/60">
                   {exp.tags.map((tag, tIdx) => (
                     <span
                       key={tIdx}
-                      className="font-mono text-[11px] px-2.5 py-0.5 bg-[#FAF7F2] text-[#2D1B0E] border border-[#E8DDD0] rounded-md"
+                      className="font-mono text-[10px] sm:text-[11px] px-2 py-0.5 bg-[#FAF7F2] text-[#2D1B0E] border border-[#E8DDD0] rounded-md"
                     >
                       {tag}
                     </span>
