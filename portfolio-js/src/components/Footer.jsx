@@ -17,7 +17,7 @@ const Footer = () => {
           </div>
 
           {/* Social Links Row */}
-          <div className="flex items-center gap-5">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
             <a
               href="https://github.com/itz-hurairah18"
               target="_blank"
@@ -34,6 +34,15 @@ const Footer = () => {
               className="font-mono text-xs text-[#E8DDD0] hover:text-[#C49A6C] transition-colors uppercase tracking-wider no-underline"
             >
               LinkedIn ↗
+            </a>
+            <span className="text-[#8B5E3C] text-xs">•</span>
+            <a
+              href="https://wa.me/923116085400"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-[#E8DDD0] hover:text-[#C49A6C] transition-colors uppercase tracking-wider no-underline"
+            >
+              WhatsApp ↗
             </a>
             <span className="text-[#8B5E3C] text-xs">•</span>
             <a
