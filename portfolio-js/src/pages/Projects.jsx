@@ -7,7 +7,6 @@ import healthAppointmentVideo from "../assets/healthappoint.mp4";
 
 const DemoModal = ({ videoSrc, onClose }) => {
   useEffect(() => {
-    // Lock scroll
     const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = "hidden";
     
@@ -27,90 +26,29 @@ const DemoModal = ({ videoSrc, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        width: '100vw',
-        height: '100dvh',
-        backgroundColor: 'rgba(28, 16, 7, 0.95)', // Deep espresso overlay
-        zIndex: 9999999,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '2rem',
-        overflow: 'hidden',
-      }}
+      className="fixed inset-0 w-screen h-screen bg-[#2D1B0E]/90 backdrop-blur-md z-[99999] flex items-center justify-center p-4 sm:p-8"
       onClick={onClose}
     >
       <motion.div
-        initial={{ scale: 0.95, opacity: 0, y: 30 }}
+        initial={{ scale: 0.95, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.95, opacity: 0, y: 30 }}
-        transition={{ type: "spring", damping: 30, stiffness: 300 }}
-        style={{
-          position: 'relative',
-          width: '100%',
-          maxWidth: 'min(1100px, calc(100vw - 40px))',
-          height: 'auto',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-        }}
+        exit={{ scale: 0.95, opacity: 0, y: 20 }}
+        className="relative w-full max-w-5xl rounded-2xl overflow-hidden bg-[#000] border border-[#E8DDD0]/20 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '-50px',
-            right: '0px',
-            color: 'white',
-            zIndex: 10000000,
-            width: '44px',
-            height: '44px',
-            padding: '0',
-            background: 'rgba(255, 255, 255, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            borderRadius: '50%',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            backdropFilter: 'blur(12px)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
-            e.currentTarget.style.transform = 'scale(1.1) rotate(90deg)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-            e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
-          }}
-          aria-label="Close video modal"
+          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-all cursor-pointer"
+          aria-label="Close modal"
         >
-          <X size={22} />
+          <X size={20} />
         </button>
 
         <video
           src={videoSrc}
           controls
           autoPlay
-          style={{
-            width: '100%',
-            height: 'auto',
-            maxHeight: 'calc(100dvh - 100px)',
-            borderRadius: '16px',
-            boxShadow: '0 32px 80px rgba(0,0,0,0.8)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            display: 'block',
-            maxWidth: '100%',
-            backgroundColor: '#000',
-          }}
+          className="w-full max-h-[85vh] object-contain rounded-2xl"
         />
       </motion.div>
     </motion.div>,
@@ -127,188 +65,122 @@ const Projects = () => {
       title: "BranchOS",
       subtitle: "Multi-Location ERP & Inventory System",
       description:
-        "A production-ready ERP platform designed for multi-location enterprises. Features an intelligent multi-agent AI chatbot (Inventory, Order, Analytics agents) for context-aware processing. Implements atomic transaction handling with pessimistic locking, JWT-based RBAC, and immutable audit trails for complete operational transparency.",
+        "Enterprise ERP platform with atomic transaction handling, RBAC, and multi-agent AI chatbots for inventory intelligence.",
       tech: ["CodeIgniter 4", "Vue.js 3", "MySQL", "LangChain"],
       type: ["FULL-STACK", "AI / AGENTS"],
       image: "/assets/BranchOS.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/CodeIgniter-AI-Driven-Development",
+      github: "https://github.com/itz-hurairah18",
       live: null,
       video: "/assets/videos/BranchOS.mp4",
       urlPath: "projects/branchos-erp",
     },
     {
       title: "UniToolKit",
-      subtitle: "All-in-One Utility Hub for Students & Developers",
+      subtitle: "Developer & Student Utility Suite",
       description:
-        "A polished Next.js and TypeScript web app that brings developer, image, PDF, and university-focused utility tools into a single interface. Includes standalone helpers such as Base64 tools, formatters, image converters, GPA and timetable helpers, plus command palette and clipboard/file utilities for fast everyday workflows.",
+        "All-in-one utility hub featuring Base64 helpers, formatters, image tools, PDF converters, and command palette.",
       tech: ["Next.js", "TypeScript", "Tailwind CSS"],
       type: "FRONTEND",
       image: "/assets/HurairahTools.png",
+      github: "https://github.com/itz-hurairah18",
       live: "https://hurairahtools.vercel.app/",
       video: "/assets/videos/HurairahTools.mp4",
       urlPath: "projects/unitoolkit-utility-suite",
     },
     {
       title: "SupportAI",
-      subtitle: "Multi-Agent Telegram Support Bot",
+      subtitle: "Autonomous Telegram Customer Agent",
       description:
-        "An advanced AI-powered Telegram bot that orchestrates multiple agents to provide autonomous customer support. Features intelligent query routing, context-aware responses using LLMs, and real-time automation of support workflows to streamline user interactions.",
+        "Multi-agent Telegram AI bot automating customer support routing, intelligent context resolution, and workflow actions.",
       tech: ["Node.js", "Telegram API", "OpenAI", "AI Agents"],
       type: ["AUTOMATION", "AI / AGENTS"],
       image: "/assets/supportai.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/Supportify-AI",
+      github: "https://github.com/itz-hurairah18",
       live: "https://supportai-telegram-bot.vercel.app/",
       video: null,
       urlPath: "projects/supportai-bot",
     },
-    
-    
     {
       title: "FinScope",
-      subtitle: "Real-Time Analytics Dashboard",
+      subtitle: "Real-Time Stock & Crypto Analytics",
       description:
-        "A state-of-the-art multi-branch financial analytics platform with real-time stock and cryptocurrency tracking, interactive charts, and portfolio management.",
+        "Financial dashboard for real-time asset tracking, portfolio management, interactive charts, and branch analytics.",
       tech: ["Next.js", "TypeScript", "PostgreSQL"],
       type: "FULL-STACK",
       image: "/assets/finscope.png",
-      // github:
-      //   "https://github.com/ITZ-HURAIRAH18/FinScope-Real-Time-Crypto-Stock-Analytics-Dashboard",
+      github: "https://github.com/itz-hurairah18",
       live: "https://finscope-hub.vercel.app/",
       video: "/assets/videos/finscope.mp4",
       urlPath: "projects/finscope-dashboard",
     },
     {
       title: "DonorHub",
-      subtitle: "Charity & Donation Platform",
+      subtitle: "Charity & Campaign Management Platform",
       description:
-        "A comprehensive donation management system with campaign tracking, donor analytics, and seamless payment integration for charitable organizations.",
+        "Donation management portal with campaign analytics, transparent goal tracking, and secure payment workflow.",
       tech: ["React", "Node.js", "MongoDB"],
       type: "FULL-STACK",
       image: "/assets/donorhub.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/Saylani_hackton",
+      github: "https://github.com/itz-hurairah18",
       live: "https://donor-hub-eta.vercel.app/",
       video: "/assets/videos/donorhub.mp4",
       urlPath: "projects/donorhub-platform",
     },
     {
-      title: "HireLens",
-      subtitle: "Intelligent Resume Intelligence",
+      title: "HireLens AI",
+      subtitle: "Intelligent Candidate Screening Engine",
       description:
-        "An AI-powered resume screening tool that uses LangGraph and FastAPI to parse, score, and rank candidates with intelligent keyword matching.",
+        "AI resume parser using LangGraph & FastAPI to score, rank, and extract talent insights automatically.",
       tech: ["React", "FastAPI", "LangGraph"],
       type: "AI / AGENTS",
       image: "/assets/hirelens.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/HireLens",
+      github: "https://github.com/itz-hurairah18",
       live: "https://hire-lensz.vercel.app/",
       video: "/assets/videos/hirelens.mp4",
       urlPath: "projects/hirelens-ai",
     },
     {
-      title: "NexTrack",
-      subtitle: "Desktop Inventory Management",
+      title: "Healthcare Intelligence",
+      subtitle: "Clinical Operations Platform",
       description:
-        "A cross-platform desktop application for inventory tracking with barcode scanning, stock alerts, and comprehensive reporting dashboards.",
+        "Secure healthcare platform for clinical appointments, doctor schedules, and audit-logged operations.",
+      tech: ["React", "TypeScript", "Tailwind CSS"],
+      type: "FULL-STACK",
+      image: healthAppointmentImage,
+      github: "https://github.com/itz-hurairah18",
+      live: "https://healthcare-intelligence.vercel.app/",
+      video: healthAppointmentVideo,
+      urlPath: "projects/healthcare-appointment-intelligence",
+    },
+    {
+      title: "NexTrack",
+      subtitle: "Cross-Platform Desktop Inventory System",
+      description:
+        "Desktop barcode and stock tracking solution with real-time alerts, SQLite offline storage, and reports.",
       tech: ["Electron", "React", "Tailwind CSS"],
       type: "FULL-STACK",
       image: "/assets/nextrack.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/NexTrack_Inventory_Desktop",
+      github: "https://github.com/itz-hurairah18",
       live: null,
       video: "/assets/videos/nextrack.mp4",
       urlPath: "projects/nextrack-desktop",
     },
     {
-      title: "LoanVerse",
-      subtitle: "Loan Management System",
-      description:
-        "A robust loan management platform with automated payment tracking, interest calculations, borrower profiles, and financial reporting.",
-      tech: ["Django", "React", "SQLite"],
-      type: "BACKEND",
-      image: "/assets/loanverse.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/LoanVerse",
-      live: null,
-      video: "/assets/videos/loanverse.mp4",
-      urlPath: "projects/loanverse-system",
-    },
-    {
-      title: "NexGen",
-      subtitle: "Meeting Scheduling Platform",
-      description:
-        "A real-time meeting scheduler with video conferencing integration, calendar sync, automated reminders, and team collaboration features.",
-      tech: ["React", "Node.js", "Socket.io"],
-      type: "FULL-STACK",
-      image: "/assets/nexgen.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/Schedule_Ease",
-      live: "https://schedule-ease-a4ur.vercel.app/",
-      video: "/assets/videos/scheduleease.mp4",
-      urlPath: "projects/nexgen-scheduler",
-    },
-    {
-      title: "Flowventory",
-      subtitle: "Smart Inventory & Order Management",
-      description:
-        "A state-of-the-art multi-branch inventory and order management solution with real-time stock tracking, role-based access, and automated reporting.",
-      tech: ["Laravel", "Vue.js", "MySQL"],
-      type: "FULL-STACK",
-      image: "/assets/flowventory.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/Flowventory",
-      live: null,
-      video: "/assets/videos/flowventory.mp4",
-      urlPath: "projects/flowventory-inventory",
-    },
-    {
       title: "HealthWise AI",
-      subtitle: "Medical Chatbot",
+      subtitle: "Symptom Assessment & Health Bot",
       description:
-        "An AI-powered medical chatbot that provides health assessments, symptom analysis, and wellness recommendations using the Gemini API.",
+        "Medical AI assistant providing preliminary symptom analysis, health tips, and Gemini API integration.",
       tech: ["React", "Gemini API", "Tailwind"],
       type: "AI / AGENTS",
       image: "/assets/Health.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/HealthWise-AI",
+      github: "https://github.com/itz-hurairah18",
       live: "https://health-wise-ai-chatbot.vercel.app/",
-      // video: "/assets/videos/healthwise.mp4",
+      video: null,
       urlPath: "projects/healthwise-ai",
     },
-    {
-      title: "Excel Quiz App",
-      subtitle: "Interactive Quiz Application",
-      description:
-        "An interactive quiz application that reads questions from Excel sheets, tracks scores, and provides real-time feedback with a clean UI.",
-      tech: ["HTML", "JavaScript", "SheetJS"],
-      type: "FRONTEND",
-      image: "/assets/quiz.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/Excel-Based-Quiz-App",
-      live: "https://eraquiz.netlify.app/",
-      // video: "/assets/videos/quiz.mp4",
-      urlPath: "projects/excel-quiz",
-    },
-    {
-      title: "ERA",
-      subtitle: "Smart Wardrobe Manager",
-      description:
-        "A digital wardrobe organizer with outfit suggestions, seasonal recommendations, and clothing inventory management powered by Django.",
-      tech: ["Django", "Python", "SQLite"],
-      type: "BACKEND",
-      image: "/assets/era.png",
-      // github: "https://github.com/ITZ-HURAIRAH18/ERA--Smart-Wardrobe-Manager",
-      live: "https://era-store.vercel.app/",
-      video: "/assets/videos/ERA - Premium Fashion.mp4",
-      urlPath: "projects/era-wardrobe",
-    },
-    {
-  title: "Healthcare Appointment Intelligence",
-  subtitle: "Healthcare Operations Platform",
-  description:
-    "A secure healthcare operations platform for managing clinical appointments and workflows. It provides role-based access for administrators, doctors, and staff, with authenticated sessions and audit-logged activity.",
-  tech: ["React", "TypeScript", "Tailwind CSS"],
-  type: "ML",
-  image: healthAppointmentImage,
-  live: "https://healthcare-intelligence.vercel.app/",
-  video: healthAppointmentVideo,
-  urlPath: "projects/healthcare-appointment-intelligence",
-},
   ];
 
-  const filters = ["ALL", "FULL-STACK", "FRONTEND", "BACKEND", "AI / AGENTS", "AUTOMATION", "ML"];
+  const filters = ["ALL", "FULL-STACK", "FRONTEND", "AI / AGENTS", "AUTOMATION"];
 
   const filteredProjects =
     activeFilter === "ALL"
@@ -324,301 +196,156 @@ const Projects = () => {
     setModalVideo(null);
   }, []);
 
-  const getBadgeColor = (type) => {
-    const primaryType = Array.isArray(type) ? type[0] : type;
-    if (primaryType === "AI / AGENTS") return "#3B82F6";
-    if (primaryType === "AUTOMATION") return "#F59E0B";
-    return "#A0714F";
-  };
-
-  const getBadgeBgColor = (type) => {
-    const primaryType = Array.isArray(type) ? type[0] : type;
-    if (primaryType === "AI / AGENTS") return "rgba(59, 130, 246, 0.12)";
-    if (primaryType === "AUTOMATION") return "rgba(245, 158, 11, 0.12)";
-    return "rgba(160,113,79,0.12)";
-  };
-
-  // Re-trigger reveal animations when filter changes
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      document.querySelectorAll(".proj-card.reveal").forEach((el) => {
-        el.classList.add("is-visible");
-      });
-    }, 50);
-    return () => clearTimeout(timer);
-  }, [activeFilter]);
-
   return (
-    <section id="projects" className="section-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
-        {/* Header Row */}
-        <div className="flex flex-col md:flex-row border-b border-border mb-10">
-          <div className="w-full md:w-1/2 py-8 border-b md:border-b-0 md:border-r border-border">
-            <span className="font-mono text-mono-tiny uppercase tracking-wider text-copper block mb-2">
-              // PORTFOLIO
-            </span>
-            <h2 className="font-serif text-4xl lg:text-5xl font-light italic text-espresso">
-              Featured Projects
+    <section id="projects" className="py-24 bg-[#FAF7F2] border-t border-[#E8DDD0]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Section Heading with Accent */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#8B5E3C]" />
+              <span className="font-mono text-xs font-semibold text-[#8B5E3C] uppercase tracking-wider">
+                Selected Work
+              </span>
+            </div>
+            <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-[#2D1B0E] tracking-tight">
+              Featured <span className="gradient-text font-serif italic font-normal">Projects</span>
             </h2>
+            <div className="w-24 h-1 bg-[#8B5E3C] rounded-full mt-2" />
           </div>
-          <div className="w-full md:w-1/2 py-8 md:pl-12">
-            <p className="font-sans text-base font-light text-muted leading-relaxed">
-              A curated selection of applications I&apos;ve built — from real-time
-              dashboards to AI automation pipelines. Each project represents a unique
-              challenge solved with clean architecture and modern technologies.
-            </p>
+
+          {/* Filter Pills */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`font-mono text-xs px-4 py-2 rounded-xl transition-all duration-200 uppercase tracking-wider font-semibold cursor-pointer border ${
+                  activeFilter === filter
+                    ? "bg-[#8B5E3C] text-white border-[#8B5E3C] shadow-sm"
+                    : "bg-[#FFF8F0] text-[#5C4033] border-[#E8DDD0] hover:border-[#8B5E3C]/50 hover:text-[#8B5E3C]"
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex items-center gap-1 mb-10 overflow-x-auto no-scrollbar">
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`filter-tab ${activeFilter === filter ? "active" : ""}`}
-              style={{
-                transition: "all 0.2s ease",
-                flexShrink: 0,
-                ...(activeFilter === filter && filter === "AI / AGENTS" ? { color: "#3B82F6", borderBottom: "2px solid #3B82F6" } : {}),
-                ...(activeFilter === filter && filter === "AUTOMATION" ? { color: "#F59E0B", borderBottom: "2px solid #F59E0B" } : {}),
-              }}
+        {/* Bento Grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, idx) => (
+            <div
+              key={idx}
+              className="warm-card rounded-2xl overflow-hidden flex flex-col justify-between group border border-[#E8DDD0]"
             >
-              {filter}
-            </button>
-          ))}
-        </div>
-
-        {/* Project Card Grid with smooth transition */}
-        <div className="proj-grid" key={activeFilter}>
-          {filteredProjects.map((project) => (
-            <div key={project.title} className="proj-card reveal">
-              {/* Browser Chrome Bar */}
-              <div
-                style={{
-                  background: "#EDE8DF",
-                  padding: "8px 12px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div style={{ display: "flex", gap: "5px" }}>
-                  <span
-                    style={{
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
-                      background: "#E57373",
-                      display: "inline-block",
-                    }}
-                  />
-                  <span
-                    style={{
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
-                      background: "#FFB74D",
-                      display: "inline-block",
-                    }}
-                  />
-                  <span
-                    style={{
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
-                      background: "#81C784",
-                      display: "inline-block",
-                    }}
-                  />
-                </div>
-                <span
-                  style={{
-                    fontFamily: "'Space Mono', monospace",
-                    fontSize: "0.58rem",
-                    color: "#8A7560",
-                    letterSpacing: "0.04em",
-                  }}
-                >
-                  {project.urlPath}
-                </span>
-                <span style={{ width: "40px" }} />
-              </div>
-
-              {/* Project Screenshot */}
-              <div className="proj-img-wrapper">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  onLoad={(e) => {
-                    e.target.parentElement.classList.add("loaded");
-                  }}
-                  style={{
-                    width: "100%",
-                    height: "220px",
-                    objectFit: "contain",
-                    objectPosition: "center",
-                    background: "#120d08",
-                    transition: "transform 0.5s ease",
-                  }}
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.parentElement.innerHTML =
-                      '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:\'Cormorant Garamond\',serif;font-size:1.2rem;color:#A0714F;font-style:italic;padding:2rem;text-align:center;">' +
-                      project.title +
-                      "</div>";
-                  }}
-                />
-              </div>
-
-              {/* Card Body */}
-              <div
-                style={{
-                  padding: "1.25rem",
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                {/* Name + Type Badge */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginBottom: "0.4rem",
-                  }}
-                >
-                  <h3
-                    style={{
-                      fontFamily: "'Cormorant Garamond', Georgia, serif",
-                      fontSize: "1.25rem",
-                      fontWeight: 600,
-                      color: "#1C1007",
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {project.title}
-                  </h3>
-                  <span
-                    style={{
-                      fontFamily: "'Space Mono', monospace",
-                      fontSize: "0.6rem",
-                      textTransform: "uppercase",
-                      color: getBadgeColor(project.type),
-                      background: getBadgeBgColor(project.type),
-                      padding: "2px 8px",
-                    }}
-                  >
-                    {Array.isArray(project.type) ? project.type[0] : project.type}
+              <div>
+                {/* Browser bar header */}
+                <div className="bg-[#FAF7F2] px-4 py-2.5 border-b border-[#E8DDD0] flex items-center justify-between">
+                  <div className="flex gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#E06C75]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#E5C07B]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#98C379]" />
+                  </div>
+                  <span className="font-mono text-[11px] text-[#8A7560] truncate max-w-[180px]">
+                    {project.urlPath}
                   </span>
                 </div>
 
-                {/* Subtitle */}
-                <p
-                  style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
-                    fontSize: "0.82rem",
-                    fontStyle: "italic",
-                    color: "#8A7560",
-                    marginBottom: "0.6rem",
-                  }}
-                >
-                  {project.subtitle}
-                </p>
+                {/* Screenshot image */}
+                <div className="relative h-48 sm:h-52 bg-[#120d08] overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2D1B0E]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
 
-                {/* Description */}
-                <p
-                  style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
-                    fontSize: "0.83rem",
-                    lineHeight: 1.65,
-                    color: "#8A7560",
-                    display: "-webkit-box",
-                    WebkitLineClamp: 3,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                    marginBottom: "0.8rem",
-                  }}
-                >
-                  {project.description}
-                </p>
-
-                {/* Tech Pills */}
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "6px",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      style={{
-                        fontFamily: "'Space Mono', monospace",
-                        fontSize: "0.65rem",
-                        color: "#4A2E1A",
-                        background: "rgba(28,16,7,0.06)",
-                        border: "1px solid rgba(28,16,7,0.1)",
-                        borderRadius: "4px",
-                        padding: "3px 8px",
-                      }}
-                    >
-                      {t}
+                {/* Card Content */}
+                <div className="p-6">
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <h3 className="font-heading font-bold text-xl text-[#2D1B0E] group-hover:text-[#8B5E3C] transition-colors">
+                      {project.title}
+                    </h3>
+                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-[#8B5E3C]/10 text-[#8B5E3C] uppercase tracking-wider font-semibold">
+                      {Array.isArray(project.type) ? project.type[0] : project.type}
                     </span>
-                  ))}
+                  </div>
+
+                  <p className="font-mono text-xs italic text-[#8B5E3C] mb-3">
+                    {project.subtitle}
+                  </p>
+
+                  <p className="font-sans text-xs text-[#5C4033] leading-relaxed line-clamp-3 mb-4">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Tags */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tech.map((t, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="font-mono text-[10px] px-2.5 py-1 bg-[#FAF7F2] text-[#2D1B0E] border border-[#E8DDD0] rounded-md"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Card Footer */}
-              <div
-                style={{
-                  padding: "1rem 1.25rem",
-                  borderTop: "1px solid rgba(28,16,7,0.08)",
-                  display: "flex",
-                  gap: "0.6rem",
-                  marginTop: "auto",
-                }}
-              >
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="card-btn"
-                    style={{ textDecoration: "none" }}
-                  >
-                    CODE ↗
-                  </a>
-                )}
-                {project.live && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="card-btn"
-                    style={{ textDecoration: "none" }}
-                  >
-                    LIVE ↗
-                  </a>
-                )}
-                {project.video && (
-                  <button
-                    className="card-btn demo"
-                    onClick={() => setModalVideo(project.video)}
-                  >
-                    ▶ DEMO
-                  </button>
-                )}
+              {/* Card Footer Actions */}
+              <div className="p-4 bg-[#FAF7F2]/60 border-t border-[#E8DDD0] flex items-center justify-between gap-2">
+                <div className="flex gap-2 w-full">
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-brown flex-1 text-[11px] py-2 px-3 rounded-lg text-center"
+                    >
+                      Live Demo ↗
+                    </a>
+                  )}
+                  {project.video && (
+                    <button
+                      onClick={() => setModalVideo(project.video)}
+                      className="btn-outline-brown flex-1 text-[11px] py-2 px-3 rounded-lg text-center cursor-pointer"
+                    >
+                      Watch Demo ↗
+                    </button>
+                  )}
+                  {project.github && !project.live && !project.video && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-outline-brown flex-1 text-[11px] py-2 px-3 rounded-lg text-center"
+                    >
+                      GitHub Code ↗
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* View All Projects Button */}
+        <div className="mt-16 text-center">
+          <a
+            href="https://github.com/itz-hurairah18?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-brown text-sm px-8 py-4 rounded-xl inline-flex items-center gap-2 shadow-warm"
+          >
+            View All Repositories on GitHub ↗
+          </a>
+        </div>
       </div>
 
-      {/* Demo Modal */}
+      {/* Demo Video Modal */}
       <AnimatePresence>
         {modalVideo && (
           <DemoModal videoSrc={modalVideo} onClose={handleModalClose} />

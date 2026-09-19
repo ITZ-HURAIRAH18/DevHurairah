@@ -15,18 +15,21 @@ export default {
       },
     },
     fontFamily: {
+      sans: ["'Plus Jakarta Sans'", "'Space Grotesk'", "system-ui", "sans-serif"],
+      heading: ["'Outfit'", "'Plus Jakarta Sans'", "sans-serif"],
       serif: ["'Cormorant Garamond'", "Georgia", "serif"],
-      sans: ["'Space Grotesk'", "system-ui", "sans-serif"],
       mono: ["'Space Mono'", "monospace"],
     },
     extend: {
       colors: {
-        page: "#F7F3EC",
-        card: "#E8DED0",
-        espresso: "#1C1007",
-        copper: "#A0714F",
+        page: "#FAF7F2",
+        card: "#FFF8F0",
+        espresso: "#2D1B0E",
+        copper: "#8B5E3C",
+        tan: "#C49A6C",
+        body: "#5C4033",
         muted: "#8A7560",
-        border: "rgba(28,16,7,0.10)",
+        border: "#E8DDD0",
       },
       fontSize: {
         "editorial": ["90px", { lineHeight: "0.95", letterSpacing: "-0.02em" }],
@@ -45,18 +48,28 @@ export default {
           "100%": { transform: "translateX(0%)" },
         },
         "pulse-dot": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.3" },
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.4", transform: "scale(1.2)" },
         },
+        "mesh": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "33%": { transform: "translate(30px, -40px) scale(1.08)" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.95)" },
+        }
       },
       animation: {
         "marquee": "marquee 40s linear infinite",
         "marquee-reverse": "marquee-reverse 45s linear infinite",
         "pulse-dot": "pulse-dot 2s ease-in-out infinite",
+        "mesh": "mesh 12s ease-in-out infinite alternate",
       },
       borderWidth: {
         "section": "1px",
       },
+      boxShadow: {
+        "warm": "0 10px 30px -5px rgba(45, 27, 14, 0.06), 0 4px 12px -2px rgba(139, 94, 60, 0.04)",
+        "warm-hover": "0 22px 45px -10px rgba(45, 27, 14, 0.14), 0 8px 24px -4px rgba(139, 94, 60, 0.12)",
+      }
     },
   },
   plugins: [],

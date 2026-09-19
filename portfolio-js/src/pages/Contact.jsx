@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Contact = () => {
   const [formState, setFormState] = useState({
@@ -28,385 +28,181 @@ const Contact = () => {
         body: JSON.stringify(formState),
       });
 
-      if (!response.ok) throw new Error("Failed to send");
+      if (!response.ok) throw new Error("Failed to send message");
 
       setSubmitStatus("success");
       setFormState({ name: "", email: "", message: "" });
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Count-up animation for stats
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const statElements = document.querySelectorAll(".stat-number");
-            statElements.forEach((el) => {
-              const target = parseInt(el.dataset.target);
-              let start = 0;
-              const duration = 1200;
-              const step = target / (duration / 16);
-              const timer = setInterval(() => {
-                start += step;
-                if (start >= target) {
-                  el.textContent = target + "+";
-                  clearInterval(timer);
-                  return;
-                }
-                el.textContent = Math.floor(start) + "+";
-              }, 16);
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const contactSection = document.getElementById("contact");
-    if (contactSection) observer.observe(contactSection);
-    return () => observer.disconnect();
-  }, []);
-
-  const stats = [
-    { number: "20+", target: 20, label: "PROJECTS BUILT" },
-    { number: "2+", target: 2, label: "YEARS EXP." },
-    { number: "10+", target: 10, label: "TECHNOLOGIES" },
-  ];
-
-  const details = [
-    { label: "LOCATION", value: "Pakistan · Remote Worldwide" },
-    {
-      label: "EMAIL",
-      value: "abuhurx@gmail.com",
-      isEmail: true,
-    },
-    { label: "TIMEZONE", value: "PKT (UTC+5)" },
-  ];
-
   return (
-    <section id="contact" className="section-border">
-      {/* TOP SECTION - Dark Espresso Background */}
-      <div className="contact-top">
-        {/* Left Side */}
-        <div>
-          <span
-            style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.6rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              color: "#A0714F",
-              display: "block",
-              marginBottom: "1rem",
-            }}
-          >
-            // CONTACT
-          </span>
-          <h2
-            style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
-              fontWeight: 300,
-              color: "#F7F3EC",
-              lineHeight: 1.05,
-              marginBottom: "1.5rem",
-            }}
-          >
-            <span>Let&apos;s Build</span>
-            <br />
-            <span>Something</span>
-            <br />
-            <span style={{ fontStyle: "italic", color: "#A0714F" }}>Great</span>
+    <section id="contact" className="py-24 bg-[#FAF7F2] border-t border-[#E8DDD0]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Section Heading */}
+        <div className="flex flex-col items-start gap-3 mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full">
+            <span className="w-2 h-2 rounded-full bg-[#8B5E3C]" />
+            <span className="font-mono text-xs font-semibold text-[#8B5E3C] uppercase tracking-wider">
+              Get In Touch
+            </span>
+          </div>
+          <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-[#2D1B0E] tracking-tight">
+            Let&apos;s Build Something <span className="gradient-text font-serif italic font-normal">Extraordinary</span>
           </h2>
-
-          <p
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "0.9rem",
-              fontWeight: 300,
-              color: "rgba(247,243,236,0.55)",
-              lineHeight: 1.6,
-              marginBottom: "1rem",
-              maxWidth: "380px",
-            }}
-          >
-            Have a project in mind or want to discuss a collaboration? I&apos;m
-            always open to exploring new opportunities.
-          </p>
-
-          <p
-            style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: "1rem",
-              fontStyle: "italic",
-              color: "#A0714F",
-              marginBottom: "2rem",
-            }}
-          >
-            &ldquo;Clean code. Scalable systems. Delivered on time.&rdquo;
-          </p>
-
-          <hr
-            style={{
-              border: "none",
-              height: "1px",
-              background: "#A0714F",
-              opacity: 0.2,
-              marginBottom: "2rem",
-            }}
-          />
-
-          {/* Contact Details with Dotted Leaders */}
-          <div style={{ marginBottom: "2rem" }}>
-            {details.map((detail) => (
-              <div key={detail.label} className="contact-detail-row">
-                <span className="contact-detail-label">{detail.label}</span>
-                <span className="contact-detail-dots" />
-                {detail.isEmail ? (
-                  <a
-                    href={`mailto:${detail.value}`}
-                    className="contact-detail-value email"
-                  >
-                    {detail.value}
-                  </a>
-                ) : (
-                  <span className="contact-detail-value">{detail.value}</span>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Social Links */}
-          <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
-            <a
-              href="https://github.com/itz-hurairah18"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "0.78rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                color: "#F7F3EC",
-                textDecoration: "none",
-                transition: "all 0.2s",
-                border: "1px solid rgba(247,243,236,0.15)",
-                padding: "0.5rem 1.25rem",
-                borderRadius: "4px",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.color = "#1C1007";
-                e.target.style.background = "#A0714F";
-                e.target.style.borderColor = "#A0714F";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.color = "#F7F3EC";
-                e.target.style.background = "transparent";
-                e.target.style.borderColor = "rgba(247,243,236,0.15)";
-              }}
-            >
-              GitHub ↗
-            </a>
-            <a
-              href="https://www.linkedin.com/in/muhammad-abu-hurairah-988ba1303/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "0.78rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                color: "#F7F3EC",
-                textDecoration: "none",
-                transition: "all 0.2s",
-                border: "1px solid rgba(247,243,236,0.15)",
-                padding: "0.5rem 1.25rem",
-                borderRadius: "4px",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.color = "#1C1007";
-                e.target.style.background = "#A0714F";
-                e.target.style.borderColor = "#A0714F";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.color = "#F7F3EC";
-                e.target.style.background = "transparent";
-                e.target.style.borderColor = "rgba(247,243,236,0.15)";
-              }}
-            >
-              LinkedIn ↗
-            </a>
-          </div>
+          <div className="w-20 h-1 bg-[#8B5E3C] rounded-full mt-1" />
         </div>
 
-        {/* Right Side - Stats */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          {stats.map((stat) => (
-            <div key={stat.label} className="contact-stat">
-              <div
-                className="stat-number"
-                data-target={stat.target}
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "3.5rem",
-                  fontWeight: 300,
-                  color: "#A0714F",
-                  lineHeight: 1,
-                }}
-              >
-                {stat.number}
+        {/* Split Layout: Left Info (5 cols) & Right Form (7 cols) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Heading + Email + Social Links */}
+          <div className="lg:col-span-5 flex flex-col gap-8">
+            <div className="space-y-4">
+              <h3 className="font-heading font-bold text-2xl text-[#2D1B0E]">
+                Have a vision or project in mind?
+              </h3>
+              <p className="font-sans text-base text-[#5C4033] leading-relaxed">
+                Whether you need a full-stack web application, mobile software, or intelligent AI automation pipelines — I am ready to collaborate.
+              </p>
+            </div>
+
+            {/* Direct Contact Details */}
+            <div className="space-y-4 pt-4 border-t border-[#E8DDD0]">
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 rounded-lg bg-[#8B5E3C]/10 border border-[#8B5E3C]/20 text-[#8B5E3C] flex items-center justify-center font-mono text-xs font-bold">
+                  @
+                </span>
+                <div>
+                  <p className="font-mono text-[10px] text-[#8A7560] uppercase tracking-wider">Direct Email</p>
+                  <a
+                    href="mailto:abuhurx@gmail.com"
+                    className="font-sans font-semibold text-base text-[#2D1B0E] hover:text-[#8B5E3C] transition-colors"
+                  >
+                    abuhurx@gmail.com
+                  </a>
+                </div>
               </div>
-              <div
-                style={{
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "0.6rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: "rgba(247,243,236,0.4)",
-                  marginTop: "0.25rem",
-                }}
-              >
-                {stat.label}
+
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 rounded-lg bg-[#8B5E3C]/10 border border-[#8B5E3C]/20 text-[#8B5E3C] flex items-center justify-center font-mono text-xs font-bold">
+                  ✦
+                </span>
+                <div>
+                  <p className="font-mono text-[10px] text-[#8A7560] uppercase tracking-wider">Location & Timezone</p>
+                  <p className="font-sans font-semibold text-base text-[#2D1B0E]">
+                    Pakistan (UTC+5) · Available Worldwide
+                  </p>
+                </div>
               </div>
             </div>
-          ))}
+
+            {/* Social Link Buttons */}
+            <div className="pt-4 border-t border-[#E8DDD0] space-y-3">
+              <p className="font-mono text-xs text-[#8A7560] uppercase tracking-wider font-semibold">
+                Social Networks:
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="https://github.com/itz-hurairah18"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline-brown text-xs px-5 py-2.5 rounded-lg"
+                >
+                  GitHub ↗
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/muhammad-abu-hurairah-988ba1303/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline-brown text-xs px-5 py-2.5 rounded-lg"
+                >
+                  LinkedIn ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Clean Contact Form Card */}
+          <div className="lg:col-span-7">
+            <div className="warm-card p-8 sm:p-10 rounded-2xl border border-[#E8DDD0] shadow-warm">
+              <h3 className="font-heading font-bold text-2xl text-[#2D1B0E] mb-2">
+                Send a Message
+              </h3>
+              <p className="font-sans text-xs text-[#8A7560] mb-8">
+                Fill out the form below and I will get back to you within 24 hours.
+              </p>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label className="block font-mono text-xs uppercase tracking-wider text-[#2D1B0E] font-semibold mb-2">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formState.name}
+                    onChange={handleChange}
+                    placeholder="Enter your name"
+                    required
+                    className="w-full px-4 py-3.5 bg-[#FAF7F2] border border-[#E8DDD0] rounded-xl font-sans text-sm text-[#2D1B0E] focus:outline-none focus:border-[#8B5E3C] focus:ring-2 focus:ring-[#8B5E3C]/20 transition-all placeholder-[#8A7560]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs uppercase tracking-wider text-[#2D1B0E] font-semibold mb-2">
+                    Your Email Address
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formState.email}
+                    onChange={handleChange}
+                    placeholder="name@example.com"
+                    required
+                    className="w-full px-4 py-3.5 bg-[#FAF7F2] border border-[#E8DDD0] rounded-xl font-sans text-sm text-[#2D1B0E] focus:outline-none focus:border-[#8B5E3C] focus:ring-2 focus:ring-[#8B5E3C]/20 transition-all placeholder-[#8A7560]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs uppercase tracking-wider text-[#2D1B0E] font-semibold mb-2">
+                    Your Message
+                  </label>
+                  <textarea
+                    name="message"
+                    rows={5}
+                    value={formState.message}
+                    onChange={handleChange}
+                    placeholder="Tell me about your project details, timeline, or scope..."
+                    required
+                    className="w-full px-4 py-3.5 bg-[#FAF7F2] border border-[#E8DDD0] rounded-xl font-sans text-sm text-[#2D1B0E] focus:outline-none focus:border-[#8B5E3C] focus:ring-2 focus:ring-[#8B5E3C]/20 transition-all placeholder-[#8A7560] resize-none"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-brown w-full py-4 text-sm font-bold rounded-xl shadow-warm hover:shadow-warm-hover disabled:opacity-50"
+                >
+                  {isSubmitting ? "Sending Message..." : "Send Message ↗"}
+                </button>
+
+                {submitStatus === "success" && (
+                  <div className="p-4 bg-[#8B5E3C]/10 border border-[#8B5E3C] rounded-xl text-[#8B5E3C] font-mono text-xs font-semibold text-center">
+                    Thank you! Your message has been sent successfully.
+                  </div>
+                )}
+                {submitStatus === "error" && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 font-mono text-xs font-semibold text-center">
+                    Something went wrong. Please email abuhurx@gmail.com directly.
+                  </div>
+                )}
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* BOTTOM SECTION - Ivory Background */}
-      <div className="contact-bottom">
-        {/* Availability Label */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            marginBottom: "1rem",
-          }}
-        >
-          <span className="pulse-dot" />
-          <span
-            style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.65rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              color: "#1C1007",
-            }}
-          >
-            CURRENTLY AVAILABLE
-          </span>
-        </div>
-
-        {/* Availability Sentence */}
-        <p
-          style={{
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: "1.3rem",
-            fontStyle: "italic",
-            color: "#8A7560",
-            fontWeight: 300,
-            lineHeight: 1.5,
-            marginBottom: "2rem",
-            maxWidth: "500px",
-          }}
-        >
-          I&apos;m currently accepting new projects and available for freelance
-          work, consulting, and full-time opportunities.
-        </p>
-
-        {/* Contact Form */}
-        <form onSubmit={handleSubmit}>
-          {/* Name Input */}
-          <input
-            type="text"
-            name="name"
-            className="contact-bottom-input"
-            placeholder="Your Name"
-            value={formState.name}
-            onChange={handleChange}
-            required
-          />
-
-          {/* Email Input */}
-          <input
-            type="email"
-            name="email"
-            className="contact-bottom-input"
-            placeholder="Your Email"
-            value={formState.email}
-            onChange={handleChange}
-            required
-          />
-
-          {/* Message Textarea */}
-          <textarea
-            name="message"
-            className="contact-bottom-input contact-bottom-textarea"
-            placeholder="Tell me about your project"
-            rows={4}
-            value={formState.message}
-            onChange={handleChange}
-            required
-            style={{ minHeight: "120px", resize: "vertical" }}
-          />
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="contact-send-btn"
-          >
-            <span>Send Message</span>
-            <span className="send-arrow">→</span>
-          </button>
-
-          {/* Status Messages */}
-          {submitStatus === "success" && (
-            <p
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "0.65rem",
-                color: "#A0714F",
-                marginTop: "1rem",
-              }}
-            >
-              Message sent successfully! I&apos;ll get back to you soon.
-            </p>
-          )}
-          {submitStatus === "error" && (
-            <p
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "0.65rem",
-                color: "#dc2626",
-                marginTop: "1rem",
-              }}
-            >
-              Failed to send message. Please try again or email directly.
-            </p>
-          )}
-        </form>
-
-        {/* Response Time Note */}
-        <p
-          style={{
-            fontFamily: "'Space Mono', monospace",
-            fontSize: "0.6rem",
-            color: "#8A7560",
-            marginTop: "1.5rem",
-            paddingTop: "1rem",
-            borderTop: "1px solid rgba(28,16,7,0.08)",
-          }}
-        >
-          I typically respond within 24 hours.
-        </p>
       </div>
     </section>
   );

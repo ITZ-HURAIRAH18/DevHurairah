@@ -1,205 +1,177 @@
+import { useState, useEffect } from "react";
+
 const Home = () => {
-  const techStack = [
-    "React",
-    "Next.js",
-    "n8n",
-    "LangChain",
-    "FastAPI",
-    "Django",
-    // "Node",
-    "PostgreSQL",
+  const roles = [
+    "Full-Stack Developer",
+    "AI Automation Specialist",
+    "MERN Stack Engineer",
+    "n8n Workflow Architect",
   ];
+
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentFullRole = roles[currentRoleIndex];
+    const typingSpeed = isDeleting ? 40 : 80;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(currentFullRole.substring(0, displayText.length + 1));
+        if (displayText.length + 1 === currentFullRole.length) {
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        setDisplayText(currentFullRole.substring(0, displayText.length - 1));
+        if (displayText.length === 0) {
+          setIsDeleting(false);
+          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, currentRoleIndex]);
 
   return (
     <section
       id="home"
-      className="flex flex-col lg:flex-row px-6 lg:px-12 xl:px-20 py-12 lg:py-16"
+      className="gradient-mesh-bg relative min-h-[calc(100vh-5rem)] flex items-center justify-center px-6 lg:px-12 xl:px-20 py-16 lg:py-24"
     >
-      {/* Left Column (60%) */}
-      <div
-        className="w-full lg:w-3/5 flex flex-col justify-start pr-0 lg:pr-12 xl:pr-16 hero-left"
-        style={{ gap: "1.5rem" }}
-      >
-        {/* Editorial Name with Cinematic Animation */}
-        <h1
-          className="font-serif font-light text-espresso leading-[0.95] tracking-tight hero-name"
-          style={{ fontSize: "clamp(3rem, 7vw, 6rem)" }}
-        >
-          <span
-            style={{
-              display: "block",
-              opacity: 0,
-              animation: "slideUp 0.8s 0.2s ease both",
-            }}
-          >
-            Muhammad
-          </span>
-          <span
-            style={{
-              display: "block",
-              opacity: 0,
-              animation: "slideUp 0.8s 0.35s ease both",
-            }}
-          >
-            <span className="italic text-copper">Abu </span> Hurairah
-          </span>
-        </h1>
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center z-10">
+        {/* Left Content Column (7 cols) */}
+        <div className="lg:col-span-7 flex flex-col items-start gap-6">
+          {/* Greeting Badge */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full shadow-sm">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#8B5E3C] animate-pulse" />
+            <span className="font-mono text-xs font-semibold text-[#8B5E3C] tracking-wide uppercase">
+              Assalamu Alaikum
+            </span>
+          </div>
 
-        {/* Subtitle */}
-        <p
-          className="hero-role font-serif text-xl lg:text-2xl xl:text-3xl italic text-muted font-light"
-          style={{
-            margin: 0,
-            opacity: 0,
-            animation: "slideUp 0.6s 0.4s ease both",
-          }}
-        >
-          Engineer — Architect — Builder
-        </p>
+          {/* Heading with Large Bold Name & Gradient Accent */}
+          <div className="space-y-2">
+            <p className="font-mono text-sm tracking-widest text-[#8A7560] uppercase font-medium">
+              Software & AI Systems Engineer
+            </p>
+            <h1 className="font-heading font-extrabold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl tracking-tight leading-[1.05] text-[#2D1B0E]">
+              ABU <span className="gradient-text font-serif italic font-normal">HURAIRAH</span>
+            </h1>
+          </div>
 
-        {/* Description Paragraph */}
-        <p
-          className="hero-para font-sans text-base lg:text-lg font-light text-espresso/80 leading-relaxed max-w-xl"
-          style={{
-            margin: 0,
-            opacity: 0,
-            animation: "slideUp 0.6s 0.5s ease both",
-          }}
-        >
-          Full-stack engineer building scalable applications across web,
-          mobile, and desktop platforms with a growing focus on <strong>AI automation</strong> — building n8n pipelines, LLM-powered agents, and intelligent workflows that save hundreds of hours monthly.
-        </p>
+          {/* Dynamic Role Typing Display */}
+          <div className="h-10 flex items-center">
+            <span className="font-mono text-lg sm:text-xl lg:text-2xl font-bold text-[#8B5E3C]">
+              {displayText}
+              <span className="animate-pulse border-r-2 border-[#8B5E3C] ml-1">&nbsp;</span>
+            </span>
+          </div>
 
-        {/* CTA Buttons */}
-        <div
-          className="hero-actions flex flex-wrap gap-4 lg:gap-6"
-          style={{
-            marginTop: "1.2rem",
-            opacity: 0,
-            animation: "slideUp 0.6s 0.6s ease both",
-          }}
-        >
-          <a href="#projects" className="btn-solid">
-            View Work ↗
-          </a>
-          <a href="/CV.pdf" download="Muhammad-Abu-Hurairah-CV" className="btn-ghost">
-            Download CV
-          </a>
-        </div>
+          {/* Short Bio */}
+          <p className="font-sans text-base sm:text-lg text-[#5C4033] leading-relaxed max-w-2xl font-normal">
+            Building scalable full-stack web applications and intelligent <strong>AI automation workflows</strong>. Specializing in React, Node.js, Python, n8n, and LLM agent integration to automate complexity and solve real-world problems.
+          </p>
 
-        {/* Social Links */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1.5rem",
-            marginTop: "1.5rem",
-            opacity: 0,
-            animation: "slideUp 0.6s 0.7s ease both",
-          }}
-        >
-          <a
-            href="https://github.com/itz-hurairah18"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.72rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              color: "#A0714F",
-              textDecoration: "none",
-              transition: "opacity 0.2s",
-            }}
-            onMouseEnter={(e) => (e.target.style.opacity = "0.6")}
-            onMouseLeave={(e) => (e.target.style.opacity = "1")}
-          >
-            GitHub ↗
-          </a>
-          <span style={{ color: "rgba(28,16,7,0.15)", fontSize: "0.8rem" }}>/</span>
-          <a
-            href="https://www.linkedin.com/in/muhammad-abu-hurairah-988ba1303/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.72rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              color: "#A0714F",
-              textDecoration: "none",
-              transition: "opacity 0.2s",
-            }}
-            onMouseEnter={(e) => (e.target.style.opacity = "0.6")}
-            onMouseLeave={(e) => (e.target.style.opacity = "1")}
-          >
-            LinkedIn ↗
-          </a>
-        </div>
-      </div>
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#projects" className="btn-brown text-sm px-7 py-4">
+              View Projects ↘
+            </a>
+            <a href="#contact" className="btn-outline-brown text-sm px-7 py-4">
+              Get In Touch ↗
+            </a>
+          </div>
 
-      {/* Right Column (40%) — Photo + horizontal tech row */}
-      <div
-        className="w-full lg:w-2/5 flex flex-col mt-2 lg:mt-0 hero-right"
-        style={{ opacity: 0, animation: "slideLeft 0.8s 0.3s ease both" }}
-      >
-        {/* Professional Photo Layout */}
-        <div
-          className="relative w-full overflow-hidden"
-          style={{ height: "420px" }}
-        >
-          <img
-            src="/hurairah.jpeg"
-            alt="Muhammad Abu Hurairah — Full-Stack Engineer"
-            className="w-full h-full object-cover object-[center_top]"
-            loading="eager"
-            decoding="async"
-          />
-          {/* Stronger gradient overlay for text readability */}
-          <div
-            className="absolute bottom-0 left-0 right-0 h-2/5"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(28,16,7,0.85) 0%, rgba(28,16,7,0.5) 40%, transparent 100%)",
-            }}
-          />
-          {/* Name + title overlay on gradient */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
-            <div
-              className="font-serif text-xl lg:text-2xl italic text-white font-light leading-tight"
-              style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
-            >
-              Muhammad Abu Hurairah
-            </div>
-            <div
-              className="font-mono text-mono-xs uppercase tracking-wider text-copper mt-1"
-              style={{ textShadow: "0 1px 3px rgba(0,0,0,0.4)" }}
-            >
-              Full-Stack Developer & AI Automation Engineer
+          {/* Social Links Row */}
+          <div className="flex items-center gap-6 pt-4 border-t border-[#E8DDD0]/70 w-full max-w-md">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#8A7560]">
+              Connect:
+            </span>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://github.com/itz-hurairah18"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs text-[#8B5E3C] hover:text-[#2D1B0E] transition-colors duration-200 uppercase tracking-wider font-bold no-underline"
+              >
+                GitHub ↗
+              </a>
+              <span className="text-[#E8DDD0]">•</span>
+              <a
+                href="https://www.linkedin.com/in/muhammad-abu-hurairah-988ba1303/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs text-[#8B5E3C] hover:text-[#2D1B0E] transition-colors duration-200 uppercase tracking-wider font-bold no-underline"
+              >
+                LinkedIn ↗
+              </a>
+              <span className="text-[#E8DDD0]">•</span>
+              <a
+                href="mailto:abuhurx@gmail.com"
+                className="font-mono text-xs text-[#8B5E3C] hover:text-[#2D1B0E] transition-colors duration-200 uppercase tracking-wider font-bold no-underline"
+              >
+                Email ↗
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Horizontal Tech Stack Row */}
-        <div
-          className="flex items-stretch overflow-x-auto border-t border-border bg-card"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {techStack.map((tech, index) => (
-            <div
-              key={index}
-              className="flex items-center px-3 py-2.5 flex-shrink-0"
-              style={
-                index < techStack.length - 1
-                  ? { borderRight: "1px solid rgba(28,16,7,0.10)" }
-                  : {}
-              }
-            >
-              <span className="font-mono text-mono-tiny uppercase tracking-wider text-muted whitespace-nowrap">
-                {tech}
+        {/* Right Column (5 cols) — Animated Code Terminal / Profile Mockup Card */}
+        <div className="lg:col-span-5 w-full">
+          <div className="warm-card p-6 rounded-2xl relative border border-[#E8DDD0] shadow-warm">
+            {/* Terminal Header Chrome */}
+            <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#E8DDD0]">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-[#E06C75]" />
+                <span className="w-3 h-3 rounded-full bg-[#E5C07B]" />
+                <span className="w-3 h-3 rounded-full bg-[#98C379]" />
+              </div>
+              <span className="font-mono text-xs text-[#8A7560] font-semibold">
+                developer.config.ts
               </span>
             </div>
-          ))}
+
+            {/* Terminal Code Snippet Display */}
+            <div className="font-mono text-xs sm:text-sm leading-relaxed text-[#2D1B0E] space-y-2 bg-[#FAF7F2] p-5 rounded-xl border border-[#E8DDD0]/60 overflow-x-auto">
+              <div>
+                <span className="text-[#8B5E3C] font-bold">const</span>{" "}
+                <span className="text-[#C49A6C]">engineer</span> = &#123;
+              </div>
+              <div className="pl-4">
+                name: <span className="text-[#764D2E]">&quot;Abu Hurairah&quot;</span>,
+              </div>
+              <div className="pl-4">
+                title: <span className="text-[#764D2E]">&quot;Full-Stack & AI Systems&quot;</span>,
+              </div>
+              <div className="pl-4">
+                location: <span className="text-[#764D2E]">&quot;Pakistan&quot;</span>,
+              </div>
+              <div className="pl-4">
+                skills: [
+              </div>
+              <div className="pl-8 text-[#8B5E3C]">
+                &quot;React&quot;, &quot;Node.js&quot;, &quot;n8n&quot;, &quot;Python&quot;, &quot;LLMs&quot;
+              </div>
+              <div className="pl-4">],</div>
+              <div className="pl-4">
+                availability: <span className="text-[#28a745] font-bold">&quot;Available for Projects&quot;</span>
+              </div>
+              <div>&#125;;</div>
+
+              <div className="pt-2 text-[#8A7560] italic">
+                // Ready to bring your vision to life with high quality code.
+              </div>
+            </div>
+
+            {/* Quick Stat Pill below terminal */}
+            <div className="mt-4 pt-4 border-t border-[#E8DDD0] flex items-center justify-between text-xs font-mono">
+              <span className="text-[#5C4033]">Status: <strong className="text-[#8B5E3C]">Building Smart Solutions</strong></span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#8B5E3C]/10 text-[#8B5E3C] rounded-md font-bold">
+                ● Active
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

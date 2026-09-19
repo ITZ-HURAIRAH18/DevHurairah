@@ -1,31 +1,30 @@
 const MarqueeTicker = () => {
   const tickerItems = [
-    "Full-Stack Engineer",
-    "React",
-    "Next.js",
-    "Django",
-    "Node.js",
-    "MongoDB",
-    "TypeScript",
-    "Open to Remote",
-    "Pakistan"
+    "Full-Stack Developer",
+    "AI Automation Engineer",
+    "n8n Workflow Specialist",
+    "React & Next.js",
+    "Python & Django",
+    "FastAPI & Node.js",
+    "LLM Agents & RAG",
+    "Available for Remote Projects",
   ];
 
   const renderTickerElements = () => (
     <>
       {tickerItems.map((item, idx) => (
         <span key={idx} className="inline-flex items-center">
-          <span className="text-page font-sans text-[10px] uppercase tracking-[0.2em] font-medium mx-6">
+          <span className="text-[#FFF8F0] font-mono text-xs uppercase tracking-widest font-semibold mx-6">
             {item}
           </span>
-          <span className="text-copper text-sm">↗</span>
+          <span className="text-[#C49A6C] text-xs font-bold">✦</span>
         </span>
       ))}
     </>
   );
 
   return (
-    <div className="w-full bg-espresso overflow-hidden h-8 flex items-center border-b border-copper/10">
+    <div className="w-full bg-gradient-to-r from-[#2D1B0E] via-[#8B5E3C] to-[#2D1B0E] border-b border-[#E8DDD0]/20 h-10 flex items-center overflow-hidden shadow-sm">
       <div className="flex whitespace-nowrap animate-marquee">
         <div className="flex items-center">
           {renderTickerElements()}

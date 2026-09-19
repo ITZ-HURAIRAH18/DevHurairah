@@ -1,206 +1,107 @@
-import { useEffect } from "react";
-
 const Experience = () => {
   const experiences = [
     {
-      year: "2025",
-      endYear: "2025",
-      period: "Aug 2025 - Oct 2025",
+      period: "Aug 2025 – Oct 2025",
       title: "Full Stack Developer",
       company: "NexAgen Solutions",
+      location: "Remote",
       description:
-        "Developed and maintained high-performance web applications using the MERN stack, ensuring smooth frontend and backend integration. Built RESTful APIs and optimized database queries for scalability.",
+        "Engineered scalable MERN stack web applications, developing REST APIs and optimizing database queries for multi-tenant systems.",
       bullets: [
-        "Built RESTful APIs serving 10k+ requests/day",
-        "Reduced page load time by 40% via code splitting",
-        "Led frontend migration from JS to TypeScript",
+        "Architected RESTful endpoints handling high query loads seamlessly.",
+        "Reduced client-side initial load times by 40% via code splitting and asset optimization.",
+        "Led frontend codebase migration from JavaScript to TypeScript for type safety.",
       ],
-      tags: ["MERN", "REST APIs", "PostgreSQL"],
+      tags: ["React", "Node.js", "TypeScript", "REST APIs", "PostgreSQL"],
     },
     {
-      year: "2024",
-      endYear: "2025",
-      period: "Aug 2024 - Jan 2025",
-      title: "Django Developer",
+      period: "Aug 2024 – Jan 2025",
+      title: "Django & Full-Stack Developer",
       company: "Technsol",
+      location: "Hybrid",
       description:
-        "Built and optimized modern web applications using Django REST Framework, React, Next.js, and Tailwind CSS. Focused on clean architecture and performance optimization.",
+        "Built web applications with Django REST Framework, React, and Next.js, focusing on clean architecture and API performance.",
       bullets: [
-        "Optimized web applications with Django REST Framework",
-        "Built responsive UIs with React, Next.js, Tailwind CSS",
-        "Implemented clean architecture and performance patterns",
+        "Developed scalable API endpoints using Django REST Framework.",
+        "Crafted responsive dashboard interfaces with React, Next.js, and Tailwind CSS.",
+        "Implemented secure JWT authentication and role-based access control.",
       ],
-      tags: ["Django", "React", "Next.js"],
+      tags: ["Django", "Django REST", "React", "Next.js", "Tailwind CSS"],
     },
     {
-      year: "2023",
-      endYear: "PRESENT",
-      period: "2023 - Present",
-      title: "Full Stack / Mobile / Desktop Developer",
-      company: "Independent Projects",
+      period: "2023 – Present",
+      title: "Full Stack & AI Automation Engineer",
+      company: "Independent Projects & Client Solutions",
+      location: "Global / Remote",
       description:
-        "Architected and developed multiple cross-platform applications including web apps, mobile apps (React Native), desktop applications (Electron.js), financial platforms, AI-powered tools, and management systems. Focus on scalability, user experience, and clean code practices.",
+        "Architected applications across Web, Desktop (Electron), and Mobile (React Native). Designed n8n AI agent automation pipelines.",
       bullets: [
-        "Architected cross-platform web, mobile, and desktop apps",
-        "Built AI-powered tools, financial platforms, and management systems",
-        "Focus on scalability, UX, and clean code practices",
+        "Built AI agent workflows & n8n automations saving clients 100+ hours monthly.",
+        "Developed multi-branch ERP platforms, desktop inventory management tools, and analytics dashboards.",
+        "Delivered end-to-end software solutions for international clients.",
       ],
-      tags: ["React Native", "Electron.js", "FastAPI"],
+      tags: ["n8n Workflows", "LangChain / LLMs", "Python", "FastAPI", "React Native", "Electron.js"],
     },
   ];
 
-  // Scroll reveal for experience rows
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    document.querySelectorAll(".exp-row").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="experience" className="section-border">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="flex items-end justify-between px-6 lg:px-12 xl:px-20 py-12 border-b border-border">
-          <div>
-            <span className="block font-mono text-mono-tiny text-copper uppercase tracking-wider mb-2">
-              // EXPERIENCE
+    <section id="experience" className="py-20 bg-[#FAF7F2] border-t border-[#E8DDD0]">
+      <div className="max-w-5xl mx-auto px-6 lg:px-12">
+        {/* Clean Section Heading */}
+        <div className="flex flex-col items-start gap-2 mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full">
+            <span className="w-2 h-2 rounded-full bg-[#8B5E3C]" />
+            <span className="font-mono text-xs font-bold text-[#8B5E3C] uppercase tracking-wider">
+              Career Journey
             </span>
-            <h2 className="font-serif text-4xl lg:text-5xl font-light italic text-espresso">
-              Work History
-            </h2>
-            <div
-              className="exp-title-underline"
-              style={{
-                width: 0,
-                height: "1px",
-                background: "#A0714F",
-                marginTop: "0.5rem",
-                transition: "width 0.8s ease",
-              }}
-            />
           </div>
-          <div className="font-mono text-mono-xs text-muted uppercase tracking-wider">
-            2+ Years · 2 Companies
-          </div>
+          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-[#2D1B0E] tracking-tight">
+            Work <span className="gradient-text font-serif italic font-normal">Experience</span>
+          </h2>
         </div>
 
-        {/* Experience Rows */}
-        <div className="flex flex-col">
-          {experiences.map((exp, index) => (
+        {/* Clean & Sleek Timeline List */}
+        <div className="space-y-6">
+          {experiences.map((exp, idx) => (
             <div
-              key={index}
-              className="exp-row grid grid-cols-1 md:grid-cols-12"
-              style={{
-                transitionDelay: `${index * 0.12}s`,
-              }}
+              key={idx}
+              className="warm-card p-6 rounded-xl border border-[#E8DDD0] hover:border-[#8B5E3C] transition-all duration-200"
             >
-              {/* Column 1: Year */}
-              <div className="md:col-span-2 px-6 lg:px-12 py-8 md:py-12 border-b md:border-b-0 flex flex-col justify-center year-col">
-                <div
-                  className="font-serif italic text-copper leading-none"
-                  style={{
-                    fontSize: "clamp(3.5rem, 6vw, 5.5rem)",
-                    fontWeight: 300,
-                  }}
-                >
-                  {exp.year}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#E8DDD0]">
+                <div>
+                  <h3 className="font-heading font-bold text-xl text-[#2D1B0E]">
+                    {exp.title}
+                  </h3>
+                  <p className="font-mono text-xs font-bold text-[#8B5E3C] uppercase tracking-wider mt-0.5">
+                    @ {exp.company}
+                  </p>
                 </div>
-                {exp.endYear !== exp.year && (
-                  <div
-                    className="font-mono text-muted mt-2"
-                    style={{
-                      fontSize: "0.62rem",
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    → {exp.endYear}
-                  </div>
-                )}
-              </div>
-
-              {/* Column 2: Title + Company */}
-              <div className="md:col-span-4 px-6 lg:px-12 py-8 md:py-12 border-b md:border-b-0 md:border-r border-border">
-                <h3
-                  className="font-serif text-espresso leading-tight mb-2"
-                  style={{ fontSize: "1.5rem", fontWeight: 600 }}
-                >
-                  {exp.title}
-                </h3>
-                <div
-                  className="font-mono uppercase tracking-wider text-copper mb-1 flex items-center gap-2"
-                  style={{ fontSize: "0.65rem", letterSpacing: "0.15em" }}
-                >
-                  {exp.endYear === "PRESENT" && (
-                    <span className="pulse-dot" />
-                  )}
-                  {exp.company}
-                </div>
-                <div
-                  className="font-mono italic text-muted mb-4"
-                  style={{ fontSize: "0.62rem" }}
-                >
-                  {exp.period}
-                </div>
-
-                {/* Achievement bullets - appear on hover */}
-                <div className="exp-bullets">
-                  {exp.bullets.map((bullet, i) => (
-                    <div
-                      key={i}
-                      className="font-sans text-muted leading-relaxed"
-                      style={{
-                        fontSize: "0.82rem",
-                        lineHeight: 1.6,
-                        paddingLeft: "0.5rem",
-                      }}
-                    >
-                      – {bullet}
-                    </div>
-                  ))}
+                <div className="flex items-center gap-2 self-start sm:self-auto">
+                  <span className="font-mono text-xs font-semibold text-[#8B5E3C] bg-[#8B5E3C]/10 border border-[#8B5E3C]/20 px-3 py-1 rounded-md">
+                    {exp.period}
+                  </span>
+                  <span className="font-mono text-xs text-[#8A7560]">
+                    ({exp.location})
+                  </span>
                 </div>
               </div>
 
-              {/* Column 3: Description + Tags */}
-              <div className="md:col-span-6 px-6 lg:px-12 py-8 md:py-12">
-                <p
-                  className="font-sans font-light leading-relaxed mb-4"
-                  style={{
-                    fontSize: "0.88rem",
-                    lineHeight: 1.8,
-                    color: "rgba(28,16,7,0.65)",
-                    overflow: "visible",
-                    overflowWrap: "break-word",
-                    wordBreak: "break-word",
-                  }}
-                >
+              <div className="pt-4 space-y-3">
+                <p className="font-sans text-sm text-[#5C4033] leading-relaxed">
                   {exp.description}
                 </p>
 
-                {/* Tech Stack Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {exp.tags.map((tag) => (
+                <ul className="space-y-1.5 font-sans text-xs text-[#5C4033] leading-relaxed pl-4 list-disc">
+                  {exp.bullets.map((bullet, bIdx) => (
+                    <li key={bIdx}>{bullet}</li>
+                  ))}
+                </ul>
+
+                <div className="pt-3 flex flex-wrap gap-1.5 border-t border-[#E8DDD0]/60">
+                  {exp.tags.map((tag, tIdx) => (
                     <span
-                      key={tag}
-                      style={{
-                        fontFamily: "'Space Mono', monospace",
-                        fontSize: "0.6rem",
-                        color: "#A0714F",
-                        border: "1px solid rgba(160,113,79,0.25)",
-                        background: "rgba(160,113,79,0.06)",
-                        borderRadius: "3px",
-                        padding: "2px 8px",
-                      }}
+                      key={tIdx}
+                      className="font-mono text-[11px] px-2.5 py-0.5 bg-[#FAF7F2] text-[#2D1B0E] border border-[#E8DDD0] rounded-md"
                     >
                       {tag}
                     </span>

@@ -1,89 +1,80 @@
-# Portfolio UI Upgrade — Master Prompt
+Make it more premium. The cards need more depth and shadow. 
+The hero needs more visual impact — add an animated gradient 
+mesh background. The typography hierarchy is weak — make 
+headings much bolder and larger. Add micro-interactions on 
+every hover. The spacing feels cramped — increase padding 
+and margins across all sections.
 
-Paste this into Cursor / Lovable / v0 / Bolt. Execute phase by phase, reviewing the diff after each phase before moving to the next.
+Redesign my developer portfolio website (abuhurairah.engineer) with a premium, modern, and professional UI inspired by ahmedimran.dev but even MORE beautiful and polished.
 
----
+## COLOR THEME (MUST FOLLOW):
+- Background: White (#FFFFFF) and warm off-white (#FAF7F2)
+- Primary accent: Rich brown (#8B5E3C) 
+- Secondary accent: Warm tan (#C49A6C)
+- Text: Deep dark brown (#2D1B0E) for headings, (#5C4033) for body
+- Subtle borders: (#E8DDD0)
+- Card backgrounds: (#FFF8F0) with subtle warm shadows
+- Gradient accents: brown-to-tan gradients for highlights
 
-## Context (paste this first, always)
+## LAYOUT & SECTIONS (Single Page, Smooth Scroll):
 
-You are upgrading an existing developer portfolio site. The current aesthetic direction is correct and must be PRESERVED, not replaced:
+1. **NAVBAR**: Minimal sticky navbar with logo on left, nav links center (Home, About, Projects, Experience, Contact), and a "Resume" CTA button on right. Add blur backdrop on scroll. Animate logo and links with subtle hover effects.
 
-- Palette: warm ivory background (#F4EFE8-ish), espresso/near-black text (#1C1410-ish), copper/terracotta accent (#B5652E-ish)
-- Typography: Cormorant Garamond (or similar high-contrast serif) for display headings, italic used for emphasis words, a clean sans-serif (Inter or similar) for body/UI text
-- Tone: editorial, restrained, premium — NOT a generic SaaS/AI-generated template with gradients, neon, or heavy shadows
+2. **HERO SECTION**: 
+   - Left side: Greeting tag ("Assalamu Alaikum 👋" or "Hello, I'm"), Large bold name "ABU HURAIRAH" with gradient text (brown-to-tan), Role title "Software Engineer" with typing animation cycling through roles (Full-Stack Developer, MERN Stack Expert, etc.), Short 2-line bio, Two buttons: "View Projects" (filled brown) and "Contact Me" (outlined), Social icons row (GitHub, LinkedIn, Twitter, etc.)
+   - Right side: Creative developer illustration or animated code terminal mockup
+   - Add subtle floating particles or geometric shapes in background
 
-The goal of this pass is **reduction and precision**, not redecoration. Every phase below is about removing clutter, fixing overlap bugs, and tightening spacing/hierarchy — not changing the color palette or fonts. Do not introduce new colors, new fonts, or a different layout system unless a phase explicitly says so.
+3. **ABOUT SECTION**:
+   - Split layout: Left side image with decorative brown border/frame, Right side heading + paragraph about me + tech stack badges
+   - Tech stack shown as pill-shaped badges with icons (React, Next.js, Node.js, MongoDB, TypeScript, Tailwind, Python, Git, etc.) with hover lift effect
+   - Add stats row: "X+ Projects", "X+ Years Experience", "X+ Happy Clients"
 
-Global rules for every phase:
-- Use a strict 8px spacing scale (8/16/24/32/48/64/96) for all margins and padding — no arbitrary values.
-- Every section needs consistent vertical rhythm: same top/bottom padding across sections unless there's a clear reason to break it.
-- No element may visually overlap another unless it's an intentional, tested layered composition (e.g. a badge deliberately breaking a card edge by a few px). Accidental overlap = bug, fix it.
-- Floating UI (chat widgets, buttons) must never sit on top of readable content at any scroll position or breakpoint — verify at 1440px, 1024px, 768px, and 375px.
-- Test every text string against real content lengths, not lorem ipsum, so nothing truncates awkwardly.
+4. **PROJECTS SECTION**:
+   - Section heading with brown underline accent
+   - Bento grid or 2-column card layout
+   - Each project card: thumbnail image, project name, description (2 lines), tech tags as small pills, GitHub + Live Demo icon buttons
+   - Cards have warm cream background, subtle shadow, hover: lift up + border glow in brown
+   - Add "View All Projects" button linking to GitHub
 
----
+5. **EXPERIENCE/TIMELINE SECTION**:
+   - Vertical timeline with brown line and dot, left-right alternating cards
+   - Each card: Company name, Role, Duration, 2-3 bullet points
+   - Timeline dots animated with pulse
 
-## Phase 1 — Fix bugs (do this first, nothing else)
+6. **CONTACT SECTION**:
+   - Split: Left: heading + email + social links, Right: Clean contact form (Name, Email, Message, Send button)
+   - Form inputs have brown focus borders and warm placeholder colors
 
-1. Find where hero copy renders `**AI automation**` literally with asterisks — this means markdown/rich-text isn't being parsed. Fix the rendering so it shows as proper bold text, or hardcode a `<strong>` tag if the content is static.
-2. In the Skills & Stack section, find and remove the stray circular element overlapping the "Redis" list item.
-3. Audit every bullet/list item across the Skills section — every item should have exactly one bullet marker, consistently styled (same size, same color, same offset). Fix any doubled markers.
-4. In the Work History timeline, fix the duplicated year label per entry (currently showing the year twice with a broken arrow glyph between them). Each entry should show the year exactly once.
-5. Fix the Work History description text getting clipped at the card boundary — the container must grow to fit content, not clip it.
-6. Fix the floating WhatsApp/chat icon(s) so they never overlap page content — pin them with sufficient margin from the viewport edge, and confirm no card, button, or text sits underneath them at any scroll position across breakpoints.
+7. **FOOTER**: Minimal, name + social icons + "Built with ❤️ by Abu Hurairah"
 
-Stop after this phase and show me the diff before continuing.
+## ANIMATIONS & INTERACTIONS:
+- Scroll-triggered fade-up animations for every section (use Intersection Observer or Framer Motion)
+- Smooth scroll between sections
+- Navbar links highlight active section
+- Hover effects on all cards, buttons, and links
+- Typing animation in hero
+- Subtle parallax on hero background elements
+- Page load stagger animation
+- Magnetic cursor effect on buttons (subtle)
+- Project cards tilt slightly on hover (3D transform)
 
----
+## TYPOGRAPHY:
+- Headings: Bold, tight letter-spacing, dark brown
+- Body: Clean, good line-height (1.7), warm dark text
+- Use Google Fonts: "Inter" or "Plus Jakarta Sans" for body, "Cal Sans" or "Outfit" for headings
 
-## Phase 2 — Hero section cleanup
+## TECHNICAL REQUIREMENTS:
+- Fully responsive (mobile-first)
+- Dark mode NOT needed - keep white/brown only
+- Fast loading, optimized
+- SEO meta tags included
+- Smooth CSS transitions (300ms ease)
+- Use modern CSS (Grid, Flexbox, clamp() for responsive typography)
+- Single HTML file or Next.js compatible
 
-1. Remove the top scrolling marquee ticker entirely, OR move it to a single thin static line (no animation, no duplicate nav-like content) directly above the main nav — pick whichever you think reads cleaner, but it cannot compete with the nav bar.
-2. On the hero portrait image, reduce the overlay to ONE layer of information, not three. Recommended: keep just the name + role caption at the bottom (small, understated), and REMOVE the separate row of 6 tech pills sitting under the photo — that data is already covered in the Skills section further down the page.
-3. Tighten the hero body paragraph to 2-3 short sentences max, one clear idea per sentence. Cut anything that repeats what's already said elsewhere (e.g. don't restate every technology — that's what the Skills section is for).
-4. Keep exactly two CTAs (View Work / Download CV) but make sure their visual weight is intentional: one solid/filled primary, one ghost/text secondary — no more than that hierarchy.
-
----
-
-## Phase 3 — Skills & Stack section
-
-1. Standardize all skill cards to equal height using a grid with `align-items: stretch`, regardless of how many items are in each category — no more visible dead space.
-2. If a category (e.g. Backend) has noticeably fewer items than others, either rebalance the categories or accept the shorter card height and let the grid reflow naturally (masonry-style) rather than forcing padding to fill it.
-3. Keep the numbered badge (e.g. "09", "05") but make sure it's vertically aligned with the category label baseline.
-
----
-
-## Phase 4 — Featured Projects section
-
-1. Keep the browser-chrome card treatment (traffic light dots + path label) — it's a nice detail, keep it consistent across every card (same dot size, same path format).
-2. Fix truncated project descriptions: set a fixed line-clamp (e.g. `-webkit-line-clamp: 2`) so every description card truncates cleanly at a full word boundary with ellipsis — never mid-sentence with awkward wrapping.
-3. Make sure every card in a row has equal height regardless of description length.
-4. Keep tag pills (e.g. "Next.js", "TypeScript") limited to 3 per card max — if a project has more, show the 3 most relevant plus a "+2" indicator, don't wrap to a second row.
-
----
-
-## Phase 5 — Work History section
-
-1. Redesign the timeline entry layout so year, role, company, and date range each have one clear position — no duplication.
-2. Use consistent date format across all entries.
-3. Confirm the connecting timeline line (if present) aligns precisely with each year marker at every breakpoint.
-
----
-
-## Phase 6 — Contact section
-
-1. Reduce the stat block to at most 2 numbers, and choose ones that reinforce credibility rather than undercut it. If "years of experience" is low, lead with project count and technology count instead, and either drop the years stat or reframe it (e.g. don't put "1+ Years Exp." at equal visual weight next to "20+ Projects").
-2. Cut the redundancy in the closing messaging — you currently have three separate statements all saying "I'm available/let's work together" (headline, italic quote, "Currently Available" block). Keep ONE of these as the primary statement and either delete the others or fold them into a single supporting line.
-3. Keep the contact form simple: Name, Email, Message — no extra fields.
-
----
-
-## Phase 7 — Final pass
-
-1. Do a full scroll-through at 1440px, 1024px, 768px, and 375px and list any remaining overlaps, clipped text, or misaligned elements you find.
-2. Confirm color and font usage is unchanged from the original (ivory/espresso/copper, Cormorant Garamond + sans body) — this phase is about polish, not a redesign.
-3. Give me a summary of every fix made per phase.
-
----
-
-**Do not proceed to a phase until the previous one is confirmed working. Show diffs, not just descriptions.**
+## INSPIRATION REFERENCES:
+- Layout structure like ahmedimran.dev (clean, minimal, professional)
+- But make it WARMER and more PREMIUM with the brown/white palette
+- Think: luxury brand meets developer portfolio
+- The overall vibe should be: confident, clean, elegant, and memorable
