@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Contact = () => {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
+    website: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [statusMessage, setStatusMessage] = useState("");
+  const formLoadedAt = useRef(Date.now());
 
   const handleChange = (e) => {
     setFormState({
@@ -18,27 +22,43 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     setIsSubmitting(true);
     setSubmitStatus(null);
+    setStatusMessage("");
 
     try {
+      const payload = {
+        ...formState,
+        website: "",
+        timestamp: formLoadedAt.current,
+      };
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formState),
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json().catch(() => ({}));
 
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to send message");
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Failed to send message");
       }
 
       setSubmitStatus("success");
-      setFormState({ name: "", email: "", message: "" });
+      setStatusMessage(
+        data.message || "Message sent successfully! Thank you for reaching out. I'll get back to you soon."
+      );
+      setFormState({ name: "", email: "", subject: "", message: "" });
+      formLoadedAt.current = Date.now();
     } catch (error) {
       console.error("Contact Form Error:", error);
       setSubmitStatus("error");
+      setStatusMessage(
+        error.message || "Something went wrong while sending your message. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -141,6 +161,33 @@ const Contact = () => {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot: visually hidden from humans */}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: "absolute",
+                    left: "-5000px",
+                    top: "-5000px",
+                    width: 1,
+                    height: 1,
+                    overflow: "hidden",
+                    opacity: 0,
+                    pointerEvents: "none",
+                  }}
+                >
+                  <label htmlFor="website">Leave this empty</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    autoComplete="off"
+                    tabIndex={-1}
+                    value={formState.website}
+                    onChange={handleChange}
+                  />
+                </div>
+                <input type="hidden" name="timestamp" value={formLoadedAt.current} />
+
                 <div>
                   <label className="block font-mono text-xs uppercase tracking-wider text-[#2D1B0E] font-semibold mb-2">
                     Your Name
@@ -173,6 +220,21 @@ const Contact = () => {
 
                 <div>
                   <label className="block font-mono text-xs uppercase tracking-wider text-[#2D1B0E] font-semibold mb-2">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={formState.subject}
+                    onChange={handleChange}
+                    placeholder="Project inquiry, Collaboration, etc."
+                    required
+                    className="w-full px-4 py-3.5 bg-[#FAF7F2] border border-[#E8DDD0] rounded-xl font-sans text-sm text-[#2D1B0E] focus:outline-none focus:border-[#8B5E3C] focus:ring-2 focus:ring-[#8B5E3C]/20 transition-all placeholder-[#8A7560]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs uppercase tracking-wider text-[#2D1B0E] font-semibold mb-2">
                     Your Message
                   </label>
                   <textarea
@@ -191,17 +253,24 @@ const Contact = () => {
                   disabled={isSubmitting}
                   className="btn-brown w-full py-4 text-sm font-bold rounded-xl shadow-warm hover:shadow-warm-hover disabled:opacity-50"
                 >
-                  {isSubmitting ? "Sending Message..." : "Send Message ↗"}
+                  {isSubmitting ? (
+                    <span className="inline-flex items-center gap-2">
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Sending Message...
+                    </span>
+                  ) : (
+                    "Send Message ↗"
+                  )}
                 </button>
 
                 {submitStatus === "success" && (
                   <div className="p-4 bg-[#8B5E3C]/10 border border-[#8B5E3C] rounded-xl text-[#8B5E3C] font-mono text-xs font-semibold text-center">
-                    Thank you! Your message has been sent successfully.
+                    {statusMessage}
                   </div>
                 )}
                 {submitStatus === "error" && (
                   <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 font-mono text-xs font-semibold text-center">
-                    Something went wrong. Please email abuhurx@gmail.com directly.
+                    {statusMessage}
                   </div>
                 )}
               </form>

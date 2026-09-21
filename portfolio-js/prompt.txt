@@ -1,80 +1,760 @@
-Make it more premium. The cards need more depth and shadow. 
-The hero needs more visual impact — add an animated gradient 
-mesh background. The typography hierarchy is weak — make 
-headings much bolder and larger. Add micro-interactions on 
-every hover. The spacing feels cramped — increase padding 
-and margins across all sections.
+# Upgrade Portfolio Contact Form — Resend Email Integration
 
-Redesign my developer portfolio website (abuhurairah.engineer) with a premium, modern, and professional UI inspired by ahmedimran.dev but even MORE beautiful and polished.
+I have an existing professional developer portfolio website. The portfolio currently uses **Nodemailer** to send contact-form emails.
 
-## COLOR THEME (MUST FOLLOW):
-- Background: White (#FFFFFF) and warm off-white (#FAF7F2)
-- Primary accent: Rich brown (#8B5E3C) 
-- Secondary accent: Warm tan (#C49A6C)
-- Text: Deep dark brown (#2D1B0E) for headings, (#5C4033) for body
-- Subtle borders: (#E8DDD0)
-- Card backgrounds: (#FFF8F0) with subtle warm shadows
-- Gradient accents: brown-to-tan gradients for highlights
+I have now verified my domain:
 
-## LAYOUT & SECTIONS (Single Page, Smooth Scroll):
+**`abuhurairah.engineer`**
 
-1. **NAVBAR**: Minimal sticky navbar with logo on left, nav links center (Home, About, Projects, Experience, Contact), and a "Resume" CTA button on right. Add blur backdrop on scroll. Animate logo and links with subtle hover effects.
+using **Resend**.
 
-2. **HERO SECTION**: 
-   - Left side: Greeting tag ("Assalamu Alaikum 👋" or "Hello, I'm"), Large bold name "ABU HURAIRAH" with gradient text (brown-to-tan), Role title "Software Engineer" with typing animation cycling through roles (Full-Stack Developer, MERN Stack Expert, etc.), Short 2-line bio, Two buttons: "View Projects" (filled brown) and "Contact Me" (outlined), Social icons row (GitHub, LinkedIn, Twitter, etc.)
-   - Right side: Creative developer illustration or animated code terminal mockup
-   - Add subtle floating particles or geometric shapes in background
+I want you to completely upgrade the existing contact/email system to use **Resend instead of Nodemailer**.
 
-3. **ABOUT SECTION**:
-   - Split layout: Left side image with decorative brown border/frame, Right side heading + paragraph about me + tech stack badges
-   - Tech stack shown as pill-shaped badges with icons (React, Next.js, Node.js, MongoDB, TypeScript, Tailwind, Python, Git, etc.) with hover lift effect
-   - Add stats row: "X+ Projects", "X+ Years Experience", "X+ Happy Clients"
+## IMPORTANT RULES
 
-4. **PROJECTS SECTION**:
-   - Section heading with brown underline accent
-   - Bento grid or 2-column card layout
-   - Each project card: thumbnail image, project name, description (2 lines), tech tags as small pills, GitHub + Live Demo icon buttons
-   - Cards have warm cream background, subtle shadow, hover: lift up + border glow in brown
-   - Add "View All Projects" button linking to GitHub
+* Do NOT redesign or replace my portfolio.
+* Do NOT change the existing portfolio theme, colors, typography, animations, spacing, sections, navbar, footer, hero, projects, skills, or overall UI.
+* Reuse the existing portfolio's design system and components.
+* Only modify the contact form functionality and the backend email functionality.
+* Inspect the existing project structure first and understand how the current Nodemailer implementation works.
+* Remove Nodemailer only where it is used for this contact-email functionality.
+* Do not break any existing functionality.
+* Do not expose the Resend API key in frontend/client-side code.
+* The Resend API key must exist only in the backend environment variables.
+* Use the existing backend architecture if one already exists instead of unnecessarily creating a new backend.
+* Keep the implementation production-ready and secure.
 
-5. **EXPERIENCE/TIMELINE SECTION**:
-   - Vertical timeline with brown line and dot, left-right alternating cards
-   - Each card: Company name, Role, Duration, 2-3 bullet points
-   - Timeline dots animated with pulse
+---
 
-6. **CONTACT SECTION**:
-   - Split: Left: heading + email + social links, Right: Clean contact form (Name, Email, Message, Send button)
-   - Form inputs have brown focus borders and warm placeholder colors
+# 1. EMAIL FLOW I WANT
 
-7. **FOOTER**: Minimal, name + social icons + "Built with ❤️ by Abu Hurairah"
+When someone submits the portfolio contact form, there should be TWO emails.
 
-## ANIMATIONS & INTERACTIONS:
-- Scroll-triggered fade-up animations for every section (use Intersection Observer or Framer Motion)
-- Smooth scroll between sections
-- Navbar links highlight active section
-- Hover effects on all cards, buttons, and links
-- Typing animation in hero
-- Subtle parallax on hero background elements
-- Page load stagger animation
-- Magnetic cursor effect on buttons (subtle)
-- Project cards tilt slightly on hover (3D transform)
+### EMAIL 1 — Email to me
 
-## TYPOGRAPHY:
-- Headings: Bold, tight letter-spacing, dark brown
-- Body: Clean, good line-height (1.7), warm dark text
-- Use Google Fonts: "Inter" or "Plus Jakarta Sans" for body, "Cal Sans" or "Outfit" for headings
+The visitor submits:
 
-## TECHNICAL REQUIREMENTS:
-- Fully responsive (mobile-first)
-- Dark mode NOT needed - keep white/brown only
-- Fast loading, optimized
-- SEO meta tags included
-- Smooth CSS transitions (300ms ease)
-- Use modern CSS (Grid, Flexbox, clamp() for responsive typography)
-- Single HTML file or Next.js compatible
+* Name
+* Email
+* Subject
+* Message
 
-## INSPIRATION REFERENCES:
-- Layout structure like ahmedimran.dev (clean, minimal, professional)
-- But make it WARMER and more PREMIUM with the brown/white palette
-- Think: luxury brand meets developer portfolio
-- The overall vibe should be: confident, clean, elegant, and memorable
+My email address is:
+
+`muhammadabuhurairah22@gmail.com`
+
+I should receive an email containing all submitted information.
+
+The email should be sent through Resend using my verified domain.
+
+Use a professional sender address such as:
+
+`Portfolio Contact <contact@abuhurairah.engineer>`
+
+or, if the existing Resend configuration uses another verified sender address, use that verified address.
+
+Do NOT use:
+
+`muhammadabuhurairah22@gmail.com`
+
+as the sender address unless absolutely required.
+
+The Gmail address is the RECIPIENT.
+
+---
+
+# 2. EMAIL TO THE VISITOR
+
+After a successful contact-form submission, automatically send a second email to the visitor's email address.
+
+For example:
+
+Visitor enters:
+
+Name:
+`John`
+
+Email:
+`john@example.com`
+
+Subject:
+`Website Project`
+
+Message:
+`I would like to discuss a website project.`
+
+Then the visitor should receive a professional confirmation email.
+
+The email should be sent from:
+
+`contact@abuhurairah.engineer`
+
+or another verified sender address on:
+
+`abuhurairah.engineer`
+
+The confirmation should communicate:
+
+"Thank you for contacting Muhammad Abu Hurairah. We have received your message and will get back to you soon."
+
+The visitor should NOT receive the raw backend/API response.
+
+The confirmation email must look like a professional portfolio/business email.
+
+---
+
+# 3. VISITOR EMAIL CONTENT
+
+Create a polished HTML email using the SAME visual identity/theme as my portfolio.
+
+Do not create a completely unrelated email design.
+
+The email should contain:
+
+* Portfolio/brand name
+* Greeting using visitor's name
+* Thank-you message
+* Confirmation that their message was received
+* Their submitted subject
+* A short confirmation that I will respond soon
+* Professional footer
+* My portfolio/domain
+* Optional social/profile links if they already exist in my portfolio
+
+Example structure:
+
+---
+
+Muhammad Abu Hurairah
+Full-Stack Developer
+
+Hello John,
+
+Thank you for reaching out through my portfolio.
+
+I have successfully received your message regarding:
+
+"Website Project"
+
+Your message has been received and I will review it and get back to you as soon as possible.
+
+I appreciate you taking the time to contact me.
+
+Best regards,
+
+Muhammad Abu Hurairah
+Full-Stack Developer
+
+abuhurairah.engineer
+
+---
+
+Make this visually polished, modern, responsive, and consistent with my existing portfolio theme.
+
+---
+
+# 4. EMAIL I RECEIVE
+
+The email sent to:
+
+`muhammadabuhurairah22@gmail.com`
+
+should contain the visitor's complete submission.
+
+Example:
+
+Subject:
+
+`New Portfolio Contact: Website Project`
+
+Email body:
+
+---
+
+New Portfolio Contact Message
+
+Name:
+John
+
+Email:
+[john@example.com](mailto:john@example.com)
+
+Subject:
+Website Project
+
+Message:
+
+I would like to discuss a website project.
+
+---
+
+Also include:
+
+Received from:
+abuhurairah.engineer
+
+Date/time:
+current server timestamp
+
+Set:
+
+Reply-To: [john@example.com](mailto:john@example.com)
+
+This is VERY IMPORTANT.
+
+When I click Reply in Gmail, the reply should go directly to the visitor's email address instead of replying to `contact@abuhurairah.engineer`.
+
+---
+
+# 5. RESEND CONFIGURATION
+
+Use the official Resend SDK/API appropriate for my existing backend.
+
+Create environment variables such as:
+
+RESEND_API_KEY=your_resend_api_key
+
+RESEND_FROM_EMAIL=[contact@abuhurairah.engineer](mailto:contact@abuhurairah.engineer)
+
+CONTACT_EMAIL=[muhammadabuhurairah22@gmail.com](mailto:muhammadabuhurairah22@gmail.com)
+
+Do NOT hardcode the actual Resend API key in source code.
+
+Do NOT put the API key in:
+
+* React components
+* JavaScript frontend files
+* public folders
+* client-side environment variables
+* GitHub
+* HTML
+* browser requests
+
+The frontend must communicate only with my backend.
+
+---
+
+# 6. BACKEND API
+
+Inspect my existing backend first.
+
+If I already have a contact endpoint, modify it instead of creating unnecessary duplicate endpoints.
+
+If there is no endpoint, create something appropriate, for example:
+
+POST /api/contact
+
+The endpoint should:
+
+1. Receive the form data.
+2. Validate the name.
+3. Validate the email.
+4. Validate the subject.
+5. Validate the message.
+6. Sanitize/handle user input safely.
+7. Send the notification email to:
+
+`muhammadabuhurairah22@gmail.com`
+
+8. Send the confirmation email to the visitor.
+9. Return a clean JSON response.
+
+Success response:
+
+{
+"success": true,
+"message": "Message sent successfully."
+}
+
+Failure response:
+
+{
+"success": false,
+"message": "Unable to send your message. Please try again."
+}
+
+Do not expose sensitive Resend/API errors to the frontend.
+
+---
+
+# 7. FRONTEND CONTACT FORM
+
+Keep my current contact form design exactly as much as possible.
+
+Do NOT replace the UI with a generic form.
+
+Connect the existing form to the backend endpoint.
+
+The form should submit:
+
+```text
+name
+email
+subject
+message
+```
+
+When submitting:
+
+* Disable the submit button.
+* Show a loading state.
+* Prevent duplicate submissions.
+* Send the request to the backend.
+* Handle success.
+* Handle errors.
+* Re-enable the button after completion.
+
+Success message should fit the existing portfolio theme.
+
+For example:
+
+"Message sent successfully! Thank you for reaching out. I'll get back to you soon."
+
+Error message:
+
+"Something went wrong while sending your message. Please try again."
+
+Do not use browser `alert()` unless the existing portfolio already uses it.
+
+Prefer an elegant inline toast/status message matching the portfolio design.
+
+---
+
+# 8. VALIDATION
+
+Implement both frontend and backend validation.
+
+Required:
+
+* Name
+* Email
+* Subject
+* Message
+
+Email must be validated properly.
+
+Do not trust frontend validation alone.
+
+Backend validation is mandatory.
+
+Prevent:
+
+* Empty submissions
+* Invalid email addresses
+* Extremely long messages
+* Malformed requests
+
+---
+
+# 9. SECURITY
+
+Make this production-ready.
+
+Important:
+
+* Never expose `RESEND_API_KEY`.
+* Never send the Resend API key to the browser.
+* Never trust client-side validation.
+* Sanitize user-controlled values before putting them into HTML emails.
+* Prevent HTML/script injection in email content.
+* Do not expose internal Resend errors.
+* Add reasonable rate limiting or spam protection if the project architecture supports it.
+* Prevent obvious automated spam submissions.
+* Do not log the Resend API key.
+* Do not commit `.env` files.
+
+If `.gitignore` does not already include environment files, update it appropriately.
+
+---
+
+# 10. RESEND SENDER
+
+Use the verified domain:
+
+`abuhurairah.engineer`
+
+Preferred sender:
+
+`Muhammad Abu Hurairah <contact@abuhurairah.engineer>`
+
+If `contact@abuhurairah.engineer` is not accepted by Resend because the exact sender address needs to be configured differently, use another valid sender address under my verified `abuhurairah.engineer` domain.
+
+Do NOT use an unverified external sender domain.
+
+---
+
+# 11. EMAIL SUBJECTS
+
+Notification email to me:
+
+`New Portfolio Contact: {visitor subject}`
+
+Example:
+
+`New Portfolio Contact: Website Project`
+
+Confirmation email to visitor:
+
+`Thanks for contacting Muhammad Abu Hurairah`
+
+---
+
+# 12. REPLY-TO
+
+For the email sent to me, dynamically set:
+
+```text
+Reply-To: visitor email
+```
+
+Example:
+
+Visitor:
+
+`john@example.com`
+
+Then the notification email should have:
+
+```text
+From: Muhammad Abu Hurairah <contact@abuhurairah.engineer>
+To: muhammadabuhurairah22@gmail.com
+Reply-To: john@example.com
+```
+
+This allows me to simply click "Reply" in Gmail and respond directly to the visitor.
+
+---
+
+# 13. HTML EMAIL DESIGN
+
+Create reusable email templates rather than putting huge HTML strings directly inside the API route if the project structure supports templates.
+
+Create:
+
+### Admin/Owner notification template
+
+Professional layout containing:
+
+* Brand/header
+* New message indicator
+* Visitor information
+* Subject
+* Message
+* Reply action/information
+* Portfolio branding
+* Footer
+
+### Visitor confirmation template
+
+Professional layout containing:
+
+* Brand/header
+* Personalized greeting
+* Confirmation message
+* Submitted subject
+* Thank-you message
+* Response expectation
+* Portfolio link
+* Professional footer
+
+Use inline CSS where appropriate for email-client compatibility.
+
+Make the emails responsive for:
+
+* Gmail
+* Outlook
+* Apple Mail
+* Mobile email clients
+
+Do not rely heavily on modern CSS features that have poor email-client support.
+
+---
+
+# 14. PORTFOLIO BRANDING
+
+Inspect my existing portfolio and reuse:
+
+* Existing primary colors
+* Accent colors
+* Typography where email-safe
+* Logo/brand name
+* Overall visual identity
+
+The email should feel like it came directly from my portfolio.
+
+Do NOT invent a completely different brand identity.
+
+If my portfolio has a dark developer/tech theme, the email can use a polished version of that same theme while maintaining good email readability.
+
+---
+
+# 15. ERROR HANDLING
+
+Handle these situations:
+
+### Resend API failure
+
+Return:
+
+`Unable to send your message right now. Please try again later.`
+
+Do not expose technical errors.
+
+### Invalid visitor email
+
+Return:
+
+`Please enter a valid email address.`
+
+### Missing fields
+
+Return:
+
+`Please complete all required fields.`
+
+### Visitor confirmation fails
+
+Think carefully about this case.
+
+The main notification to me should be treated separately from the confirmation email.
+
+If the message has successfully reached my email but the confirmation email fails, do NOT tell the visitor that the entire submission failed.
+
+Handle the two operations appropriately and log the server-side failure safely.
+
+---
+
+# 16. ENVIRONMENT SETUP
+
+Provide clear instructions for:
+
+### Local development
+
+Create/update:
+
+`.env`
+
+Example:
+
+```env
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
+RESEND_FROM_EMAIL=contact@abuhurairah.engineer
+CONTACT_EMAIL=muhammadabuhurairah22@gmail.com
+```
+
+Use the actual variable names consistently throughout the project.
+
+Do not put fake values into production.
+
+---
+
+# 17. DEPLOYMENT
+
+Inspect where my portfolio is deployed.
+
+If it is deployed on Vercel, make sure the environment variables are configured in Vercel rather than relying only on the local `.env` file.
+
+Explain exactly which environment variables need to be added to the deployment platform.
+
+After deployment, verify:
+
+1. Contact form works.
+2. Email reaches `muhammadabuhurairah22@gmail.com`.
+3. Visitor receives confirmation email.
+4. Reply-To works correctly.
+5. Resend recognizes the verified domain.
+6. No API key is exposed in browser DevTools.
+7. No CORS/API issues occur.
+8. Existing portfolio functionality still works.
+
+---
+
+# 18. REMOVE OLD NODEMAILER IMPLEMENTATION
+
+I previously used Nodemailer.
+
+Find the existing Nodemailer implementation.
+
+Replace it with Resend.
+
+Remove:
+
+* Nodemailer imports
+* Nodemailer transporter configuration
+* Nodemailer-specific environment variables
+* Unused Nodemailer code
+
+Only remove Nodemailer if it is no longer required anywhere else in the project.
+
+Do NOT blindly uninstall packages before checking the entire project.
+
+If Nodemailer is used elsewhere, leave it untouched.
+
+---
+
+# 19. DO NOT BREAK EXISTING PORTFOLIO
+
+Before making changes:
+
+1. Inspect the complete project structure.
+2. Identify frontend.
+3. Identify backend/API.
+4. Find current contact form.
+5. Find current Nodemailer implementation.
+6. Find environment configuration.
+7. Find deployment configuration.
+8. Understand the current request flow.
+
+Then make the smallest clean changes necessary.
+
+Do not rewrite the entire project.
+
+Do not replace existing components unnecessarily.
+
+Do not change unrelated pages.
+
+---
+
+# 20. FINAL TEST
+
+After implementation, test the complete flow:
+
+### Test A
+
+Submit:
+
+```text
+Name: Test User
+Email: a real test email
+Subject: Test Message
+Message: Testing portfolio contact form.
+```
+
+Expected:
+
+### I receive:
+
+```text
+From:
+Muhammad Abu Hurairah <contact@abuhurairah.engineer>
+
+To:
+muhammadabuhurairah22@gmail.com
+
+Reply-To:
+visitor email
+
+Subject:
+New Portfolio Contact: Test Message
+```
+
+### Visitor receives:
+
+```text
+From:
+Muhammad Abu Hurairah <contact@abuhurairah.engineer>
+
+Subject:
+Thanks for contacting Muhammad Abu Hurairah
+```
+
+And the visitor sees a professional confirmation explaining that the message was received and I will respond soon.
+
+---
+
+# 21. IMPORTANT: USE MY EXISTING DESIGN
+
+The most important UI requirement:
+
+**DO NOT redesign my portfolio.**
+
+The existing portfolio theme should remain exactly as it is.
+
+Only improve:
+
+* Contact form functionality
+* Loading state
+* Success state
+* Error state
+* Email delivery
+* Email templates
+* Backend integration
+
+Everything else should remain unchanged unless a change is strictly required for the integration.
+
+---
+
+# 22. AFTER IMPLEMENTATION
+
+When finished, give me a concise implementation report containing:
+
+### Files changed
+
+List every file changed.
+
+### Files created
+
+List every new file.
+
+### Files removed
+
+List anything removed.
+
+### Environment variables
+
+Show exactly which variables I need to configure, but NEVER display the actual Resend API key.
+
+### API endpoint
+
+Tell me the exact contact API endpoint.
+
+### Email flow
+
+Confirm:
+
+```text
+Portfolio visitor
+       ↓
+Contact form
+       ↓
+Backend
+       ↓
+Resend
+       ↓
+My Gmail
+       +
+       ↓
+Visitor confirmation email
+```
+
+### Testing
+
+Tell me exactly how to test the complete flow locally and in production.
+
+---
+
+## FINAL REQUIREMENT
+
+Do not just provide instructions.
+
+**Actually implement the integration in my existing project.**
+
+Inspect the existing code first, identify the current Nodemailer flow, replace it with Resend, preserve the existing portfolio design, and make the complete contact-email system production-ready.
+
+Use my verified domain:
+
+`abuhurairah.engineer`
+
+Send owner notifications to:
+
+`muhammadabuhurairah22@gmail.com`
+
+Send visitor confirmations from:
+
+`contact@abuhurairah.engineer`
+
+Use:
+
+`Reply-To: visitor's email`
+
+and ensure the visitor receives a professional confirmation saying their message was received and that I will respond soon.
