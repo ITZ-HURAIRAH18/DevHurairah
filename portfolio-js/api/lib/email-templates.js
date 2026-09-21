@@ -67,9 +67,16 @@ const EMAIL_WRAPPER_END = `
   </html>
 `;
 
-export function ownerNotificationEmail({ name, email, subject, message, receivedFrom, sentAt }) {
+export function ownerNotificationEmail({ name, email, subject, message, whatsapp, receivedFrom, sentAt }) {
   const dateTimeText = sentAt
     ? new Date(sentAt).toLocaleString("en-US", { dateStyle: "long", timeStyle: "short" })
+    : "";
+
+  const whatsappRow = whatsapp
+    ? `<tr>
+            <td style="padding: 8px 0; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A7560; vertical-align: top;">WhatsApp</td>
+            <td style="padding: 8px 0; font-size: 14px; color: #2D1B0E; font-weight: 600;">${escapeHtml(whatsapp)}</td>
+          </tr>`
     : "";
 
   return `${EMAIL_WRAPPER_START}
@@ -99,6 +106,7 @@ export function ownerNotificationEmail({ name, email, subject, message, received
             <td style="padding: 8px 0; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A7560; vertical-align: top;">Subject</td>
             <td style="padding: 8px 0; font-size: 14px; color: #2D1B0E; font-weight: 600;">${escapeHtml(subject)}</td>
           </tr>
+          ${whatsappRow}
         </table>
 
         <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A7560; margin-top: 14px; margin-bottom: 8px;">Message</div>

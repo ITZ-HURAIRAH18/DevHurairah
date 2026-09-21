@@ -4,6 +4,7 @@ const Contact = () => {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
+    whatsapp: "",
     subject: "",
     message: "",
     website: "",
@@ -51,7 +52,7 @@ const Contact = () => {
       setStatusMessage(
         data.message || "Message sent successfully! Thank you for reaching out. I'll get back to you soon."
       );
-      setFormState({ name: "", email: "", subject: "", message: "" });
+      setFormState({ name: "", email: "", whatsapp: "", subject: "", message: "", website: "" });
       formLoadedAt.current = Date.now();
     } catch (error) {
       console.error("Contact Form Error:", error);
@@ -214,6 +215,20 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="name@example.com"
                     required
+                    className="w-full px-4 py-3.5 bg-[#FAF7F2] border border-[#E8DDD0] rounded-xl font-sans text-sm text-[#2D1B0E] focus:outline-none focus:border-[#8B5E3C] focus:ring-2 focus:ring-[#8B5E3C]/20 transition-all placeholder-[#8A7560]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs uppercase tracking-wider text-[#2D1B0E] font-semibold mb-2">
+                    WhatsApp Number <span className="text-[#8A7560] normal-case">(optional)</span>
+                  </label>
+                  <input
+                    type="tel"
+                    name="whatsapp"
+                    value={formState.whatsapp}
+                    onChange={handleChange}
+                    placeholder="+92 300 0000000"
                     className="w-full px-4 py-3.5 bg-[#FAF7F2] border border-[#E8DDD0] rounded-xl font-sans text-sm text-[#2D1B0E] focus:outline-none focus:border-[#8B5E3C] focus:ring-2 focus:ring-[#8B5E3C]/20 transition-all placeholder-[#8A7560]"
                   />
                 </div>

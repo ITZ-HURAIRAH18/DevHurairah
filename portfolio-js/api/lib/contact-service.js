@@ -7,6 +7,8 @@ const EMAIL_MAX = 254;
 const SUBJECT_MAX = 200;
 const MESSAGE_MIN = 10;
 const MESSAGE_MAX = 5000;
+const WHATSAPP_MAX = 20;
+const WHATSAPP_PATTERN = /^\+?[0-9()\-\s]{7,20}$/;
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
@@ -46,6 +48,7 @@ export function validateContact(payload) {
   const email = typeof source.email === "string" ? source.email.trim() : "";
   const subject = typeof source.subject === "string" ? source.subject.trim() : "";
   const message = typeof source.message === "string" ? source.message.trim() : "";
+  const whatsapp = typeof source.whatsapp === "string" ? source.whatsapp.trim() : "";
 
   const errors = [];
 
@@ -73,10 +76,14 @@ export function validateContact(payload) {
     }
   }
 
+  if (whatsapp && (!WHATSAPP_PATTERN.test(whatsapp) || whatsapp.length > WHATSAPP_MAX)) {
+    errors.push("Please enter a valid WhatsApp number.");
+  }
+
   return {
     valid: errors.length === 0,
     errors,
-    data: { name, email, subject, message },
+    data: { name, email, subject, message, whatsapp },
   };
 }
 
@@ -110,7 +117,7 @@ export function trackRequest(identifier) {
   return false;
 }
 
-export async function sendContactEmails({ name, email, subject, message }) {
+export async function sendContactEmails({ name, email, subject, message, whatsapp }) {
   const from = getFromAddress();
   const contactEmail = getContactEmail();
   const resend = getResend();
@@ -120,6 +127,7 @@ export async function sendContactEmails({ name, email, subject, message }) {
     email,
     subject,
     message,
+    whatsapp,
     receivedFrom: "abuhurairah.engineer",
     sentAt: new Date(),
   });
