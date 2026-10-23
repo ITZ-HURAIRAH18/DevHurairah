@@ -1,5 +1,19 @@
 const Experience = () => {
   const experiences = [
+     {
+      period: "2023 – Present",
+      title: "Full Stack & AI Automation Engineer",
+      company: "Independent Projects & Client Solutions",
+      location: "Global / Remote",
+      description:
+        "Architected applications across Web, Desktop (Electron), and Mobile (React Native). Designed n8n AI agent automation pipelines.",
+      bullets: [
+        "Built AI agent workflows & n8n automations saving clients 100+ hours monthly.",
+        "Developed multi-branch ERP platforms, desktop inventory management tools, and analytics dashboards.",
+        "Delivered end-to-end software solutions for international clients.",
+      ],
+      tags: ["n8n Workflows", "LangChain / LLMs", "Python", "FastAPI", "React Native", "Electron.js"],
+    },
     {
       period: "Aug 2025 – Oct 2025",
       title: "Full Stack Developer",
@@ -28,20 +42,7 @@ const Experience = () => {
       ],
       tags: ["Django", "Django REST", "React", "Next.js", "Tailwind CSS"],
     },
-    {
-      period: "2023 – Present",
-      title: "Full Stack & AI Automation Engineer",
-      company: "Independent Projects & Client Solutions",
-      location: "Global / Remote",
-      description:
-        "Architected applications across Web, Desktop (Electron), and Mobile (React Native). Designed n8n AI agent automation pipelines.",
-      bullets: [
-        "Built AI agent workflows & n8n automations saving clients 100+ hours monthly.",
-        "Developed multi-branch ERP platforms, desktop inventory management tools, and analytics dashboards.",
-        "Delivered end-to-end software solutions for international clients.",
-      ],
-      tags: ["n8n Workflows", "LangChain / LLMs", "Python", "FastAPI", "React Native", "Electron.js"],
-    },
+   
   ];
 
   return (
