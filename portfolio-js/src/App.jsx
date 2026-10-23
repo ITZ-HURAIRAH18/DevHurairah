@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Skills from "./pages/Skills";
 import Features from "./pages/Features";
 import Projects from "./pages/Projects";
+import Freelance from "./pages/Freelance";
 import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
 
@@ -82,6 +83,9 @@ function App() {
         </section>
         <section id="projects" className="reveal">
           <Projects />
+        </section>
+        <section id="freelance" className="reveal">
+          <Freelance />
         </section>
         <section id="experience" className="reveal">
           <Experience />

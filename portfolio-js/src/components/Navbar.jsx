@@ -17,6 +17,7 @@ const Navbar = ({ activeSection }) => {
     { label: "About", href: "#skills" },
     { label: "Features", href: "#features" },
     { label: "Projects", href: "#projects" },
+    { label: "Freelance", href: "#freelance" },
     { label: "Experience", href: "#experience" },
     { label: "Contact", href: "#contact" },
   ];
@@ -53,7 +54,7 @@ const Navbar = ({ activeSection }) => {
           </a>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-4 lg:gap-7 xl:gap-8">
             {navLinks.map((link) => {
               const sectionId = link.href.replace("#", "");
               const isActive = activeSection === sectionId || (sectionId === "skills" && activeSection === "about");
@@ -62,7 +63,7 @@ const Navbar = ({ activeSection }) => {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`font-mono text-xs uppercase tracking-widest no-underline transition-colors duration-200 relative py-1.5 ${
+                  className={`font-mono text-[10px] lg:text-xs uppercase tracking-wide lg:tracking-widest no-underline transition-colors duration-200 relative py-1.5 ${
                     isActive ? "text-[#8B5E3C] font-bold" : "text-[#5C4033] hover:text-[#8B5E3C]"
                   }`}
                 >
