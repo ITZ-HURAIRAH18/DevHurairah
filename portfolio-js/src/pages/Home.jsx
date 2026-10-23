@@ -37,9 +37,9 @@ const Home = () => {
   return (
     <section
       id="home"
-      className="gradient-mesh-bg relative min-h-[calc(100vh-4.5rem)] flex items-center justify-center px-4 sm:px-8 lg:px-12 xl:px-16 py-6 sm:py-8 lg:py-10"
+      className="gradient-mesh-bg relative min-h-[calc(100vh-4.5rem)] flex items-center justify-center py-6 sm:py-8 lg:py-10"
     >
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center z-10">
+      <div className="max-w-7xl wide:max-w-[1440px] xwide:max-w-[1840px] uwide:max-w-[2100px] mx-auto w-full px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center z-10">
         {/* Left Content Column (7 cols) */}
         <div className="lg:col-span-7 flex flex-col items-start gap-4 sm:gap-5">
           {/* Greeting Badge */}

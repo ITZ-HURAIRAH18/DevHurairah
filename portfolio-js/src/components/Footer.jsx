@@ -2,8 +2,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#2D1B0E] text-[#FFF8F0] pt-10 pb-16 sm:py-10 px-6 lg:px-12 border-t border-[#8B5E3C]/30 relative z-10">
-      <div className="max-w-7xl mx-auto flex flex-col gap-6">
+    <footer className="bg-[#2D1B0E] text-[#FFF8F0] pt-10 pb-16 sm:py-10 border-t border-[#8B5E3C]/30 relative z-10">
+      <div className="max-w-7xl wide:max-w-[1440px] xwide:max-w-[1840px] uwide:max-w-[2100px] mx-auto px-6 lg:px-12 flex flex-col gap-6">
         {/* Top Row: Brand & Profile Avatar & Social Links */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-[#E8DDD0]/15">
           {/* Profile Avatar & Brand Logo & Domain */}

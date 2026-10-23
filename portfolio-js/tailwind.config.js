@@ -21,6 +21,12 @@ export default {
       mono: ["'Space Mono'", "monospace"],
     },
     extend: {
+      // Ultra-wide breakpoints so the layout scales up on large LCD / 2K / 4K displays
+      screens: {
+        wide: "1440px",
+        xwide: "1920px",
+        uwide: "2560px",
+      },
       colors: {
         page: "#FAF7F2",
         card: "#FFF8F0",

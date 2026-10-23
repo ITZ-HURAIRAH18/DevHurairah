@@ -45,7 +45,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-16 sm:py-24 bg-[#FAF7F2] relative border-t border-[#E8DDD0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+      <div className="max-w-7xl wide:max-w-[1440px] xwide:max-w-[1840px] uwide:max-w-[2100px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Section Heading */}
         <div className="flex flex-col items-start gap-2.5 mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full shadow-sm">
@@ -64,7 +64,7 @@ const Skills = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center mb-14 sm:mb-20">
           {/* Left Side: Developer Image with Warm Frame */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-sm lg:max-w-none">
+            <div className="relative mx-auto max-w-sm lg:max-w-none xwide:max-w-[560px]">
               <div className="absolute -inset-3 border-2 border-[#8B5E3C]/30 rounded-3xl transform rotate-2" />
               <div className="absolute -inset-3 border border-[#C49A6C]/40 rounded-3xl transform -rotate-2" />
 
@@ -72,7 +72,7 @@ const Skills = () => {
                 <img
                   src="/picture.jfif"
                   alt="Muhammad Abu Hurairah"
-                  className="w-full h-[320px] sm:h-[420px] object-cover object-[center_top] transition-transform duration-700 hover:scale-105"
+                  className="w-full h-[320px] sm:h-[420px] xwide:h-[500px] object-cover object-[center_top] transition-transform duration-700 hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#2D1B0E] via-[#2D1B0E]/20 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 text-white space-y-0.5">
@@ -85,13 +85,13 @@ const Skills = () => {
 
           {/* Right Side: Bio & Stats */}
           <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-6">
-            <h3 className="font-heading font-bold text-xl sm:text-3xl text-[#2D1B0E] leading-snug">
+            <h3 className="font-heading font-bold text-xl sm:text-3xl text-[#2D1B0E] leading-snug max-w-3xl">
               Building high-impact web applications & AI automation pipelines.
             </h3>
-            <p className="font-sans text-xs sm:text-base text-[#5C4033] leading-relaxed">
+            <p className="font-sans text-xs sm:text-base text-[#5C4033] leading-relaxed max-w-3xl">
               I am a Full-Stack Developer and AI Automation Engineer based in Pakistan. My engineering experience spans web applications, mobile platforms, cross-platform desktop software, and custom <strong>AI automation workflows</strong>.
             </p>
-            <p className="font-sans text-xs sm:text-base text-[#5C4033] leading-relaxed">
+            <p className="font-sans text-xs sm:text-base text-[#5C4033] leading-relaxed max-w-3xl">
               From crafting seamless React / Next.js user experiences to building robust Python, Django, and Node.js APIs or orchestrating n8n AI agent workflows, I focus on performance, scalability, and clean architecture.
             </p>
 
@@ -124,7 +124,7 @@ const Skills = () => {
           </div>
 
           {/* Sleek Compact Responsive Tech Badges Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xwide:grid-cols-6 uwide:grid-cols-8 gap-2.5 sm:gap-4">
             {skillBadges.map((badge, idx) => (
               <div
                 key={idx}

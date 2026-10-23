@@ -39,7 +39,7 @@ const Navbar = ({ activeSection }) => {
           : "bg-[#FAF7F2]/60 backdrop-blur-sm border-b border-[#E8DDD0]/50"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-7xl wide:max-w-[1440px] xwide:max-w-[1840px] uwide:max-w-[2100px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-16">
           {/* Logo — "ABU HURAIRAH" */}
           <a

@@ -47,7 +47,7 @@ const Experience = () => {
 
   return (
     <section id="experience" className="py-16 sm:py-20 bg-[#FAF7F2] border-t border-[#E8DDD0]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-12">
+      <div className="max-w-5xl wide:max-w-6xl xwide:max-w-7xl uwide:max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Clean Section Heading */}
         <div className="flex flex-col items-start gap-2 mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full">

@@ -67,7 +67,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-24 bg-[#FAF7F2] border-t border-[#E8DDD0]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-7xl wide:max-w-[1440px] xwide:max-w-[1840px] uwide:max-w-[2100px] mx-auto px-6 lg:px-12">
         {/* Section Heading */}
         <div className="flex flex-col items-start gap-3 mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full">
@@ -152,7 +152,7 @@ const Contact = () => {
           </div>
 
           {/* Right Column: Clean Contact Form Card */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 xwide:max-w-[860px] xwide:ml-auto">
             <div className="warm-card p-5 sm:p-8 sm:p-10 rounded-2xl border border-[#E8DDD0] shadow-warm">
               <h3 className="font-heading font-bold text-2xl text-[#2D1B0E] mb-2">
                 Send a Message

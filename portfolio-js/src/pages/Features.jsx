@@ -52,7 +52,7 @@ const Features = () => {
 
   return (
     <section id="features" className="py-16 sm:py-24 bg-[#FAF7F2] border-t border-[#E8DDD0] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+      <div className="max-w-7xl wide:max-w-[1440px] xwide:max-w-[1840px] uwide:max-w-[2100px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Section Heading */}
         <div className="flex flex-col items-start gap-2.5 mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 bg-[#FFF8F0] border border-[#E8DDD0] rounded-full shadow-sm">

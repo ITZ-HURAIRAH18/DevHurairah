@@ -198,7 +198,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-16 sm:py-24 bg-[#FAF7F2] border-t border-[#E8DDD0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+      <div className="max-w-7xl wide:max-w-[1440px] xwide:max-w-[1840px] uwide:max-w-[2100px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Section Heading with Accent */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
           <div>
@@ -253,7 +253,7 @@ const Projects = () => {
                 </div>
 
                 {/* Screenshot image */}
-                <div className="relative h-40 sm:h-52 bg-[#120d08] overflow-hidden">
+                <div className="relative h-40 sm:h-52 xwide:h-64 uwide:h-72 bg-[#120d08] overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
